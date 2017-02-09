@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/añadir">
+        <menu>
+            <item
+                android:id="@+id/nav_add_cliente"
+                android:icon="@drawable/ic_add_cliente"
+                android:title="@string/añadir_cliente" />
+            <item
+                android:id="@+id/nav_add_entrada"
+                android:icon="@drawable/ic_add_entrada"
+                android:title="@string/añadir_reparacion" />
+        </menu>
+    </item>
+
+    <item android:title="@string/resolucion">
+        <menu>
+            <item
+                android:id="@+id/nav_res_entrada"
+                android:icon="@drawable/ic_hecho"
+                android:title="@string/resolver_reparacion"/>
+        </menu>
+    </item>
+</menu>
