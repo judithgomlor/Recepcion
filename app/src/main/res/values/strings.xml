@@ -16,14 +16,14 @@
     <string name="calendario">Calendario</string>
     <string name="modificar">Modificar</string>
     <string name="ficha_cliente">Ficha cliente</string>
-    <string name="primer_apellido">Primer apellido</string>
-    <string name="segundo_apellido">Segundo apellido</string>
+    <string name="primer_apellido">Primer apellido:</string>
+    <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
-    <string name="quita_ultimo">Deshacer el último</string>
-    <string name="añade_otro_vehiculo">Añade otro</string>
+    <string name="quita_ultimo">Deshacer</string>
+    <string name="añade_otro_vehiculo">Añade</string>
     <string name="datos_personales">Datos personales:</string>
     <string name="nombre">Nombre:</string>
     <string name="apellidos">Apellidos:</string>
@@ -49,7 +49,8 @@
     <string name="no_hoy_resueltas">No hay entradas resueltas para hoy</string>
     <string name="no_ayer_pendiente">No hay entradas pendientes para ayer</string>
     <string name="no_ayer_resueltas">No hay entradas resueltas para ayer</string>
-    <string name="resolucion">Resolución</string>
+    <string name="resolucion">Resolución:</string>
+    <string name="datos_resolucion">Datos de la resolución</string>
     <string name="cliente">Datos del cliente:</string>
     <string name="recuperar_cliente">Recuperar</string>
     <string name="crear_cliente">Crear</string>
@@ -57,6 +58,16 @@
     <string name="datos_ingreso_reparacion">Datos de la reparación:</string>
     <string name="datos_ingreso_vehiculo">Datos del vehículo:</string>
     <string name="reparaciones_pendientes">Reparaciones pendientes:</string>
+    <string name="texto_custom_dialog">Estás a punto de salir sin guardar. ¿Estás seguro?</string>
+    <string name="confirmacion">Confirmación</string>
+    <string name="texto_custom_dialog_eliminar_elemento">Estás a punto de eliminar una entrada de
+        un vehículo. ¿Estás seguro?</string>
+    <string name="falta_nombre">Hay que especificar un nombre</string>
+    <string name="falta_primer_apellido">Hay que especificar un apellido</string>
+    <string name="falta_telefono">Hay que especificar un número de teléfono</string>
+    <string name="falta_matricula">Hay que especificar una matrícula</string>
+    <string name="falta_modelo">Hay que especificar un modelo</string>
+    <string name="falta_marca">Hay que especificar una marca</string>
 
     <!-- Respuestas API -->
     <string name="no_resultados">No se han encontrado resultados</string>

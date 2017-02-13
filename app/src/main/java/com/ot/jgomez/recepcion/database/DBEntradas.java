@@ -23,9 +23,6 @@ public class DBEntradas extends BaseModel {
     String fechaEntrada;
 
     @Column
-    String tipoVehiculo;
-
-    @Column
     String marcaVehiculo;
 
     @Column
@@ -46,11 +43,10 @@ public class DBEntradas extends BaseModel {
     @Column
     String fechaSalida;
 
-    public DBEntradas(String fechaEntrada, String tipoVehiculo, String marcaVehiculo,
+    public DBEntradas(String fechaEntrada, String marcaVehiculo,
                       String modeloVehículo, String matriculaVehiculo, String resumenEntrada,
                       String descripcionEntrada, String resolucionEntrada, String fechaSalida) {
         this.fechaEntrada = fechaEntrada;
-        this.tipoVehiculo = tipoVehiculo;
         this.marcaVehiculo = marcaVehiculo;
         this.modeloVehículo = modeloVehículo;
         this.matriculaVehiculo = matriculaVehiculo;
@@ -74,14 +70,6 @@ public class DBEntradas extends BaseModel {
 
     public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
-    }
-
-    public String getTipoVehiculo() {
-        return tipoVehiculo;
-    }
-
-    public void setTipoVehiculo(String tipoVehiculo) {
-        this.tipoVehiculo = tipoVehiculo;
     }
 
     public String getMarcaVehiculo() {

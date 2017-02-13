@@ -1,228 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_marginBottom="@dimen/margin_bottom_buttons">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/añadir_datos_personales"
+            android:id="@+id/datos_personales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imagen_nombre"
+            <LinearLayout
+                android:id="@+id/añadir_datos_personales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imagen_nombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_person_black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:text="@string/datos_personales"
+                    android:textSize="@dimen/text_size" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/añadir_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nombre"
+                    android:textSize="@dimen/text_size" />
+
+                <EditText
+                    android:id="@+id/editar_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/añadir_apellidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_person_black" />
+                android:layout_marginTop="@dimen/margin_top_edittext"
+                android:orientation="horizontal">
 
-            <TextView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apellidos"
+                    android:textSize="@dimen/text_size" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/editar_apellidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/margin_top"
-                android:text="@string/datos_personales"
-                android:textSize="@dimen/text_size" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/editar_primer_apellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:id="@+id/añadir_nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_datos_personales"
-            android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/editar_segundo_apellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/nombre"
-                android:textSize="@dimen/text_size" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/editar_nombre"
+            <LinearLayout
+                android:id="@+id/añadir_telefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/telefono"
+                    android:textSize="@dimen/text_size" />
+
+                <EditText
+                    android:id="@+id/editar_telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:inputType="number" />
+
+            </LinearLayout>
         </LinearLayout>
 
-
         <LinearLayout
-            android:id="@+id/añadir_apellidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_nombre"
-            android:layout_marginTop="@dimen/margin_top_edittext"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/apellidos"
-                android:textSize="@dimen/text_size" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/editar_apellidos"
+            android:id="@+id/añade_primer_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_nombre"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_toRightOf="@id/añadir_apellidos"
-            android:orientation="vertical">
-
-            <EditText
-                android:id="@+id/editar_primer_apellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
-                android:id="@+id/editar_segundo_apellido"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añadir_telefono"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editar_apellidos"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/telefono"
-                android:textSize="@dimen/text_size" />
-
-            <EditText
-                android:id="@+id/editar_telefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:inputType="number" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añadir_datos_primer_vehiculo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_telefono"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imagen_coche"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_car" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/margin_top"
-                android:text="@string/vehiculo"
-                android:textSize="@dimen/text_size" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añadir_marca_vehiculo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_datos_primer_vehiculo"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/marca"
-                android:textSize="@dimen/text_size" />
-
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_marca"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añadir_modelo_vehiculo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_marca_vehiculo"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/modelo"
-                android:textSize="@dimen/text_size" />
-
-            <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spinner_modelo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añadir_matricula"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_modelo_vehiculo"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/matricula"
-                android:textSize="@dimen/text_size" />
-
-            <EditText
-                android:id="@+id/editar_matricula"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/añade_otro_vehiculo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/añadir_matricula"
+            android:layout_below="@id/datos_personales"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_datos_vehiculo"
+                android:id="@+id/añadir_datos_primer_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_telefono"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_otro_coche"
+                    android:id="@+id/imagen_primer_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_primera_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -232,21 +149,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_marca_vehiculo"
+                android:id="@+id/añadir_primera_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otro_datos_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_primera_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra"
+                <EditText
+                    android:id="@+id/editar_primera_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -254,21 +171,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_modelo_vehiculo"
+                android:id="@+id/añadir_primer_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otra_marca_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_primer_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_modelo"
+                <EditText
+                    android:id="@+id/editar_primer_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -276,48 +193,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_matricula"
+                android:id="@+id/añadir_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otro_modelo_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_primera_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_matricula"
+                    android:id="@+id/editar_primera_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_segundo_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_primer_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_segundo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_segundo_vehiculo"
+            android:id="@+id/añade_segundo_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_vehiculo"
+            android:layout_below="@id/añade_primer_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_segundo_vehiculo"
+                android:id="@+id/añadir_segundo_datos_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_segundo_otro_coche"
+                    android:id="@+id/imagen_segundo_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_segunda_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -327,20 +268,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_segunda_marca_vehiculo"
+                android:id="@+id/añadir_segunda_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_segunda_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_segunda"
+                <EditText
+                    android:id="@+id/editar_segunda_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -348,21 +290,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_segundo_modelo_vehiculo"
+                android:id="@+id/añadir_segundo_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otra_segunda_marca_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_segundo_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_segundo_modelo"
+                <EditText
+                    android:id="@+id/editar_segundo_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -370,48 +312,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_segunda_matricula"
+                android:id="@+id/añadir_segunda_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otro_segundo_modelo_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_segunda_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_segunda_matricula"
+                    android:id="@+id/editar_segunda_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_tercer_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_segundo_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_tercero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_tercer_vehiculo"
+            android:id="@+id/añade_tercer_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_segundo_vehiculo"
+            android:layout_below="@id/añade_segundo_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_tercer_vehiculo"
+                android:id="@+id/añadir_tercer_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_tercer_otro_coche"
+                    android:id="@+id/imagen_tercer_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_tercera_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -421,20 +387,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_tercera_marca_vehiculo"
+                android:id="@+id/añadir_tercera_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_tercera_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_tercera"
+                <EditText
+                    android:id="@+id/editar_tercera_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -442,21 +409,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_tercer_modelo_vehiculo"
+                android:id="@+id/añadir_tercer_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otra_segunda_marca_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_tercer_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_tercer_modelo"
+                <EditText
+                    android:id="@+id/editar_tercer_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -464,48 +431,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_tercera_matricula"
+                android:id="@+id/añadir_tercera_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/añadir_otro_segundo_modelo_vehiculo"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_tercera_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_tercera_matricula"
+                    android:id="@+id/editar_tercera_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_cuarto_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_tercer_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_cuarto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_cuarto_vehiculo"
+            android:id="@+id/añade_cuarto_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_tercer_vehiculo"
+            android:layout_below="@id/añade_tercer_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_cuarto_vehiculo"
+                android:id="@+id/añadir_cuarto_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_cuarto_otro_coche"
+                    android:id="@+id/imagen_cuarto_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_cuarta_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -515,20 +506,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_cuarta_marca_vehiculo"
+                android:id="@+id/añadir_cuarta_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_cuarta_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_cuarta"
+                <EditText
+                    android:id="@+id/editar_cuarta_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -536,20 +528,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_cuarto_modelo_vehiculo"
+                android:id="@+id/añadir_cuarto_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_cuarto_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_cuarto_modelo"
+                <EditText
+                    android:id="@+id/editar_cuarto_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -557,47 +550,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_cuarta_matricula"
+                android:id="@+id/añadir_cuarta_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_cuarta_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_cuarta_matricula"
+                    android:id="@+id/editar_cuarta_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_quinto_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_cuarto_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_quinto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_quinto_vehiculo"
+            android:id="@+id/añade_quinto_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_cuarto_vehiculo"
+            android:layout_below="@id/añade_cuarto_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_quinto_vehiculo"
+                android:id="@+id/añadir_quinto_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_quinto_otro_coche"
+                    android:id="@+id/imagen_quinto_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_quinta_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -607,20 +625,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_quinta_marca_vehiculo"
+                android:id="@+id/añadir_quinta_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_quinta_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_quinta"
+                <EditText
+                    android:id="@+id/editar_quinta_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -628,20 +647,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_quinto_modelo_vehiculo"
+                android:id="@+id/añadir_quinto_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_quinto_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_quinto_modelo"
+                <EditText
+                    android:id="@+id/editar_quinto_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -649,47 +669,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_quinta_matricula"
+                android:id="@+id/añadir_quinta_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_quinta_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_quinta_matricula"
+                    android:id="@+id/editar_quinta_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_sexto_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_quinto_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_sexto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_sexto_vehiculo"
+            android:id="@+id/añade_sexto_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_quinto_vehiculo"
+            android:layout_below="@id/añade_quinto_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_sexto_vehiculo"
+                android:id="@+id/añadir_sexto_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_sexto_otro_coche"
+                    android:id="@+id/imagen_sexto_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_sexta_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -699,20 +744,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_sexta_marca_vehiculo"
+                android:id="@+id/añadir_sexta_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_sexta_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_sexta"
+                <EditText
+                    android:id="@+id/editar_sexta_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -720,20 +766,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_sexto_modelo_vehiculo"
+                android:id="@+id/añadir_sexto_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_sexto_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_sexto_modelo"
+                <EditText
+                    android:id="@+id/editar_sexto_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -741,47 +788,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_sexta_matricula"
+                android:id="@+id/añadir_sexta_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_sexta_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_sexta_matricula"
+                    android:id="@+id/editar_sexta_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_septimo_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_sexto_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_septimo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_septimo_vehiculo"
+            android:id="@+id/añade_septimo_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_sexto_vehiculo"
+            android:layout_below="@id/añade_sexto_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_septimo_vehiculo"
+                android:id="@+id/añadir_septimo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_septimo_otro_coche"
+                    android:id="@+id/imagen_septimo_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_septima_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -791,20 +863,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_septima_marca_vehiculo"
+                android:id="@+id/añadir_septma_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_septima_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_septima"
+                <EditText
+                    android:id="@+id/editar_septima_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -812,20 +885,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_septimo_modelo_vehiculo"
+                android:id="@+id/añadir_septimo_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_septimo_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_septimo_modelo"
+                <EditText
+                    android:id="@+id/editar_septimo_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -833,47 +907,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_septima_matricula"
+                android:id="@+id/añadir_septima_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_septima_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_septima_matricula"
+                    android:id="@+id/editar_septima_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_octavo_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_septimo_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_octavo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_octavo_vehiculo"
+            android:id="@+id/añade_octavo_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_septimo_vehiculo"
+            android:layout_below="@id/añade_septimo_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_octavo_vehiculo"
+                android:id="@+id/añadir_octavo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_octavo_otro_coche"
+                    android:id="@+id/imagen_octavo_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_octava_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -883,20 +982,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_octava_marca_vehiculo"
+                android:id="@+id/añadir_octava_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_octava_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_octava"
+                <EditText
+                    android:id="@+id/editar_octava_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -904,20 +1004,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_octavo_modelo_vehiculo"
+                android:id="@+id/añadir_octavo_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_octavo_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_octavo_modelo"
+                <EditText
+                    android:id="@+id/editar_octavo_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -925,47 +1026,72 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_octava_matricula"
+                android:id="@+id/añadir_octava_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_octava_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_octava_matricula"
+                    android:id="@+id/editar_octava_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_noveno_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_octavo_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_noveno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/añade_otro_noveno_vehiculo"
+            android:id="@+id/añade_noveno_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_octavo_vehiculo"
+            android:layout_below="@id/añade_octavo_vehiculo"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/añadir_otro_noveno_vehiculo"
+                android:id="@+id/añadir_novena_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imagen_noveno_otro_coche"
+                    android:id="@+id/imagen_novena_coche"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_car" />
 
                 <TextView
+                    android:id="@+id/txtvw_novena_imagen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -975,20 +1101,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_novena_marca_vehiculo"
+                android:id="@+id/añadir_novena_marca_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_novena_marca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/marca"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_marca_otra_novena"
+                <EditText
+                    android:id="@+id/editar_novena_marca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -996,20 +1123,21 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otro_noveno_modelo_vehiculo"
+                android:id="@+id/añadir_noveno_modelo_vehiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_noveno_modelo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/modelo"
                     android:textSize="@dimen/text_size" />
 
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_otro_noveno_modelo"
+                <EditText
+                    android:id="@+id/editar_noveno_modelo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
@@ -1017,49 +1145,161 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/añadir_otra_novena_matricula"
+                android:id="@+id/añadir_novena_matricula"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/txtvw_novena_matricula"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/matricula"
                     android:textSize="@dimen/text_size" />
 
                 <EditText
-                    android:id="@+id/editar_otra_novena_matricula"
+                    android:id="@+id/editar_novena_matricula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_btn_añade_decimo_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_noveno_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+
+                <Button
+                    android:id="@+id/boton_añade_decimo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_car"
+                    android:text="@string/añade_otro_vehiculo" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_btn_añade_otro_vehiculo"
+            android:id="@+id/añade_decimo_vehiculo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/añade_otro_noveno_vehiculo"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/margin_bottom_buttons">
+            android:layout_below="@id/añade_noveno_vehiculo"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/boton_añade_otro"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/añadir_decimo_vehiculo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_car"
-                android:text="@string/añade_otro_vehiculo" />
+                android:orientation="horizontal">
 
-            <Button
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/imagen_decimo_coche"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_car" />
+
+                <TextView
+                    android:id="@+id/txtvw_decima_imagen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:text="@string/vehiculo"
+                    android:textSize="@dimen/text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/añadir_decima_marca_vehiculo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_delete"
-                android:text="@string/quita_ultimo"
-                android:id="@+id/boton_deshacer_vehiculo"/>
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtvw_decima_marca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/marca"
+                    android:textSize="@dimen/text_size" />
+
+                <EditText
+                    android:id="@+id/editar_decima_marca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/añadir_decimo_modelo_vehiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtvw_decimo_modelo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modelo"
+                    android:textSize="@dimen/text_size" />
+
+                <EditText
+                    android:id="@+id/editar_decimo_modelo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/añadir_decima_matricula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtvw_decima_matricula"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/matricula"
+                    android:textSize="@dimen/text_size" />
+
+                <EditText
+                    android:id="@+id/editar_decima_matricula"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_btn_deshace_decimo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_buttons"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/boton_deshacer_decimo_vehiculo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:text="@string/quita_ultimo" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>

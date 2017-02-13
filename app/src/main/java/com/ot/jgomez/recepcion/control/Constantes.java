@@ -5,5 +5,5 @@ package com.ot.jgomez.recepcion.control;
  */
 
 public class Constantes {
-    public static final String API_URL = "https://vpic.nhtsa.dot.gov/api";
+    public static final String API_URL = "https://vpic.nhtsa.dot.gov/api/";
 }

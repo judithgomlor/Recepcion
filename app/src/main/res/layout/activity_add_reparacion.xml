@@ -19,7 +19,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cancelar_nueva_reparacion"
+            android:id="@+id/boton_cancelar_nueva_reparacion"
             style="?android:attr/borderlessButtonStyle"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
@@ -34,7 +34,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/aceptar_nueva_reparacion"
+            android:id="@+id/boton_aceptar_nueva_reparacion"
             style="?android:attr/borderlessButtonStyle"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
