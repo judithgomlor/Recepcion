@@ -1,6 +1,5 @@
 package com.ot.jgomez.recepcion.database;
 
-import com.ot.jgomez.recepcion.model.FichasEntradas;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
@@ -10,17 +9,22 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 import java.util.List;
 
 /**
- * Created by jgomez on 8/02/17.
+ * Created by jgomez on 14/02/17.
  */
-@Table(database = EntradasDatabase.class)
-public class DBEntradas extends BaseModel {
-
+@Table(database = RegistroEntradasDatabase.class)
+public class DBRegistroEntradas extends BaseModel {
     @Column
     @PrimaryKey(autoincrement = true)
     int id;
 
     @Column
-    String fechaEntrada;
+    String nombre;
+
+    @Column
+    String primerApellido;
+
+    @Column
+    String segundoApellido;
 
     @Column
     String marcaVehiculo;
@@ -30,6 +34,9 @@ public class DBEntradas extends BaseModel {
 
     @Column
     String matriculaVehiculo;
+
+    @Column
+    String fechaEntrada;
 
     @Column
     String resumenEntrada;
@@ -43,25 +50,53 @@ public class DBEntradas extends BaseModel {
     @Column
     String fechaSalida;
 
-    public DBEntradas(String fechaEntrada, String marcaVehiculo,
-                      String modeloVehículo, String matriculaVehiculo, String resumenEntrada,
-                      String descripcionEntrada, String resolucionEntrada, String fechaSalida) {
-        this.fechaEntrada = fechaEntrada;
+    public DBRegistroEntradas(String nombre, String primerApellido, String segundoApellido,
+                      String marcaVehiculo, String modeloVehículo, String matriculaVehiculo,
+                      String fechaEntrada, String resumenEntrada, String descripcionEntrada,
+                      String resolucionEntrada, String fechaSalida) {
+        this.nombre = nombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.marcaVehiculo = marcaVehiculo;
         this.modeloVehículo = modeloVehículo;
         this.matriculaVehiculo = matriculaVehiculo;
+        this.fechaEntrada = fechaEntrada;
         this.resumenEntrada = resumenEntrada;
         this.descripcionEntrada = descripcionEntrada;
         this.resolucionEntrada = resolucionEntrada;
         this.fechaSalida = fechaSalida;
     }
 
-    public DBEntradas() {
+    public DBRegistroEntradas() {
 
     }
 
-    public static List<DBEntradas> getAllEntradas() {
-        return new SQLite().select().from(DBEntradas.class).queryList();
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
+    }
+
+    public static List<DBRegistroEntradas> getAllEntradas() {
+        return new SQLite().select().from(DBRegistroEntradas.class).queryList();
     }
 
     public String getFechaEntrada() {

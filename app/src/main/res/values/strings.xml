@@ -20,6 +20,10 @@
     <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="dia">Día:</string>
+    <string name="mes">Mes:</string>
+    <string name="año">Año:</string>
+    <string name="cambia_dia">Cambia</string>
     <string name="aceptar">Aceptar</string>
     <string name="cancelar">Cancelar</string>
     <string name="quita_ultimo">Deshacer</string>

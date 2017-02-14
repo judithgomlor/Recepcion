@@ -58,9 +58,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -71,9 +71,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_nombre_cargado"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -95,9 +95,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -108,9 +108,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_primer_apellido_cargado"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -132,9 +132,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -145,9 +145,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_segundo_apellido_cargado"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -176,9 +176,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -189,9 +189,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_marca_cargada"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -212,9 +212,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -225,9 +225,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_modelo_cargado"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -248,9 +248,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/custom_spinner_background"
                 android:layout_marginBottom="4dp"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:background="@drawable/custom_spinner_background">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -261,9 +261,9 @@
 
                 <Spinner
                     android:id="@+id/spinner_matricula_cargada"
-                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="34dp"/>
+                    android:layout_height="34dp"
+                    android:background="@android:color/transparent" />
 
             </RelativeLayout>
 
@@ -277,18 +277,42 @@
             android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/fecha_entrada"
-            android:textSize="@dimen/text_size" />
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fecha_entrada"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:id="@+id/txtvw_fecha_actual"
+                android:textSize="@dimen/text_size"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cambia_dia"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:id="@+id/boton_cambia_dia"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+        <!--
         <CalendarView
             android:id="@+id/calendar_datos_reparacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal" />
+            -->
 
         <LinearLayout
             android:layout_width="match_parent"
