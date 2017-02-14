@@ -13,7 +13,9 @@ public class ConsultaClientes {
     private String mModeloVehiculo;
     private String mMatriculaVehiculo;
 
-    public ConsultaClientes(String mNombre, String mPrimerApellido, String mSegundoApellido, String mTelefono, String mMarcaVehiculo, String mModeloVehiculo, String mMatriculaVehiculo) {
+    public ConsultaClientes(String mNombre, String mPrimerApellido, String mSegundoApellido,
+                            String mTelefono, String mMarcaVehiculo, String mModeloVehiculo,
+                            String mMatriculaVehiculo) {
         this.mNombre = mNombre;
         this.mPrimerApellido = mPrimerApellido;
         this.mSegundoApellido = mSegundoApellido;

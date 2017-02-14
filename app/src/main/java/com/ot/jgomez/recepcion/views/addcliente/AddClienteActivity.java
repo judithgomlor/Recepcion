@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -546,11 +547,12 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
-        dialog.setTitle(R.string.confirmacion);
 
         //set the custom dialog components
-
+        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        textoTitulo.setText(R.string.confirmacion);
         TextView textoDialog = (TextView) dialog.findViewById(R.id.txtvw_custom_dialog);
         textoDialog.setText(R.string.texto_custom_dialog);
         Button buttonCancelar = (Button) dialog.findViewById(R.id.boton_cancelar_dialog);
@@ -573,10 +575,12 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     private void dialogGone() {
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
-        dialog.setTitle(R.string.confirmacion);
 
         //set the custom dialog components
+        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        textoTitulo.setText(R.string.confirmacion);
         TextView textoDialog = (TextView) findViewById(R.id.txtvw_custom_dialog);
         textoDialog.setText(R.string.texto_custom_dialog_eliminar_elemento);
         Button buttonCancelar = (Button) findViewById(R.id.boton_cancelar_dialog);

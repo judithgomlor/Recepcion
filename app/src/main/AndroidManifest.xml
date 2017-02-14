@@ -26,8 +26,8 @@
             android:name=".views.addcliente.AddClienteActivity"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".views.addreparacion.AddReparacionActivity" />
-        <activity android:name=".views.solvereparacion.SolveReparacionActivity"
-            android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".views.solvereparacion.SolveReparacionActivity" />
+
     </application>
 
 </manifest>

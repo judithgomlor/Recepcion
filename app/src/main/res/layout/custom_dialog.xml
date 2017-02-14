@@ -5,6 +5,16 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/txtvw_titulo_dialog"
+        android:textColor="@color/colorWhite"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:textSize="@dimen/text_size_title"/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtvw_custom_dialog"
         android:textSize="@dimen/text_size"

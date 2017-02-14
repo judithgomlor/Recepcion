@@ -1,12 +1,14 @@
 package com.ot.jgomez.recepcion.views.addreparacion;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -73,10 +75,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     private String mModelo;
     private String mMatricula;
     private String mFechaEntrada;
-    private String mParseFechaEntrada;
     private String mResumen;
     private String mDescripcion;
-    private boolean mCambiaDia = false;
+    private boolean mBoolRecupera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         this.mListMarcas = new ArrayList<>();
         this.mListModelos = new ArrayList<>();
         this.mListMatriculas = new ArrayList<>();
+        this.mBoolRecupera = false;
     }
 
     @Override
@@ -141,12 +143,44 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             Intent myIntent = new Intent(this, AddClienteActivity.class);
             startActivityForResult(myIntent, REQUEST_NEW_CLIENT);
         } else if (v == this.mBtnRecuperar) {
+            this.mBoolRecupera = true;
             this.recuperaDatos();
         }
     }
 
     private void cancelaEntrada() {
-        //tendrá que salir con dialog custom --> tener en cuenta el título
+        if(!this.mBoolRecupera) {
+            finish();
+        } else {
+            this.dialogExit();
+        }
+    }
+
+    private void dialogExit() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        //set the custom dialog components
+        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        textoTitulo.setText(R.string.confirmacion);
+        TextView textoDialog = (TextView) dialog.findViewById(R.id.txtvw_custom_dialog);
+        textoDialog.setText(R.string.texto_custom_dialog);
+        Button buttonCancelar = (Button) dialog.findViewById(R.id.boton_cancelar_dialog);
+        buttonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        Button buttonAceptar = (Button) dialog.findViewById(R.id.boton_aceptar_dialog);
+        buttonAceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        dialog.show();
     }
 
     private void recuperaDatos() {
@@ -222,8 +256,8 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             this.mDescripcion = this.mEditDescripcion.getText().toString();
         }
 
-        DBRegistroEntradas registroEntrada = new DBRegistroEntradas(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
-                this.mMarca, this.mModelo, this.mMatricula, this.mFechaEntrada,
+        DBRegistroEntradas registroEntrada = new DBRegistroEntradas(this.mNombre, this.mPrimerApellido,
+                this.mSegundoApellido, this.mMarca, this.mModelo, this.mMatricula, this.mFechaEntrada,
                 this.mResumen, this.mDescripcion, "", "");
         registroEntrada.save();
         Toast.makeText(this, "Entrada guardada", Toast.LENGTH_SHORT).show();
@@ -237,9 +271,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         String month = String.valueOf(c.getTime().getMonth()+1);
         if(month.length() == 1) month = "0" + month;
         String day = String.valueOf(c.getTime().getDate());
-        this.mFechaEntrada = day + month + aux_year;
-        this.mParseFechaEntrada = day + "." + month + "." + aux_year;
-        this.mTextFechaActual.setText(this.mParseFechaEntrada);
+        if(day.length() == 1) day = "0" + day;
+        this.mFechaEntrada = day + "." + month + "." + aux_year;
+        this.mTextFechaActual.setText(this.mFechaEntrada);
     }
 
     @Override
@@ -296,6 +330,8 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                 this.mMarca = marca;
                 this.mModelo = modelo;
                 this.mMatricula = matricula;
+
+                this.mBoolRecupera = true;
             }
         }
     }
@@ -411,13 +447,12 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        this.mCambiaDia = true;
         String parseYear = Integer.toString(year);
         String parseMonth = Integer.toString(month+1);
         if(parseMonth.length() == 1) parseMonth = "0" + parseMonth;
         String parseDay = Integer.toString(dayOfMonth);
-        this.mFechaEntrada = parseDay + parseMonth + parseYear;
-        this.mParseFechaEntrada = parseDay + "." + parseMonth + "." + parseYear;
-        this.mTextFechaActual.setText(this.mParseFechaEntrada);
+        if(parseDay.length() == 1) parseDay = "0" + parseDay;
+        this.mFechaEntrada = parseDay + "." + parseMonth + "." + parseYear;
+        this.mTextFechaActual.setText(this.mFechaEntrada);
     }
 }
