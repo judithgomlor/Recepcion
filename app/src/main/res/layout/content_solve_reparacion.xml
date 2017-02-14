@@ -20,11 +20,27 @@
             android:textSize="@dimen/text_size"
             android:textStyle="bold"/>
 
-        <android.support.v7.widget.AppCompatSpinner
+        <RelativeLayout
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner_reparaciones_pendientes"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:background="@drawable/custom_spinner_background"
+            android:layout_marginBottom="4dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_spinner_orange" />
+
+            <Spinner
+                android:id="@+id/spinner_reparaciones_pendientes"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"/>
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -46,11 +62,27 @@
                 android:text="@string/nombre"
                 android:textSize="@dimen/text_size"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:id="@+id/spinner_nombre_solve_reparacion"/>
+                android:background="@drawable/custom_spinner_background"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_spinner_orange" />
+
+                <Spinner
+                    android:id="@+id/spinner_nombre_solve_reparacion"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -71,18 +103,50 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.AppCompatSpinner
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:id="@+id/spinner_primer_apellido_reparacion"/>
+                    android:background="@drawable/custom_spinner_background"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin">
 
-                <android.support.v7.widget.AppCompatSpinner
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_spinner_orange" />
+
+                    <Spinner
+                        android:id="@+id/spinner_primer_apellido_reparacion"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:id="@+id/spinner_segundo_apellido_reparacion"/>
+                    android:background="@drawable/custom_spinner_background"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_spinner_orange" />
+
+                    <Spinner
+                        android:id="@+id/spinner_segundo_apellido_reparacion"
+                        android:background="@android:color/transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -108,11 +172,27 @@
                 android:text="@string/marca"
                 android:textSize="@dimen/text_size"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner_marca_vehiculo_reparacion"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+                android:background="@drawable/custom_spinner_background"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_spinner_orange" />
+
+                <Spinner
+                    android:id="@+id/spinner_marca_vehiculo_reparacion"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -128,11 +208,27 @@
                 android:text="@string/modelo"
                 android:textSize="@dimen/text_size"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:id="@+id/spinner_modelo_vehiculo_reparacion"/>
+                android:background="@drawable/custom_spinner_background"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_spinner_orange" />
+
+                <Spinner
+                    android:id="@+id/spinner_modelo_vehiculo_reparacion"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -148,11 +244,27 @@
                 android:text="@string/matricula"
                 android:textSize="@dimen/text_size"/>
 
-            <android.support.v7.widget.AppCompatSpinner
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner_matricula_vehiculo_reparacion"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+                android:background="@drawable/custom_spinner_background"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_spinner_orange" />
+
+                <Spinner
+                    android:id="@+id/spinner_matricula_vehiculo_reparacion"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="34dp"/>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

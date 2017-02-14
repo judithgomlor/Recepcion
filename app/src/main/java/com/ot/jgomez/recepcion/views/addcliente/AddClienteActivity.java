@@ -1,6 +1,8 @@
 package com.ot.jgomez.recepcion.views.addcliente;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,14 @@ import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.database.DBClientes;
 
 public class AddClienteActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final int REQUEST_NEW_CLIENT = 1;
+    private static final String EXTRA_NAME = "nombre";
+    private static final String EXTRA_FIRST_SURNAME = "primer_apellido";
+    private static final String EXTRA_SECOND_SURNAME = "segundo_apellido";
+    private static final String EXTRA_MARCA = "marca";
+    private static final String EXTRA_MODELO = "modelo";
+    private static final String EXTRA_MATRICULA = "matricula";
 
     private EditText mEditNombre;
     private EditText mEditPrimerApellido;
@@ -202,6 +212,19 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra(this.mEditNombre.getText().toString(), this.EXTRA_NAME);
+            returnIntent.putExtra(this.mEditPrimerApellido.getText().toString(),
+                    this.EXTRA_FIRST_SURNAME);
+            returnIntent.putExtra(this.mEditSegundoApellido.getText().toString(),
+                    this.EXTRA_SECOND_SURNAME);
+            returnIntent.putExtra(this.mPrimerEditTextMarca.getText().toString(),
+                    this.EXTRA_MARCA);
+            returnIntent.putExtra(this.mPrimerEditTextModelo.getText().toString(),
+                    this.EXTRA_MODELO);
+            returnIntent.putExtra(this.mPrimeroEditTextMatricula.getText().toString(),
+                    this.EXTRA_MATRICULA);
+            setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -491,18 +514,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     private void saveChanges(String nombre, String primerApellido, String segundoApellido, String telefono,
                              String marca, String modelo, String matricula) {
-        Log.d("AddClienteActivity", "saveChanges : ");
-        Log.d("AddClienteActivity", "nombre = " +nombre);
-        Log.d("AddClienteActivity", "primerApellido = " +primerApellido);
-        Log.d("AddClienteActivity", "segundoApellido = " +segundoApellido);
-        Log.d("AddClienteActivity", "telefono = " +telefono);
-        Log.d("AddClienteActivity", "marca = " +marca);
-        Log.d("AddClienteActivity", "modelo = "+modelo);
-        Log.d("AddClienteActivity", "matricula = " +matricula);
         DBClientes cliente = new DBClientes(nombre, primerApellido, segundoApellido, marca, modelo,
                 matricula, telefono);
         cliente.save();
         Toast.makeText(this, "Cliente guardado", Toast.LENGTH_LONG).show();
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(this.EXTRA_NAME, nombre);
+        returnIntent.putExtra(this.EXTRA_FIRST_SURNAME, primerApellido);
+        returnIntent.putExtra(this.EXTRA_SECOND_SURNAME, segundoApellido);
+        returnIntent.putExtra(this.EXTRA_MARCA, marca);
+        returnIntent.putExtra(this.EXTRA_MODELO, modelo);
+        returnIntent.putExtra(this.EXTRA_MATRICULA, matricula);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
 
@@ -1131,4 +1154,6 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         //hay que volver a dejar ver el botón de añadir décimo
         this.mBtnAñadeDecimo.setVisibility(View.VISIBLE);
     }
+
+
 }
