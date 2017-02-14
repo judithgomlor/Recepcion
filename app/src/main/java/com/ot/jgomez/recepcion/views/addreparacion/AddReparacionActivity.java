@@ -31,8 +31,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-public class AddReparacionActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener,
-        CalendarView.OnDateChangeListener, DatePickerDialog.OnDateSetListener {
+public class AddReparacionActivity extends AppCompatActivity implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
     private static final int REQUEST_NEW_CLIENT = 1;
     private static final String EXTRA_NAME = "nombre";
@@ -433,16 +433,6 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    @Override
-    public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-
-        String parseYear = Integer.toString(year);
-        String parseMonth = Integer.toString(month+1);
-        if(parseMonth.length() == 1) parseMonth = "0" + parseMonth;
-        String parseDay = Integer.toString(dayOfMonth);
-        this.mFechaEntrada = parseDay + parseMonth + parseYear;
     }
 
     @Override

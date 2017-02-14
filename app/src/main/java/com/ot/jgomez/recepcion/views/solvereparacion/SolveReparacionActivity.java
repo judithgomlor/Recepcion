@@ -1,23 +1,32 @@
 package com.ot.jgomez.recepcion.views.solvereparacion;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
+import com.ot.jgomez.recepcion.control.ComparatorStrings;
+import com.ot.jgomez.recepcion.database.DBRegistroEntradas;
 import com.ot.jgomez.recepcion.items.ConsultaReparacionesPendientes;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-public class SolveReparacionActivity extends AppCompatActivity implements View.OnClickListener {
+public class SolveReparacionActivity extends AppCompatActivity implements View.OnClickListener,
+        DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
     private Spinner mSpinnerNombre;
     private Spinner mSpinnerPrimerApellido;
@@ -63,6 +72,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
 
         this.init();
         this.initDia();
+        this.initSpinners();
     }
 
     @Override
@@ -113,6 +123,50 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.mTextoFechaSalida.setText(this.mFechaSalida);
     }
 
+    private void initSpinners() {
+        List<DBRegistroEntradas> entradas = DBRegistroEntradas.getAllEntradas();
+        if(entradas.size() != 0) {
+            for(DBRegistroEntradas entries : entradas) {
+                this.mListReparaciones.add(new ConsultaReparacionesPendientes(
+                        entries.getNombre(),
+                        entries.getPrimerApellido(),
+                        entries.getSegundoApellido(),
+                        entries.getMarcaVehiculo(),
+                        entries.getModeloVehículo(),
+                        entries.getMatriculaVehiculo(),
+                        entries.getFechaEntrada(),
+                        entries.getResumenEntrada(),
+                        entries.getDescripcionEntrada(),
+                        entries.getResolucionEntrada(),
+                        entries.getFechaSalida()
+                ));
+            }
+
+            for(int i = 0; i < this.mListReparaciones.size(); ++i) {
+                this.mListNombres.add(this.mListReparaciones.get(i).getmNombre());
+                this.mListPrimerosApellidos.add(this.mListReparaciones.get(i).getmPrimerApellido());
+                this.mListSegundosApellidos.add(this.mListReparaciones.get(i).getmSegundoApellido());
+                this.mListReparacionesPendientes.add(this.mListReparaciones.get(i).getmResumenEntrada());
+                this.mListMarcas.add(this.mListReparaciones.get(i).getmMarcaVehiculo());
+                this.mListModelos.add(this.mListReparaciones.get(i).getmModeloVehiculo());
+                this.mListMatricula.add(this.mListReparaciones.get(i).getmMatriculaVehiculo());
+
+                ComparatorStrings compare = new ComparatorStrings();
+                Collections.sort(this.mListNombres, compare);
+
+                //adapter nombre
+                this.mAdapterNombre = new ArrayAdapter<String>(this,
+                        android.R.layout.simple_list_item_1,
+                        this.mListNombres);
+                this.mAdapterNombre.setDropDownViewResource(android.R.layout.simple_list_item_1);
+                this.mSpinnerNombre.setAdapter(this.mAdapterNombre);
+                this.mSpinnerNombre.setOnItemSelectedListener(this);
+            }
+        } else {
+            Toast.makeText(this, "No hay reparaciones pendientes", Toast.LENGTH_LONG).show();
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if(v == this.mBtnAceptar) {
@@ -120,7 +174,56 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         } else if(v == this.mBtnCancelar) {
 
         } else if(v == this.mBtnCambiarFecha) {
-
+            this.cambiaFecha();
         }
+    }
+
+    private void cambiaFecha() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = new DatePickerDialog(
+                this,
+                R.style.DialogTheme,
+                this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        String parseYear = Integer.toString(year);
+        String parseMonth = Integer.toString(month+1);
+        if(parseMonth.length() == 1) parseMonth = "0" + parseMonth;
+        String parseDay = Integer.toString(dayOfMonth);
+        if(parseDay.length() == 1) parseDay = "0" + parseDay;
+        this.mFechaSalida = parseDay + "." + parseMonth + "." + parseYear;
+        this.mTextoFechaSalida.setText(this.mFechaSalida);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(parent.getAdapter() == this.mAdapterNombre) {
+            this.mListPrimerosApellidos.clear();
+            for(int i = 0; i < this.mListReparaciones.size(); ++i) {
+                if(this.mListReparaciones.get(i).getmNombre().equals(this.mListNombres.get(position))) {
+                    this.mListPrimerosApellidos.add(this.mListReparaciones.get(i).getmPrimerApellido());
+                }
+            }
+
+            //adapter primer apellido
+            this.mAdapterPrimerApellido = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1,
+                    this.mListPrimerosApellidos);
+            this.mAdapterPrimerApellido.setDropDownViewResource(android.R.layout.simple_list_item_1);
+            this.mSpinnerPrimerApellido.setAdapter(this.mAdapterPrimerApellido);
+            this.mSpinnerPrimerApellido.setOnItemSelectedListener(this);
+        } //adapter primer apellido
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
