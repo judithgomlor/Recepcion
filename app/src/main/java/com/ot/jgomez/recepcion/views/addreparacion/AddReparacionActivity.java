@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -61,6 +62,12 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     private List<String> mListMarcas;
     private List<String> mListModelos;
     private List<String> mListMatriculas;
+    private List<String> mListAuxNombres;
+    private List<String> mListAuxPrimerosApellidos;
+    private List<String> mListAuxSegundosApellidos;
+    private List<String> mListAuxMarcas;
+    private List<String> mListAuxModelos;
+    private List<String> mListAuxMatriculas;
     private List<ConsultaClientes> mListClientes;
     private ArrayAdapter<String> mAdapterNombre;
     private ArrayAdapter<String> mAdapterPrimerApellido;
@@ -120,6 +127,12 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         this.mListMarcas = new ArrayList<>();
         this.mListModelos = new ArrayList<>();
         this.mListMatriculas = new ArrayList<>();
+        this.mListAuxNombres = new ArrayList<>();
+        this.mListAuxPrimerosApellidos = new ArrayList<>();
+        this.mListAuxSegundosApellidos = new ArrayList<>();
+        this.mListAuxMarcas = new ArrayList<>();
+        this.mListAuxModelos = new ArrayList<>();
+        this.mListAuxMatriculas = new ArrayList<>();
         this.mBoolRecupera = false;
     }
 
@@ -133,7 +146,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if(v == this.mBtnCambiaDia) {
+        if (v == this.mBtnCambiaDia) {
             this.cambiaDia();
         } else if (v == this.mBtnSave) {
             this.guardaEntrada();
@@ -149,7 +162,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     }
 
     private void cancelaEntrada() {
-        if(!this.mBoolRecupera) {
+        if (!this.mBoolRecupera) {
             finish();
         } else {
             this.dialogExit();
@@ -191,6 +204,12 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         this.mListMarcas.clear();
         this.mListModelos.clear();
         this.mListMatriculas.clear();
+        this.mListAuxNombres.clear();
+        this.mListAuxPrimerosApellidos.clear();
+        this.mListAuxSegundosApellidos.clear();
+        this.mListAuxMarcas.clear();
+        this.mListAuxModelos.clear();
+        this.mListAuxMatriculas.clear();
         List<DBClientes> clientes = DBClientes.getAllClientes();
         if (clientes.size() != 0) {
             for (DBClientes clients : clientes) {
@@ -215,12 +234,27 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             }
 
             ComparatorStrings compare = new ComparatorStrings();
-            Collections.sort(this.mListNombres,compare);
+            Collections.sort(this.mListNombres, compare);
+
+            //lista auxiliar por si  hay nombres repetidos, que no salgan todos
+            this.mListAuxNombres.clear();
+            String nombreAnterior, nombreActual;
+            nombreAnterior = this.mListNombres.get(0);
+            this.mListAuxNombres.add(nombreAnterior);
+            if (this.mListNombres.size() > 1) {
+                for (int i = 1; i < this.mListNombres.size(); ++i) {
+                    nombreActual = this.mListNombres.get(i);
+                    if (!nombreAnterior.equals(nombreActual)) {
+                        this.mListAuxNombres.add(nombreActual);
+                    }
+                    nombreAnterior = nombreActual;
+                }
+            }
 
             //adapter nombre
             this.mAdapterNombre = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListNombres);
+                    this.mListAuxNombres);
             this.mAdapterNombre.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerNombre.setAdapter(this.mAdapterNombre);
             this.mSpinnerNombre.setOnItemSelectedListener(this);
@@ -244,13 +278,13 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     }
 
     private void guardaEntrada() {
-        if(this.mEditResumen.getText().length() == 0) {
-            this.mResumen =  "";
+        if (this.mEditResumen.getText().length() == 0) {
+            this.mResumen = "";
         } else {
             this.mResumen = this.mEditResumen.getText().toString();
         }
 
-        if(this.mEditDescripcion.getText().length() == 0) {
+        if (this.mEditDescripcion.getText().length() == 0) {
             this.mDescripcion = "";
         } else {
             this.mDescripcion = this.mEditDescripcion.getText().toString();
@@ -267,11 +301,11 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     private void initDia() {
         Calendar c = Calendar.getInstance();
         String year = String.valueOf(c.getTime().getYear());
-        String aux_year = "20" + year.substring(1,3);
-        String month = String.valueOf(c.getTime().getMonth()+1);
-        if(month.length() == 1) month = "0" + month;
+        String aux_year = "20" + year.substring(1, 3);
+        String month = String.valueOf(c.getTime().getMonth() + 1);
+        if (month.length() == 1) month = "0" + month;
         String day = String.valueOf(c.getTime().getDate());
-        if(day.length() == 1) day = "0" + day;
+        if (day.length() == 1) day = "0" + day;
         this.mFechaEntrada = day + "." + month + "." + aux_year;
         this.mTextFechaActual.setText(this.mFechaEntrada);
     }
@@ -287,7 +321,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                 String modelo = data.getStringExtra(EXTRA_MODELO);
                 String matricula = data.getStringExtra(EXTRA_MATRICULA);
 
-                this.mListNombres.add(0,nombre);
+                this.mListNombres.add(0, nombre);
                 this.mAdapterNombre = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                         this.mListNombres);
                 this.mAdapterNombre.setDropDownViewResource(android.R.layout.simple_list_item_1);
@@ -341,92 +375,176 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         if (parent.getAdapter() == this.mAdapterNombre) {
             this.mListPrimerosApellidos.clear();
             for (int i = 0; i < this.mListClientes.size(); ++i) {
-                if (this.mListClientes.get(i).getmNombre().equals(this.mListNombres.get(position))) {
+                if (this.mListClientes.get(i).getmNombre().equals(this.mListAuxNombres.get(position))) {
                     this.mListPrimerosApellidos.add(this.mListClientes.get(i).getmPrimerApellido());
+                }
+            }
+
+            //lista auxiliar para que no salgan apellidos repetidos
+            this.mListAuxPrimerosApellidos.clear();
+            String primerApellidoAnterior, primerApellidoActual;
+            primerApellidoAnterior = this.mListPrimerosApellidos.get(0);
+            this.mListAuxPrimerosApellidos.add(primerApellidoAnterior);
+            if (this.mListPrimerosApellidos.size() > 1) {
+                for (int i = 1; i < this.mListPrimerosApellidos.size(); ++i) {
+                    primerApellidoActual = this.mListPrimerosApellidos.get(i);
+                    if (!primerApellidoAnterior.equals(primerApellidoActual)) {
+                        this.mListAuxPrimerosApellidos.add(primerApellidoActual);
+                    }
+                    primerApellidoAnterior = primerApellidoActual;
                 }
             }
 
             //adapter primer apellido
             this.mAdapterPrimerApellido = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListPrimerosApellidos);
+                    this.mListAuxPrimerosApellidos);
             this.mAdapterPrimerApellido.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerPrimerApellido.setAdapter(this.mAdapterPrimerApellido);
             this.mSpinnerPrimerApellido.setOnItemSelectedListener(this);
 
-            this.mNombre = this.mListNombres.get(position);
+            this.mNombre = this.mListAuxNombres.get(position);
         } else if (parent.getAdapter() == this.mAdapterPrimerApellido) {
             this.mListSegundosApellidos.clear();
             for (int i = 0; i < this.mListClientes.size(); ++i) {
-                if (this.mListClientes.get(i).getmPrimerApellido().equals(this.mListPrimerosApellidos.
-                        get(position))) {
-                    this.mListSegundosApellidos.add(this.mListClientes.get(i).getmSegundoApellido());
+                if (this.mListClientes.get(i).getmPrimerApellido().equals(
+                        this.mListAuxPrimerosApellidos.get(position))) {
+                    if (this.mListClientes.get(i).getmNombre().equals(this.mNombre)) {
+                        this.mListSegundosApellidos.add(this.mListClientes.get(i).getmSegundoApellido());
+                    }
+                }
+            }
+
+            //lista auxiliar para que no salgan segundos apellidos repetidos
+            this.mListAuxSegundosApellidos.clear();
+            String segundoApellidoAnterior, segundoApellidoActual;
+            segundoApellidoAnterior = this.mListSegundosApellidos.get(0);
+            this.mListAuxSegundosApellidos.add(segundoApellidoAnterior);
+            if (this.mListSegundosApellidos.size() > 1) {
+                for (int i = 1; i < this.mListSegundosApellidos.size(); ++i) {
+                    segundoApellidoActual = this.mListSegundosApellidos.get(i);
+                    if (!segundoApellidoAnterior.equals(segundoApellidoActual)) {
+                        this.mListAuxSegundosApellidos.add(segundoApellidoActual);
+                    }
+                    segundoApellidoAnterior = segundoApellidoActual;
                 }
             }
 
             //adapter segundo apellido
             this.mAdapterSegundoApellido = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListSegundosApellidos);
+                    this.mListAuxSegundosApellidos);
             this.mAdapterSegundoApellido.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerSegundoApellido.setAdapter(this.mAdapterSegundoApellido);
             this.mSpinnerSegundoApellido.setOnItemSelectedListener(this);
 
-            this.mPrimerApellido = this.mListPrimerosApellidos.get(position);
+            this.mPrimerApellido = this.mListAuxPrimerosApellidos.get(position);
         } else if (parent.getAdapter() == this.mAdapterSegundoApellido) {
             this.mListMarcas.clear();
             for (int i = 0; i < this.mListClientes.size(); ++i) {
-                if (this.mListClientes.get(i).getmSegundoApellido().equals(this.mListSegundosApellidos.
-                        get(position))) {
-                    this.mListMarcas.add(this.mListClientes.get(i).getmMarcaVehiculo());
+                if (this.mListClientes.get(i).getmSegundoApellido().equals(
+                        this.mListAuxSegundosApellidos.get(position))) {
+                    if (this.mListClientes.get(i).getmPrimerApellido().equals(this.mPrimerApellido)) {
+                        this.mListMarcas.add(this.mListClientes.get(i).getmMarcaVehiculo());
+                    }
+                }
+            }
+
+            //lista auxiliar para que no salgan marcas repetidas
+            this.mListAuxMarcas.clear();
+            String marcaAnterior, marcaActual;
+            marcaAnterior = this.mListMarcas.get(0);
+            this.mListAuxMarcas.add(marcaAnterior);
+            if (this.mListMarcas.size() > 1) {
+                for (int i = 1; i < this.mListMarcas.size(); ++i) {
+                    marcaActual = this.mListMarcas.get(i);
+                    if (!marcaAnterior.equals(marcaActual)) {
+                        this.mListAuxMarcas.add(marcaActual);
+                    }
+                    marcaAnterior = marcaActual;
                 }
             }
 
             //adapter marca vehículo
             this.mAdapterMarca = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListMarcas);
+                    this.mListAuxMarcas);
             this.mAdapterMarca.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerMarca.setAdapter(this.mAdapterMarca);
             this.mSpinnerMarca.setOnItemSelectedListener(this);
 
-            this.mSegundoApellido = this.mListSegundosApellidos.get(position);
+            this.mSegundoApellido = this.mListAuxSegundosApellidos.get(position);
         } else if (parent.getAdapter() == this.mAdapterMarca) {
             this.mListModelos.clear();
             for (int i = 0; i < this.mListClientes.size(); ++i) {
-                if (this.mListClientes.get(i).getmMarcaVehiculo().equals(this.mListMarcas.get(position))) {
-                    this.mListModelos.add(this.mListClientes.get(i).getmModeloVehiculo());
+                if (this.mListClientes.get(i).getmMarcaVehiculo().equals(this.mListAuxMarcas.get(position))) {
+                    if (this.mListClientes.get(i).getmSegundoApellido().equals(this.mSegundoApellido)) {
+                        this.mListModelos.add(this.mListClientes.get(i).getmModeloVehiculo());
+                    }
+                }
+            }
+
+            //lista auxiliar para que no salgan modelos repetidos
+            this.mListAuxModelos.clear();
+            String modeloAnterior, modeloActual;
+            modeloAnterior = this.mListModelos.get(0);
+            this.mListAuxModelos.add(modeloAnterior);
+            if (this.mListModelos.size() > 1) {
+                for (int i = 1; i < this.mListModelos.size(); ++i) {
+                    modeloActual = this.mListModelos.get(i);
+                    if (!modeloAnterior.equals(modeloActual)) {
+                        this.mListAuxModelos.add(modeloActual);
+                    }
+                    modeloAnterior = modeloActual;
                 }
             }
 
             //adapter modelo vehículo
             this.mAdapterModelo = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListModelos);
+                    this.mListAuxModelos);
             this.mAdapterModelo.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerModelo.setAdapter(this.mAdapterModelo);
             this.mSpinnerModelo.setOnItemSelectedListener(this);
 
-            this.mMarca = this.mListMarcas.get(position);
+            this.mMarca = this.mListAuxMarcas.get(position);
         } else if (parent.getAdapter() == this.mAdapterModelo) {
             this.mListMatriculas.clear();
             for (int i = 0; i < this.mListClientes.size(); ++i) {
-                if (this.mListClientes.get(i).getmModeloVehiculo().equals(this.mListModelos.get(position))) {
-                    this.mListMatriculas.add(this.mListClientes.get(i).getmMatriculaVehiculo());
+                if (this.mListClientes.get(i).getmModeloVehiculo().equals(this.mListAuxModelos.get(position))) {
+                    if (this.mListClientes.get(i).getmMarcaVehiculo().equals(this.mMarca) &&
+                            this.mListClientes.get(i).getmNombre().equals(this.mNombre)) {
+                        this.mListMatriculas.add(this.mListClientes.get(i).getmMatriculaVehiculo());
+                    }
+                }
+            }
+
+            //lista auxiliar para que no salgan matrículas repetidas (aunque no tendría que pasar)
+            this.mListAuxMatriculas.clear();
+            String matriculaAnterior, matriculaActual;
+            matriculaAnterior = this.mListMatriculas.get(0);
+            this.mListAuxMatriculas.add(matriculaAnterior);
+            if (this.mListMatriculas.size() > 1) {
+                for (int i = 1; i < this.mListMatriculas.size(); ++i) {
+                    matriculaActual = this.mListMatriculas.get(i);
+                    if (!matriculaAnterior.equals(matriculaActual)) {
+                        this.mListAuxMatriculas.add(matriculaActual);
+                    }
+                    matriculaAnterior = matriculaActual;
                 }
             }
 
             //adapter matrícula vehículo
             this.mAdapterMatricula = new ArrayAdapter<String>(this,
                     android.R.layout.simple_list_item_1,
-                    this.mListMatriculas);
+                    this.mListAuxMatriculas);
             this.mAdapterMatricula.setDropDownViewResource(android.R.layout.simple_list_item_1);
             this.mSpinnerMatricula.setAdapter(this.mAdapterMatricula);
             this.mSpinnerMatricula.setOnItemSelectedListener(this);
 
-            this.mModelo = this.mListModelos.get(position);
+            this.mModelo = this.mListAuxModelos.get(position);
         } else if (parent.getAdapter() == this.mAdapterMatricula) {
-            this.mMatricula = this.mListMatriculas.get(position);
+            this.mMatricula = this.mListAuxMatriculas.get(position);
         }
     }
 
@@ -438,10 +556,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String parseYear = Integer.toString(year);
-        String parseMonth = Integer.toString(month+1);
-        if(parseMonth.length() == 1) parseMonth = "0" + parseMonth;
+        String parseMonth = Integer.toString(month + 1);
+        if (parseMonth.length() == 1) parseMonth = "0" + parseMonth;
         String parseDay = Integer.toString(dayOfMonth);
-        if(parseDay.length() == 1) parseDay = "0" + parseDay;
+        if (parseDay.length() == 1) parseDay = "0" + parseDay;
         this.mFechaEntrada = parseDay + "." + parseMonth + "." + parseYear;
         this.mTextFechaActual.setText(this.mFechaEntrada);
     }

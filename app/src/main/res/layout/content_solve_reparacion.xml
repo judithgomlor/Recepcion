@@ -290,6 +290,7 @@
                 android:textSize="@dimen/text_size"/>
 
             <TextView
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size"
@@ -381,14 +382,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size"
-                android:id="@+id/txtvw_fecha_salida"/>
+                android:id="@+id/txtvw_fecha_salida"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cambia_dia"
                 android:id="@+id/boton_cambia_dia_salida"
-                android:drawableLeft="@drawable/ic_calendar"/>
+                android:drawableLeft="@drawable/ic_calendar"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
 
         </LinearLayout>
 
