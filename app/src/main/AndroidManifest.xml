@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ot.jgomez.recepcion">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".views.MyApplication"
@@ -27,7 +27,8 @@
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".views.addreparacion.AddReparacionActivity" />
         <activity android:name=".views.solvereparacion.SolveReparacionActivity" />
-
+        <activity android:name=".views.consultacliente.ConsultaClienteActivity" />
+        <activity android:name=".views.listaclientes.ListaClientesActivity"></activity>
     </application>
 
 </manifest>

@@ -20,6 +20,11 @@
     <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="lista_clientes">Lista clientes</string>
+    <string name="consulta">Consultar</string>
+    <string name="separacion_vehiculos">-----------------------------------------------------------</string>
+    <string name="vehiculos">Vehículo/s:</string>
+    <string name="coste">Coste reparación (€):</string>
     <string name="dia">Día:</string>
     <string name="mes">Mes:</string>
     <string name="año">Año:</string>
@@ -54,6 +59,7 @@
     <string name="no_ayer_pendiente">No hay entradas pendientes para ayer</string>
     <string name="no_ayer_resueltas">No hay entradas resueltas para ayer</string>
     <string name="resolucion">Resolución:</string>
+    <string name="resolucion_menu">Resolución</string>
     <string name="datos_resolucion">Datos de la resolución</string>
     <string name="cliente">Datos del cliente:</string>
     <string name="recuperar_cliente">Recuperar</string>

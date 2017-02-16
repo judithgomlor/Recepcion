@@ -50,10 +50,13 @@ public class DBRegistroEntradas extends BaseModel {
     @Column
     String fechaSalida;
 
+    @Column
+    String costeReparacion;
+
     public DBRegistroEntradas(String nombre, String primerApellido, String segundoApellido,
                       String marcaVehiculo, String modeloVehículo, String matriculaVehiculo,
                       String fechaEntrada, String resumenEntrada, String descripcionEntrada,
-                      String resolucionEntrada, String fechaSalida) {
+                      String resolucionEntrada, String fechaSalida, String costeReparacion) {
         this.nombre = nombre;
         this.primerApellido = primerApellido;
         this.segundoApellido = segundoApellido;
@@ -65,6 +68,7 @@ public class DBRegistroEntradas extends BaseModel {
         this.descripcionEntrada = descripcionEntrada;
         this.resolucionEntrada = resolucionEntrada;
         this.fechaSalida = fechaSalida;
+        this.costeReparacion = costeReparacion;
     }
 
     public DBRegistroEntradas() {
@@ -161,5 +165,17 @@ public class DBRegistroEntradas extends BaseModel {
 
     public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
+    }
+
+    public String getCosteReparacion() {
+        return costeReparacion;
+    }
+
+    public void setCosteReparacion(String costeReparacion) {
+        this.costeReparacion = costeReparacion;
+    }
+
+    public int getId() {
+        return id;
     }
 }

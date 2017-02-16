@@ -75,6 +75,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
     private Button mBtnCancelar;
     private Button mBtnCambiarFecha;
     private EditText mEditResolucion;
+    private EditText mEditCoste;
     private String mNombre;
     private String mPrimerApellido;
     private String mSegundoApellido;
@@ -85,6 +86,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
     private String mMarcaVehiculo;
     private String mModeloVehiculo;
     private String mMatriculaVehiculo;
+    private String mCosteReparacion;
     private boolean mHayReparacionesPendientes;
 
 
@@ -130,6 +132,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.mBtnCambiarFecha = (Button) findViewById(R.id.boton_cambia_dia_salida);
         this.mBtnCambiarFecha.setOnClickListener(this);
         this.mEditResolucion = (EditText) findViewById(R.id.editar_resolucion_vehiculo_reparacion);
+        this.mEditCoste = (EditText) findViewById(R.id.editar_coste_reparacion);
         this.mListNombres = new ArrayList<>();
         this.mListPrimerosApellidos = new ArrayList<>();
         this.mListSegundosApellidos = new ArrayList<>();
@@ -159,6 +162,8 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.mFechaSalida = day + "." + month + "." + aux_year;
         this.mTextoFechaSalida.setText(this.mFechaSalida);
         this.mEditResolucion.setText("");
+        this.mEditCoste.setText("");
+        this.mHayReparacionesPendientes = false;
     }
 
     private void initSpinners() {
@@ -237,8 +242,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         if (v == this.mBtnAceptar) {
             this.guardaCambios();
+            this.finish();
         } else if (v == this.mBtnCancelar) {
-            if (this.mEditResolucion.getText().length() != 0) {
+            if (this.mEditResolucion.getText().length() != 0 ||
+                    this.mEditCoste.getText().length() != 0) {
                 this.dialogExit();
             } else {
                 finish();
@@ -249,42 +256,34 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
     }
 
     private void guardaCambios() {
-        if (this.mEditResolucion.getText().length() == 0) {
-            this.mResolucion = "";
+        if (this.mHayReparacionesPendientes) {
+            if (this.mEditResolucion.getText().length() == 0) {
+                this.mResolucion = "";
+            } else {
+                this.mResolucion = this.mEditResolucion.getText().toString();
+            }
+            this.mCosteReparacion = this.mEditCoste.getText().toString();
+
+            //actualizar el campo de fechaSalida y resolucionEntrada
+            SQLite.update(DBRegistroEntradas.class)
+                    .set(DBRegistroEntradas_Table.fechaSalida.eq(this.mFechaSalida),
+                            DBRegistroEntradas_Table.resolucionEntrada.eq(this.mResolucion),
+                            DBRegistroEntradas_Table.costeReparacion.eq(this.mCosteReparacion))
+                    .where(DBRegistroEntradas_Table.nombre.is(this.mNombre))
+                    .and(DBRegistroEntradas_Table.primerApellido.is(this.mPrimerApellido))
+                    .and(DBRegistroEntradas_Table.segundoApellido.is(this.mSegundoApellido))
+                    .and(DBRegistroEntradas_Table.fechaEntrada.is(this.mFechaEntrada))
+                    .and(DBRegistroEntradas_Table.marcaVehiculo.is(this.mMarcaVehiculo))
+                    .and(DBRegistroEntradas_Table.modeloVehículo.is(this.mModeloVehiculo))
+                    .and(DBRegistroEntradas_Table.matriculaVehiculo.is(this.mMatriculaVehiculo))
+                    .and(DBRegistroEntradas_Table.resumenEntrada.is(this.mResumen))
+                    .async()
+                    .execute();
+
+            Toast.makeText(this, "Ficha actualizada", Toast.LENGTH_LONG).show();
         } else {
-            this.mResolucion = this.mEditResolucion.getText().toString();
+            Toast.makeText(this, "No hay nada que guardar", Toast.LENGTH_LONG).show();
         }
-/*
-        //comprobar todos los campos que no sean nulos:
-        Log.d("SolveReparacion", "Nos aseguramos que los campos que usamos no son nulos: ");
-        Log.d("SolveReparacion","Nombre = " +this.mNombre);
-        Log.d("SolveReparacion","Primer apellido = " +this.mPrimerApellido);
-        Log.d("SolveReparacion","Segundo apellido = " +this.mSegundoApellido);
-        Log.d("SolveReparacion", "Fecha entrada = " +this.mFechaEntrada);
-        Log.d("SolveReparacion", "Marca vehículo = " +this.mMarcaVehiculo);
-        Log.d("SolveReparacion", "Modelo vehículo = " +this.mModeloVehiculo);
-        Log.d("SolveReparacion", "Matrícula vehículo = " +this.mMatriculaVehiculo);
-
-        Log.d("SolveReparacion", "Los campos que actualizamos son: ");
-        Log.d("SolveReparacion", "Fecha salida = " +this.mFechaSalida);
-        Log.d("SolveReparacion", "Resolución entrada = " +this.mResolucion);*/
-
-        //actualizar el campo de fechaSalida y resolucionEntrada
-        SQLite.update(DBRegistroEntradas.class)
-                .set(DBRegistroEntradas_Table.fechaSalida.eq(this.mFechaSalida),
-                        DBRegistroEntradas_Table.resolucionEntrada.eq(this.mResolucion))
-                .where(DBRegistroEntradas_Table.nombre.is(this.mNombre))
-                .and(DBRegistroEntradas_Table.primerApellido.is(this.mPrimerApellido))
-                .and(DBRegistroEntradas_Table.segundoApellido.is(this.mSegundoApellido))
-                .and(DBRegistroEntradas_Table.fechaEntrada.is(this.mFechaEntrada))
-                .and(DBRegistroEntradas_Table.marcaVehiculo.is(this.mMarcaVehiculo))
-                .and(DBRegistroEntradas_Table.modeloVehículo.is(this.mModeloVehiculo))
-                .and(DBRegistroEntradas_Table.matriculaVehiculo.is(this.mMatriculaVehiculo))
-                .and(DBRegistroEntradas_Table.resumenEntrada.is(this.mResumen))
-                .async()
-                .execute();
-
-        Toast.makeText(this, "Ficha actualizada", Toast.LENGTH_LONG).show();
         this.initDia();
         this.initSpinners();
     }
@@ -434,10 +433,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
             String reparacionPendienteAnterior, reparacionPendienteActual;
             reparacionPendienteAnterior = this.mListReparacionesPendientes.get(0);
             this.mListAuxReparacionesPendientes.add(reparacionPendienteAnterior);
-            if(this.mListReparacionesPendientes.size() > 1) {
-                for(int i = 1; i < this.mListReparacionesPendientes.size(); ++i) {
+            if (this.mListReparacionesPendientes.size() > 1) {
+                for (int i = 1; i < this.mListReparacionesPendientes.size(); ++i) {
                     reparacionPendienteActual = this.mListReparacionesPendientes.get(i);
-                    if(!reparacionPendienteAnterior.equals(reparacionPendienteActual)){
+                    if (!reparacionPendienteAnterior.equals(reparacionPendienteActual)) {
                         this.mListAuxReparacionesPendientes.add(reparacionPendienteActual);
                     }
                     reparacionPendienteAnterior = reparacionPendienteActual;
@@ -496,7 +495,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
             for (int i = 0; i < this.mListReparaciones.size(); ++i) {
                 if (this.mListReparaciones.get(i).getmMarcaVehiculo().equals(this.mListAuxMarcas.get(position))) {
                     //sería muy difícil que nos modelos iguales les pasase lo mismo a la vez (?)
-                    if(this.mListReparaciones.get(i).getmResumenEntrada().equals(this.mResumen)) {
+                    if (this.mListReparaciones.get(i).getmResumenEntrada().equals(this.mResumen)) {
                         this.mListModelos.add(this.mListReparaciones.get(i).getmModeloVehiculo());
                     }
                 }

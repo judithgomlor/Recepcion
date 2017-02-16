@@ -115,4 +115,8 @@ public class DBClientes extends BaseModel {
     public void setTelefonoCliente(String telefonoCliente) {
         this.telefonoCliente = telefonoCliente;
     }
+
+    public int getId() {
+        return id;
+    }
 }

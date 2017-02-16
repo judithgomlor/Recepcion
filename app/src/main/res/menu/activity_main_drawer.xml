@@ -14,12 +14,25 @@
         </menu>
     </item>
 
-    <item android:title="@string/resolucion">
+    <item android:title="@string/resolucion_menu">
         <menu>
             <item
                 android:id="@+id/nav_res_entrada"
                 android:icon="@drawable/ic_hecho"
-                android:title="@string/resolver_reparacion"/>
+                android:title="@string/resolver_reparacion" />
+        </menu>
+    </item>
+
+    <item android:title="@string/consulta">
+        <menu>
+            <item
+                android:id="@+id/nav_consulta_cliente"
+                android:icon="@drawable/ic_person_black"
+                android:title="@string/consultar_cliente" />
+            <item
+                android:id="@+id/nav_consulta_reparacion"
+                android:icon="@drawable/ic_list"
+                android:title="@string/consultar_reparaciones" />
         </menu>
     </item>
 </menu>

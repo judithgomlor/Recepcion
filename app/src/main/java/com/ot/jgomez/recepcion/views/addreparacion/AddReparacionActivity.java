@@ -292,7 +292,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
 
         DBRegistroEntradas registroEntrada = new DBRegistroEntradas(this.mNombre, this.mPrimerApellido,
                 this.mSegundoApellido, this.mMarca, this.mModelo, this.mMatricula, this.mFechaEntrada,
-                this.mResumen, this.mDescripcion, "", "");
+                this.mResumen, this.mDescripcion, "", "", "");
         registroEntrada.save();
         Toast.makeText(this, "Entrada guardada", Toast.LENGTH_SHORT).show();
         finish();
