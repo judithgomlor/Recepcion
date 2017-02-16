@@ -350,6 +350,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                 }
             }
 
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListPrimerosApellidos, compare);
+
             //hacemos una lista auxiliar para que no se vean apellidos repetidos de nombres repetidos
             this.mListAuxPrimerosApellidos.clear();
             String primerApellidoActual, primerApellidoAnterior;
@@ -382,6 +386,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                     this.mListSegundosApellidos.add(this.mListReparaciones.get(i).getmSegundoApellido());
                 }
             }
+
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListSegundosApellidos, compare);
 
             //hacemos una lista auxiliar para que no salgan segundos apellidos repetidos
             this.mListAuxSegundosApellidos.clear();
@@ -417,6 +425,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                 }
             }
 
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListReparacionesPendientes, compare);
+
             //hacemos una lista auxiliar para que no salgan reparaciones repetidas
             this.mListAuxReparacionesPendientes.clear();
             String reparacionPendienteAnterior, reparacionPendienteActual;
@@ -450,6 +462,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                     this.mListMarcas.add(this.mListReparaciones.get(i).getmMarcaVehiculo());
                 }
             }
+
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListMarcas, compare);
 
             //Lista auxiliar para que no salgan marcas repetidas para el mismo cliente
             this.mListAuxMarcas.clear();
@@ -486,6 +502,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                 }
             }
 
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListModelos, compare);
+
             //Lista auxiliar para que no salgan modelos repetidos para el mismo cliente
             this.mListAuxModelos.clear();
             String modeloAnterior, modeloActual;
@@ -517,6 +537,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                     this.mListMatricula.add(this.mListReparaciones.get(i).getmMatriculaVehiculo());
                 }
             }
+
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListMatricula, compare);
 
             //Lista auxiliar para que no salgan matrículas repetidas para un mismo cliente
             this.mListAuxMatriculas.clear();

@@ -380,6 +380,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                 }
             }
 
+            //ordenamos la lista para buscar repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListPrimerosApellidos, compare);
+
             //lista auxiliar para que no salgan apellidos repetidos
             this.mListAuxPrimerosApellidos.clear();
             String primerApellidoAnterior, primerApellidoActual;
@@ -414,6 +418,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                     }
                 }
             }
+
+            //ordenamos la lista para que no salgan repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListSegundosApellidos, compare);
 
             //lista auxiliar para que no salgan segundos apellidos repetidos
             this.mListAuxSegundosApellidos.clear();
@@ -450,6 +458,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                 }
             }
 
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListMarcas, compare);
+
             //lista auxiliar para que no salgan marcas repetidas
             this.mListAuxMarcas.clear();
             String marcaAnterior, marcaActual;
@@ -483,6 +495,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                     }
                 }
             }
+
+            //ordenamos la lista por si hubiesen repetidos
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListModelos, compare);
 
             //lista auxiliar para que no salgan modelos repetidos
             this.mListAuxModelos.clear();
@@ -518,6 +534,10 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                     }
                 }
             }
+
+            //ordenamos la lista por si hubiesen repetido
+            ComparatorStrings compare = new ComparatorStrings();
+            Collections.sort(this.mListMatriculas, compare);
 
             //lista auxiliar para que no salgan matrículas repetidas (aunque no tendría que pasar)
             this.mListAuxMatriculas.clear();
