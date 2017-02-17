@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ConsultaClientesRvAdapter;
 import com.ot.jgomez.recepcion.control.ComparatorStrings;
+import com.ot.jgomez.recepcion.control.MergeSort;
 import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
+import com.ot.jgomez.recepcion.items.NombrePos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,20 +27,10 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
     private RecyclerView mRecyclerView;
     private ConsultaClientesRvAdapter mAdapter;
     private ListaClientesPresenterImpl mPresenter;
-    private List<String> mListNombres;
-    private List<String> mListPrimerosApellidos;
-    private List<String> mListSegundosApellidos;
-    private List<String> mListTelefonos;
 
     //listas auxiliares
     private List<ConsultaClientes> mListAuxClientes;
-    private List<String> mListAuxNombres;
-    private List<String> mListAuxPrimerosApellidos;
-    private List<String> mListAuxSegundosApellidos;
-    private List<String> mListAuxTelefonos;
-
-    //listas secundarias
-    private List<ConsultaClientes> mListAuxClientes_v2;
+    private List<NombrePos> mListAuxNombresPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +49,17 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         this.mPresenter.attach(this, this);
 
         this.mListClientes = new ArrayList<>();
-        this.mListNombres = new ArrayList<>();
-        this.mListPrimerosApellidos = new ArrayList<>();
-        this.mListSegundosApellidos = new ArrayList<>();
-        this.mListTelefonos = new ArrayList<>();
         this.mListAuxClientes = new ArrayList<>();
-        this.mListAuxNombres = new ArrayList<>();
-        this.mListAuxPrimerosApellidos = new ArrayList<>();
-        this.mListAuxSegundosApellidos = new ArrayList<>();
-        this.mListAuxTelefonos = new ArrayList<>();
-        this.mListAuxClientes_v2 = new ArrayList<>();
+        this.mListAuxNombresPos = new ArrayList<>();
 
         this.mListClientes = this.mPresenter.getClientes();
 
         if (this.mListClientes.size() > 0) {
-            this.preparaListas();
+            this.copiaNombres();
+            MergeSort merge = new MergeSort(this.mListAuxNombresPos);
+            merge.sort();
+            this.ordenaListaInicial();
+            this.preparaListas_v2();
         }
 
         this.mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view_lista_clientes);
@@ -81,29 +69,55 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
 
     }
 
+    private void ordenaListaInicial() {
+        this.mListAuxClientes.clear();
+        ConsultaClientes cliente;
+        int pos;
+        for (int i = 0; i < this.mListAuxNombresPos.size(); ++i) {
+            pos = this.mListAuxNombresPos.get(i).getmPosicion();
+            cliente = new ConsultaClientes(
+                    this.mListClientes.get(pos).getmNombre(),
+                    this.mListClientes.get(pos).getmPrimerApellido(),
+                    this.mListClientes.get(pos).getmSegundoApellido(),
+                    this.mListClientes.get(pos).getmTelefono(),
+                    this.mListClientes.get(pos).getmMarcaVehiculo(),
+                    this.mListClientes.get(pos).getmModeloVehiculo(),
+                    this.mListClientes.get(pos).getmMatriculaVehiculo()
+            );
+            this.mListAuxClientes.add(cliente);
+        }
+    }
+
     /*
-    Recorre las listas para controlar que no hayan clientes repetidos
-    ¡¡¡¡¡Falta por mirar que se añada el primero y que después se mire si existe otro igual
-    para borrar el elemento que está repetido de la lista auxiliar !!!!!
+    Copiaremos los nombres de la lista de clientes junto con la posición que ocupen
      */
-    private void preparaListas() {
+    private void copiaNombres() {
+        for (int i = 0; i < this.mListClientes.size(); ++i) {
+            this.mListAuxNombresPos.add(new NombrePos(
+                    this.mListClientes.get(i).getmNombre(),
+                    i
+            ));
+        }
+    }
+
+    private void preparaListas_v2() {
+        List<ConsultaClientes> clientes = new ArrayList<>();
         ConsultaClientes clienteAnterior, clienteActual;
-        for(int i = 0; i < this.mListClientes.size(); ++i) {
-            clienteAnterior = this.mListClientes.get(i);
-            for(int k = i +1; k < this.mListClientes.size(); ++k) {
-                clienteActual = this.mListClientes.get(k);
+        clienteAnterior = this.mListAuxClientes.get(0);
+        clientes.add(clienteAnterior);
+        if (this.mListAuxClientes.size() > 1) {
+            for(int i = 0; i < this.mListAuxClientes.size(); ++i) {
+                clienteActual = this.mListAuxClientes.get(i);
                 if(!clienteAnterior.getmNombre().equals(clienteActual.getmNombre()) ||
                         !clienteAnterior.getmPrimerApellido().equals(clienteActual.getmPrimerApellido()) ||
                         !clienteAnterior.getmSegundoApellido().equals(clienteActual.getmSegundoApellido()) ||
                         !clienteAnterior.getmTelefono().equals(clienteActual.getmTelefono())) {
-                    Log.d("ListaClientes", "AL FIIINNN son diferentes");
-                    this.mListAuxClientes.add(clienteActual);
-                } else {
-                    Log.d("ListaClientes", "LLORA porque NO son diferentes");
+                    clientes.add(clienteActual);
                 }
+                clienteAnterior = clienteActual;
             }
         }
-        this.mListClientes = this.mListAuxClientes;
+        this.mListClientes = clientes;
     }
 
     @Override
