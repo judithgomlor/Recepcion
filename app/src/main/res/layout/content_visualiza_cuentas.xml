@@ -24,27 +24,19 @@
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:id="@+id/txtvw_dia_actual_total_cuentas"
+                android:textSize="@dimen/text_size"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:background="@drawable/custom_spinner_background">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_spinner_orange" />
-
-                <Spinner
-                    android:id="@+id/spinner_nombre_cargado"
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:background="@android:color/transparent" />
-
-            </RelativeLayout>
+                android:text="@string/cambia_dia"
+                android:id="@+id/boton_cambia_dia_cuentas"/>
 
         </LinearLayout>
 
