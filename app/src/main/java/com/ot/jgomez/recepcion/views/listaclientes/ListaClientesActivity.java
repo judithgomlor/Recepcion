@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
@@ -66,7 +68,6 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         this.mAdapter = new ConsultaClientesRvAdapter(this.mListClientes, this);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         this.mRecyclerView.setAdapter(this.mAdapter);
-
     }
 
     private void ordenaListaInicial() {
@@ -106,9 +107,9 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         clienteAnterior = this.mListAuxClientes.get(0);
         clientes.add(clienteAnterior);
         if (this.mListAuxClientes.size() > 1) {
-            for(int i = 0; i < this.mListAuxClientes.size(); ++i) {
+            for (int i = 0; i < this.mListAuxClientes.size(); ++i) {
                 clienteActual = this.mListAuxClientes.get(i);
-                if(!clienteAnterior.getmNombre().equals(clienteActual.getmNombre()) ||
+                if (!clienteAnterior.getmNombre().equals(clienteActual.getmNombre()) ||
                         !clienteAnterior.getmPrimerApellido().equals(clienteActual.getmPrimerApellido()) ||
                         !clienteAnterior.getmSegundoApellido().equals(clienteActual.getmSegundoApellido()) ||
                         !clienteAnterior.getmTelefono().equals(clienteActual.getmTelefono())) {

@@ -13,6 +13,7 @@ import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.views.consultacliente.ConsultaClienteActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,4 +78,5 @@ public class ConsultaClientesRvAdapter extends RecyclerView.Adapter<ConsultaClie
     public int getItemCount() {
         return this.mListClientes.size();
     }
+
 }
