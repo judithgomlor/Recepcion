@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.database.DBClientes;
+import com.ot.jgomez.recepcion.views.addreparacion.AddReparacionActivity;
 
 public class AddClienteActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,6 +30,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     private static final String EXTRA_MARCA = "marca";
     private static final String EXTRA_MODELO = "modelo";
     private static final String EXTRA_MATRICULA = "matricula";
+    private static final String EXTRA_REPARACION = "reparacion";
 
     private EditText mEditNombre;
     private EditText mEditPrimerApellido;
@@ -128,16 +130,25 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     private Button mBtnDeshaceDecimo;
     private boolean mEliminaDecimo = false;
 
+    private boolean mAddReparacion = false;
+    private boolean mHayDatos = false;
+
+    private ActionBar mBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cliente);
 
-        ActionBar myBar = getSupportActionBar();
-        myBar.setDisplayShowHomeEnabled(true);
-        myBar.setHomeButtonEnabled(true);
-        myBar.setDisplayHomeAsUpEnabled(true);
-        myBar.setTitle(R.string.ficha_cliente);
+        if(getIntent().getBooleanExtra(this.EXTRA_REPARACION,false)) this.mAddReparacion = true;
+
+        if(!this.mAddReparacion) {
+            this.mBar = getSupportActionBar();
+            this.mBar.setDisplayShowHomeEnabled(true);
+            this.mBar.setHomeButtonEnabled(true);
+            this.mBar.setDisplayHomeAsUpEnabled(true);
+            this.mBar.setTitle(R.string.ficha_cliente);
+        }
 
         this.mEditNombre = (EditText) findViewById(R.id.editar_nombre);
         this.mEditPrimerApellido = (EditText) findViewById(R.id.editar_primer_apellido);
@@ -163,20 +174,11 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra(this.mEditNombre.getText().toString(), this.EXTRA_NAME);
-            returnIntent.putExtra(this.mEditPrimerApellido.getText().toString(),
-                    this.EXTRA_FIRST_SURNAME);
-            returnIntent.putExtra(this.mEditSegundoApellido.getText().toString(),
-                    this.EXTRA_SECOND_SURNAME);
-            returnIntent.putExtra(this.mPrimerEditTextMarca.getText().toString(),
-                    this.EXTRA_MARCA);
-            returnIntent.putExtra(this.mPrimerEditTextModelo.getText().toString(),
-                    this.EXTRA_MODELO);
-            returnIntent.putExtra(this.mPrimeroEditTextMatricula.getText().toString(),
-                    this.EXTRA_MATRICULA);
-            setResult(Activity.RESULT_OK, returnIntent);
-            finish();
+            if(!this.mAddReparacion) {
+                finish();
+            } else {
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
@@ -473,17 +475,24 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     private void saveChanges(String nombre, String primerApellido, String segundoApellido, String telefono,
                              String marca, String modelo, String matricula) {
-        DBClientes cliente = new DBClientes(nombre, primerApellido, segundoApellido, marca, modelo,
-                matricula, telefono);
+        String aux_nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
+        String aux_primer_apellido = primerApellido.substring(0, 1).toUpperCase() + primerApellido.substring(1, primerApellido.length());
+        String aux_segundo_apellido = segundoApellido.substring(0, 1).toUpperCase() + segundoApellido.substring(1, segundoApellido.length());
+        String aux_marca = marca.substring(0, 1).toUpperCase() + marca.substring(1, marca.length());
+        String aux_modelo = modelo.substring(0, 1).toUpperCase() + modelo.substring(1, modelo.length());
+        String aux_matricula = matricula.substring(0, 4) + matricula.substring(4, matricula.length()).toUpperCase();
+
+        DBClientes cliente = new DBClientes(aux_nombre, aux_primer_apellido, aux_segundo_apellido, aux_marca,
+                aux_modelo, aux_matricula, telefono);
         cliente.save();
         Toast.makeText(this, "Cliente guardado", Toast.LENGTH_LONG).show();
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(this.EXTRA_NAME, nombre);
-        returnIntent.putExtra(this.EXTRA_FIRST_SURNAME, primerApellido);
-        returnIntent.putExtra(this.EXTRA_SECOND_SURNAME, segundoApellido);
-        returnIntent.putExtra(this.EXTRA_MARCA, marca);
-        returnIntent.putExtra(this.EXTRA_MODELO, modelo);
-        returnIntent.putExtra(this.EXTRA_MATRICULA, matricula);
+        returnIntent.putExtra(this.EXTRA_NAME, aux_nombre);
+        returnIntent.putExtra(this.EXTRA_FIRST_SURNAME, aux_primer_apellido);
+        returnIntent.putExtra(this.EXTRA_SECOND_SURNAME, aux_segundo_apellido);
+        returnIntent.putExtra(this.EXTRA_MARCA, aux_marca);
+        returnIntent.putExtra(this.EXTRA_MODELO, aux_modelo);
+        returnIntent.putExtra(this.EXTRA_MATRICULA, aux_matricula);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }

@@ -10,8 +10,8 @@
     <string name="añadir">Añadir</string>
     <string name="consultar_reparaciones">Consultar reparaciones</string>
     <string name="consultar_agenda">Consultar agenda</string>
-    <string name="añadir_cliente">Añadir ficha cliente</string>
-    <string name="consultar_cliente">Consultar ficha cliente</string>
+    <string name="añadir_cliente">Añadir cliente</string>
+    <string name="consultar_cliente">Consulta cliente</string>
     <string name="añadir_reparacion">Ficha entrada vehículo</string>
     <string name="calendario">Calendario</string>
     <string name="modificar">Modificar</string>
@@ -20,6 +20,10 @@
     <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="total_entradas_reparaciones">Total entradas:</string>
+    <string name="total_reparaciones_resueltas">Total resueltas:</string>
+    <string name="total_dia">Total del día (€) :</string>
+    <string name="cuentas_dia">Cuentas del día </string>
     <string name="lista_clientes">Lista clientes</string>
     <string name="consulta">Consultar</string>
     <string name="separacion_vehiculos">-----------------------------------------------------------</string>

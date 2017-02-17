@@ -42,6 +42,8 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     private static final String EXTRA_MARCA = "marca";
     private static final String EXTRA_MODELO = "modelo";
     private static final String EXTRA_MATRICULA = "matricula";
+    private static final boolean EXTRA_ADD_REPARACION = true;
+    private static final String EXTRA_REPARACION = "reparacion";
     private Button mBtnSave;
     private Button mBtnCancel;
     private Button mBtnCrear;
@@ -154,6 +156,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             this.cancelaEntrada();
         } else if (v == this.mBtnCrear) {
             Intent myIntent = new Intent(this, AddClienteActivity.class);
+            myIntent.putExtra(this.EXTRA_REPARACION, this.EXTRA_ADD_REPARACION);
             startActivityForResult(myIntent, REQUEST_NEW_CLIENT);
         } else if (v == this.mBtnRecuperar) {
             this.mBoolRecupera = true;
@@ -278,21 +281,28 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
     }
 
     private void guardaEntrada() {
+        String aux_resumen, aux_descripcion;
         if (this.mEditResumen.getText().length() == 0) {
             this.mResumen = "";
+            aux_resumen = this.mResumen;
         } else {
             this.mResumen = this.mEditResumen.getText().toString();
+            aux_resumen = this.mResumen.substring(0,1).toUpperCase() +
+                    this.mResumen.substring(1,this.mResumen.length());
         }
 
         if (this.mEditDescripcion.getText().length() == 0) {
             this.mDescripcion = "";
+            aux_descripcion = this.mDescripcion;
         } else {
             this.mDescripcion = this.mEditDescripcion.getText().toString();
+            aux_descripcion = this.mDescripcion.substring(0,1).toUpperCase() +
+                    this.mDescripcion.substring(1, this.mDescripcion.length());
         }
 
         DBRegistroEntradas registroEntrada = new DBRegistroEntradas(this.mNombre, this.mPrimerApellido,
                 this.mSegundoApellido, this.mMarca, this.mModelo, this.mMatricula, this.mFechaEntrada,
-                this.mResumen, this.mDescripcion, "", "", "");
+                aux_resumen, aux_descripcion, "", "", "");
         registroEntrada.save();
         Toast.makeText(this, "Entrada guardada", Toast.LENGTH_SHORT).show();
         finish();

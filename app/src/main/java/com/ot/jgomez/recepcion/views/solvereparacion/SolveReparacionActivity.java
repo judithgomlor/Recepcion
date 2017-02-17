@@ -257,17 +257,22 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
 
     private void guardaCambios() {
         if (this.mHayReparacionesPendientes) {
+            String aux_resolucion;
             if (this.mEditResolucion.getText().length() == 0) {
                 this.mResolucion = "";
+                aux_resolucion = this.mResolucion;
             } else {
                 this.mResolucion = this.mEditResolucion.getText().toString();
+                aux_resolucion = this.mResolucion.substring(0,1).toUpperCase() + this.mResolucion
+                        .substring(1,this.mResolucion.length());
             }
+
             this.mCosteReparacion = this.mEditCoste.getText().toString();
 
             //actualizar el campo de fechaSalida y resolucionEntrada
             SQLite.update(DBRegistroEntradas.class)
                     .set(DBRegistroEntradas_Table.fechaSalida.eq(this.mFechaSalida),
-                            DBRegistroEntradas_Table.resolucionEntrada.eq(this.mResolucion),
+                            DBRegistroEntradas_Table.resolucionEntrada.eq(aux_resolucion),
                             DBRegistroEntradas_Table.costeReparacion.eq(this.mCosteReparacion))
                     .where(DBRegistroEntradas_Table.nombre.is(this.mNombre))
                     .and(DBRegistroEntradas_Table.primerApellido.is(this.mPrimerApellido))
