@@ -21,6 +21,7 @@ import com.ot.jgomez.recepcion.adapters.ConsultaReparacionRvAdapter;
 import com.ot.jgomez.recepcion.items.ConsultaReparaciones;
 import com.ot.jgomez.recepcion.views.addcliente.AddClienteActivity;
 import com.ot.jgomez.recepcion.views.addreparacion.AddReparacionActivity;
+import com.ot.jgomez.recepcion.views.consultarreparaciones.ConsultarReparacionesActivity;
 import com.ot.jgomez.recepcion.views.listaclientes.ListaClientesActivity;
 import com.ot.jgomez.recepcion.views.solvereparacion.SolveReparacionActivity;
 import com.ot.jgomez.recepcion.views.visualizacuentas.VisualizaCuentasActivity;
@@ -189,7 +190,8 @@ public class MainActivity extends AppCompatActivity
             Intent myIntent = new Intent(this, ListaClientesActivity.class);
             startActivity(myIntent);
         } else if (id == R.id.nav_consulta_reparacion) {
-
+            Intent myIntent = new Intent(this, ConsultarReparacionesActivity.class);
+            startActivity(myIntent);
         } else if (id == R.id.nav_consulta_cuentas) {
             Intent myIntent = new Intent(this, VisualizaCuentasActivity.class);
             startActivity(myIntent);

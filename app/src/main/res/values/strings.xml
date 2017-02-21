@@ -16,12 +16,16 @@
     <string name="calendario">Calendario</string>
     <string name="modificar">Modificar</string>
     <string name="ficha_cliente">Ficha cliente</string>
-    <string name="primer_apellido">Primer apellido:</string>
-    <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="consulta_reparacion_hoy">Hoy</string>
+    <string name="todo_el_historial">Todas</string>
+    <string name="fecha_consulta">Fecha a consultar:</string>
+    <string name="primer_apellido">Primer apellido:</string>
+    <string name="segundo_apellido">Segundo apellido:</string>
     <string name="cuentas">Cuentas</string>
     <string name="consulta_cuentas">Consulta cuentas</string>
+    <string name="total_reparaciones_pendientes">Total pendientes:</string>
     <string name="total_entradas_reparaciones">Total entradas:</string>
     <string name="total_reparaciones_resueltas">Total resueltas:</string>
     <string name="total_dia">Total del día (€) :</string>

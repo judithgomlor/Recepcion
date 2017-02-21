@@ -10,4 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ot.jgomez.recepcion.views.consultarreparaciones.ConsultarReparacionesActivity">
 
+    <include layout="@layout/content_consultar_reparaciones" />
+
 </RelativeLayout>

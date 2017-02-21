@@ -626,6 +626,8 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
                 this.mDecimoEditTextModelo.setText("");
                 this.mDecimoEditTextMatricula.setText("");
                 break;
+            default:
+                break;
         }
     }
 
