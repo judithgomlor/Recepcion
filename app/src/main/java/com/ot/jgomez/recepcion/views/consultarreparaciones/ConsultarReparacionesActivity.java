@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ConsultaListaAdapter;
+import com.ot.jgomez.recepcion.items.ConsultaReparacionesPendientes;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class ConsultarReparacionesActivity extends AppCompatActivity implements View.OnClickListener,
         CompoundButton.OnCheckedChangeListener, DatePickerDialog.OnDateSetListener {
@@ -32,6 +34,8 @@ public class ConsultarReparacionesActivity extends AppCompatActivity implements 
     private RecyclerView mRecyclerResueltas;
     private ConsultaListaAdapter mAdapterPendientes;
     private ConsultaListaAdapter mAdapterResueltas;
+    private List<ConsultaReparacionesPendientes> mListPendientes;
+    private List<ConsultaReparacionesPendientes> mListResueltas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
