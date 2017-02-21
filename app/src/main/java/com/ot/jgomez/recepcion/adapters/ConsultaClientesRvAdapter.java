@@ -9,11 +9,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ot.jgomez.recepcion.R;
-import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.views.consultacliente.ConsultaClienteActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

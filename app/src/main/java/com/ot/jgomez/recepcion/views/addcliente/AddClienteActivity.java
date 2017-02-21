@@ -6,20 +6,16 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.database.DBClientes;
-import com.ot.jgomez.recepcion.views.addreparacion.AddReparacionActivity;
 
 public class AddClienteActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -140,13 +136,16 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_cliente);
 
-        if(getIntent().getBooleanExtra(this.EXTRA_REPARACION,false)) this.mAddReparacion = true;
+        if (getIntent().getBooleanExtra(this.EXTRA_REPARACION, false)) this.mAddReparacion = true;
 
-        if(!this.mAddReparacion) {
+        if (!this.mAddReparacion) {
             this.mBar = getSupportActionBar();
             this.mBar.setDisplayShowHomeEnabled(true);
             this.mBar.setHomeButtonEnabled(true);
             this.mBar.setDisplayHomeAsUpEnabled(true);
+            this.mBar.setTitle(R.string.ficha_cliente);
+        } else {
+            this.mBar = getSupportActionBar();
             this.mBar.setTitle(R.string.ficha_cliente);
         }
 
@@ -174,10 +173,12 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if(!this.mAddReparacion) {
-                finish();
+            if (!this.mAddReparacion) {
+                if (this.compruebaBools()) this.dialogExit();
+                else finish();
             } else {
-                finish();
+                if (this.compruebaBools()) this.dialogExit();
+                else finish();
             }
         }
         return super.onOptionsItemSelected(item);
@@ -217,7 +218,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mPrimerEditTextMarca.getText().length() != 0 ||
                     this.mPrimerEditTextModelo.getText().length() != 0 ||
                     this.mPrimeroEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(1);
             } else {
                 this.gonePrimero();
             }
@@ -226,7 +227,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mSegundoEditTextMarca.getText().length() != 0 ||
                     this.mSegundoEditTextModelo.getText().length() != 0 ||
                     this.mSegundoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(2);
             } else {
                 this.goneSegundo();
             }
@@ -235,7 +236,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mTercerEditTextMarca.getText().length() != 0 ||
                     this.mTercerEditTextModelo.getText().length() != 0 ||
                     this.mTercerEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(3);
             } else {
                 this.goneTercero();
             }
@@ -244,7 +245,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mCuartoEditTextMarca.getText().length() != 0 ||
                     this.mCuartoEditTextModelo.getText().length() != 0 ||
                     this.mCuartoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(4);
             } else {
                 this.goneCuarto();
             }
@@ -253,7 +254,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mQuintoEditTextMarca.getText().length() != 0 ||
                     this.mQuintoEditTextModelo.getText().length() != 0 ||
                     this.mQuintoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(5);
             } else {
                 this.goneQuinto();
             }
@@ -262,7 +263,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mSextoEditTextMarca.getText().length() != 0 ||
                     this.mSextoEditTextModelo.getText().length() != 0 ||
                     this.mSextoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(6);
             } else {
                 this.goneSexto();
             }
@@ -271,7 +272,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mSeptimoEditTextMarca.getText().length() != 0 ||
                     this.mSeptimoEditTextModelo.getText().length() != 0 ||
                     this.mSeptimoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(7);
             } else {
                 this.goneSeptimo();
             }
@@ -280,7 +281,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mOctavoEditTextMarca.getText().length() != 0 ||
                     this.mOctavoEditTextModelo.getText().length() != 0 ||
                     this.mOctavoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(8);
             } else {
                 this.goneOctavo();
             }
@@ -289,7 +290,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mNovenoEditTextMarca.getText().length() != 0 ||
                     this.mNovenoEditTextModelo.getText().length() != 0 ||
                     this.mNovenoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(9);
             } else {
                 this.goneNoveno();
             }
@@ -298,7 +299,7 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
             if (this.mDecimoEditTextMarca.getText().length() != 0 ||
                     this.mDecimoEditTextModelo.getText().length() != 0 ||
                     this.mDecimoEditTextMatricula.getText().length() != 0) {
-                this.dialogGone();
+                this.dialogGone(10);
             } else {
                 this.goneDecimo();
             }
@@ -513,58 +514,119 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
 
         //set the custom dialog components
-        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        textoTitulo.setText(R.string.confirmacion);
+        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        //textoTitulo.setText(R.string.confirmacion);
+
+        dialog.setTitle(R.string.confirmacion);
+
         TextView textoDialog = (TextView) dialog.findViewById(R.id.txtvw_custom_dialog);
         textoDialog.setText(R.string.texto_custom_dialog);
         Button buttonCancelar = (Button) dialog.findViewById(R.id.boton_cancelar_dialog);
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.dismiss();
             }
         });
         Button buttonAceptar = (Button) dialog.findViewById(R.id.boton_aceptar_dialog);
         buttonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
 
         dialog.show();
     }
 
-    private void dialogGone() {
+    private void dialogGone(final int id) {
         final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
 
         //set the custom dialog components
-        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        textoTitulo.setText(R.string.confirmacion);
+        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        //textoTitulo.setText(R.string.confirmacion);
+
+        dialog.setTitle(R.string.confirmacion);
+
         TextView textoDialog = (TextView) findViewById(R.id.txtvw_custom_dialog);
         textoDialog.setText(R.string.texto_custom_dialog_eliminar_elemento);
         Button buttonCancelar = (Button) findViewById(R.id.boton_cancelar_dialog);
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.dismiss();
             }
         });
         Button buttonAceptar = (Button) findViewById(R.id.boton_aceptar_dialog);
         buttonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                reseteaValores(id);
             }
         });
 
         dialog.show();
+    }
+
+    private void reseteaValores(int id) {
+        switch (id) {
+            case 1:
+                this.mPrimerEditTextMarca.setText("");
+                this.mPrimeroEditTextMatricula.setText("");
+                this.mPrimerEditTextModelo.setText("");
+                break;
+            case 2:
+                this.mSegundoEditTextMarca.setText("");
+                this.mSegundoEditTextModelo.setText("");
+                this.mSegundoEditTextMatricula.setText("");
+                break;
+            case 3:
+                this.mTercerEditTextMarca.setText("");
+                this.mTercerEditTextModelo.setText("");
+                this.mTercerEditTextMatricula.setText("");
+                break;
+            case 4:
+                this.mCuartoEditTextMarca.setText("");
+                this.mCuartoEditTextModelo.setText("");
+                this.mCuartoEditTextMatricula.setText("");
+                break;
+            case 5:
+                this.mQuintoEditTextMarca.setText("");
+                this.mQuintoEditTextModelo.setText("");
+                this.mQuintoEditTextMatricula.setText("");
+                break;
+            case 6:
+                this.mSextoEditTextMarca.setText("");
+                this.mSextoEditTextModelo.setText("");
+                this.mSextoEditTextMatricula.setText("");
+                break;
+            case 7:
+                this.mSeptimoEditTextMarca.setText("");
+                this.mSeptimoEditTextModelo.setText("");
+                this.mSeptimoEditTextMatricula.setText("");
+                break;
+            case 8:
+                this.mOctavoEditTextMarca.setText("");
+                this.mOctavoEditTextModelo.setText("");
+                this.mOctavoEditTextMatricula.setText("");
+                break;
+            case 9:
+                this.mNovenoEditTextMarca.setText("");
+                this.mNovenoEditTextModelo.setText("");
+                this.mNovenoEditTextMatricula.setText("");
+                break;
+            case 10:
+                this.mDecimoEditTextMarca.setText("");
+                this.mDecimoEditTextModelo.setText("");
+                this.mDecimoEditTextMatricula.setText("");
+                break;
+        }
     }
 
     private void initPrimero() {

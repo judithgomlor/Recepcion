@@ -4,7 +4,7 @@
     android:id="@+id/activity_add_cliente"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ot.jgomez.recepcion.views.addcliente.AddClienteActivity">
+    tools:context=".views.addcliente.AddClienteActivity">
 
     <include layout="@layout/content_add_cliente" />
 

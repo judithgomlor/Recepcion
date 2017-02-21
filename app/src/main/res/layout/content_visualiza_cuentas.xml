@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginBottom="@dimen/activity_vertical_margin">
 
@@ -62,12 +62,21 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtvw_lista_entradas_vacia"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/text_size"/>
+
         <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:id="@+id/recycler_view_total_entradas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            tools:listitem="@layout/lista_total_cuentas" />
+            tools:listitem="@layout/lista_total_cuentas"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +100,16 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            android:id="@+id/txtvw_lista_resueltas_vacia"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
         <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:id="@+id/recycler_view_total_resueltas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

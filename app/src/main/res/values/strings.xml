@@ -20,6 +20,8 @@
     <string name="segundo_apellido">Segundo apellido:</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="cuentas">Cuentas</string>
+    <string name="consulta_cuentas">Consulta cuentas</string>
     <string name="total_entradas_reparaciones">Total entradas:</string>
     <string name="total_reparaciones_resueltas">Total resueltas:</string>
     <string name="total_dia">Total del día (€) :</string>

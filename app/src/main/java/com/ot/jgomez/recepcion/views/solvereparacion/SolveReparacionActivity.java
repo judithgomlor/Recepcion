@@ -99,6 +99,7 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         myBar.setDisplayHomeAsUpEnabled(true);
         myBar.setHomeButtonEnabled(true);
         myBar.setDisplayShowHomeEnabled(true);
+        myBar.setTitle(R.string.resolucion);
 
         this.init();
         this.initDia();
@@ -191,7 +192,8 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                             entries.getResumenEntrada(),
                             entries.getDescripcionEntrada(),
                             entries.getResolucionEntrada(),
-                            entries.getFechaSalida()
+                            entries.getFechaSalida(),
+                            entries.getCosteReparacion()
                     ));
                 }
             }
@@ -295,26 +297,29 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
 
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
 
         //set the custom dialog components
-        TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        textoTitulo.setText(R.string.confirmacion);
+        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
+        //textoTitulo.setText(R.string.confirmacion);
+
+        dialog.setTitle(R.string.confirmacion);
+
         TextView textoDialog = (TextView) dialog.findViewById(R.id.txtvw_custom_dialog);
         textoDialog.setText(R.string.texto_custom_dialog);
         Button buttonCancelar = (Button) dialog.findViewById(R.id.boton_cancelar_dialog);
         buttonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dialog.dismiss();
             }
         });
         Button buttonAceptar = (Button) dialog.findViewById(R.id.boton_aceptar_dialog);
         buttonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
         dialog.show();

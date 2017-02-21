@@ -33,6 +33,10 @@
                 android:id="@+id/nav_consulta_reparacion"
                 android:icon="@drawable/ic_list"
                 android:title="@string/consultar_reparaciones" />
+            <item
+                android:id="@+id/nav_consulta_cuentas"
+                android:icon="@drawable/ic_euro"
+                android:title="@string/consulta_cuentas" />
         </menu>
     </item>
 </menu>

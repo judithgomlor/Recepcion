@@ -16,13 +16,14 @@ public class ConsultaReparacionesPendientes {
     private String mDescripcionEntrada;
     private String mResolucionEntrada;
     private String mFechaSalida;
+    private String mPrecioReparacion;
 
     public ConsultaReparacionesPendientes(String mNombre, String mPrimerApellido,
                                           String mSegundoApellido, String mMarcaVehiculo,
                                           String mModeloVehiculo, String mMatriculaVehiculo,
                                           String mFechaEntrada, String mResumenEntrada,
                                           String mDescripcionEntrada, String mResolucionEntrada,
-                                          String mFechaSalida) {
+                                          String mFechaSalida, String mPrecioReparacion) {
         this.mNombre = mNombre;
         this.mPrimerApellido = mPrimerApellido;
         this.mSegundoApellido = mSegundoApellido;
@@ -34,6 +35,7 @@ public class ConsultaReparacionesPendientes {
         this.mDescripcionEntrada = mDescripcionEntrada;
         this.mResolucionEntrada = mResolucionEntrada;
         this.mFechaSalida = mFechaSalida;
+        this.mPrecioReparacion = mPrecioReparacion;
     }
 
     public String getmNombre() {
@@ -122,5 +124,13 @@ public class ConsultaReparacionesPendientes {
 
     public void setmFechaSalida(String mFechaSalida) {
         this.mFechaSalida = mFechaSalida;
+    }
+
+    public String getmPrecioReparacion() {
+        return mPrecioReparacion;
+    }
+
+    public void setmPrecioReparacion(String mPrecioReparacion) {
+        this.mPrecioReparacion = mPrecioReparacion;
     }
 }

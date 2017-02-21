@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.github.clans.fab.FloatingActionMenu;
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ConsultaReparacionRvAdapter;
 import com.ot.jgomez.recepcion.items.ConsultaReparaciones;
@@ -24,6 +23,7 @@ import com.ot.jgomez.recepcion.views.addcliente.AddClienteActivity;
 import com.ot.jgomez.recepcion.views.addreparacion.AddReparacionActivity;
 import com.ot.jgomez.recepcion.views.listaclientes.ListaClientesActivity;
 import com.ot.jgomez.recepcion.views.solvereparacion.SolveReparacionActivity;
+import com.ot.jgomez.recepcion.views.visualizacuentas.VisualizaCuentasActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private List<ConsultaReparaciones> mListHoyResuelto;
     private List<ConsultaReparaciones> mListAyerPendiente;
     private List<ConsultaReparaciones> mListAyerResuelto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-               this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         this.mAdapterAyerPendiente = new ConsultaReparacionRvAdapter(this.mListAyerPendiente, getApplicationContext());
         this.mRecyclerAyerPendiente.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.mRecyclerAyerPendiente.setAdapter(this.mAdapterAyerPendiente);
-        if(this.mRecyclerAyerPendiente.getAdapter().getItemCount() == 0) {
+        if (this.mRecyclerAyerPendiente.getAdapter().getItemCount() == 0) {
             this.mRecyclerAyerPendiente.setVisibility(View.GONE);
             this.mAyerPendiente.setVisibility(View.VISIBLE);
         } else {
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         this.mAdapterAyerResuelto = new ConsultaReparacionRvAdapter(this.mListAyerResuelto, getApplicationContext());
         this.mRecyclerAyerResuelto.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.mRecyclerAyerResuelto.setAdapter(this.mAdapterAyerResuelto);
-        if(this.mRecyclerAyerResuelto.getAdapter().getItemCount() == 0) {
+        if (this.mRecyclerAyerResuelto.getAdapter().getItemCount() == 0) {
             this.mRecyclerAyerResuelto.setVisibility(View.GONE);
             this.mAyerResuelto.setVisibility(View.VISIBLE);
         } else {
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         this.mAdapterHoyPendiente = new ConsultaReparacionRvAdapter(this.mListHoyPendiente, getApplicationContext());
         this.mRecyclerHoyPendiente.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.mRecyclerHoyPendiente.setAdapter(this.mAdapterHoyPendiente);
-        if(this.mRecyclerHoyPendiente.getAdapter().getItemCount() == 0) {
+        if (this.mRecyclerHoyPendiente.getAdapter().getItemCount() == 0) {
             this.mRecyclerHoyPendiente.setVisibility(View.GONE);
             this.mHoyPendiente.setVisibility(View.VISIBLE);
         } else {
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity
         this.mAdapterHoyResuelto = new ConsultaReparacionRvAdapter(this.mListHoyResuelto, getApplicationContext());
         this.mRecyclerHoyResuelto.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         this.mRecyclerHoyResuelto.setAdapter(this.mAdapterHoyResuelto);
-        if(this.mRecyclerHoyResuelto.getAdapter().getItemCount() == 0) {
+        if (this.mRecyclerHoyResuelto.getAdapter().getItemCount() == 0) {
             this.mRecyclerHoyResuelto.setVisibility(View.GONE);
             this.mHoyResuelto.setVisibility(View.VISIBLE);
         } else {
@@ -189,6 +190,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(myIntent);
         } else if (id == R.id.nav_consulta_reparacion) {
 
+        } else if (id == R.id.nav_consulta_cuentas) {
+            Intent myIntent = new Intent(this, VisualizaCuentasActivity.class);
+            startActivity(myIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
