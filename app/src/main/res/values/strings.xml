@@ -18,6 +18,15 @@
     <string name="ficha_cliente">Ficha cliente</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="matricula_vehiculo">Matrícula...</string>
+    <string name="marca_modelo_vehiculo">Marca - Modelo...</string>
+    <string name="telefono_modifica_cliente">Teléfono...</string>
+    <string name="nombre_apellidos">Nombre...</string>
+    <string name="modifica_cliente">Modifica cliente</string>
+    <string name="no_entradas_pendientes">No hay entradas pendientes para el día </string>
+    <string name="no_entradas_resueltas">No hay entradas resueltas para el día </string>
+    <string name="checkbox_reparaciones_pendientes">Pendientes</string>
+    <string name="checkbox_reparaciones_resueltas">Resueltas</string>
     <string name="consulta_reparacion_hoy">Hoy</string>
     <string name="todo_el_historial">Todas</string>
     <string name="fecha_consulta">Fecha a consultar:</string>
@@ -33,7 +42,10 @@
     <string name="lista_clientes">Lista clientes</string>
     <string name="consulta">Consultar</string>
     <string name="separacion_vehiculos">-----------------------------------------------------------</string>
-    <string name="vehiculos">Vehículo/s:</string>
+    <string name="añadir_vehiculo">Añadir vehículo</string>
+    <string name="modificar_vehiculo">Modificar vehículo</string>
+    <string name="eliminar_vehiculo">Eliminar vehículo</string>
+    <string name="vehiculos">Vehículo/s</string>
     <string name="coste">Coste reparación (€):</string>
     <string name="dia">Día:</string>
     <string name="mes">Mes:</string>
@@ -43,7 +55,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="quita_ultimo">Deshacer</string>
     <string name="añade_otro_vehiculo">Añade</string>
-    <string name="datos_personales">Datos personales:</string>
+    <string name="datos_personales">Datos personales</string>
     <string name="nombre">Nombre:</string>
     <string name="apellidos">Apellidos:</string>
     <string name="vehiculo">Vehículo:</string>
@@ -58,7 +70,9 @@
     <string name="recuento_dia_actual_dinero">Recuento de dinero</string>
     <string name="hoy">Hoy:</string>
     <string name="ayer">Ayer:</string>
-    <string name="otro_dia">Otro día</string>
+    <string name="dia_concreto">Día concreto</string>
+    <string name="informacion_consultar">Información a consultar:</string>
+    <string name="a_partir_del_dia">A partir del día</string>
     <string name="descripcion_reparacion">Descripción:</string>
     <string name="resumen_reparacion">Resumen:</string>
     <string name="matricula">Matrícula:</string>

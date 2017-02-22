@@ -14,6 +14,15 @@
         </menu>
     </item>
 
+    <item android:title="@string/modificar">
+        <menu>
+            <item
+                android:id="@+id/nav_modifica_cliente"
+                android:icon="@drawable/ic_edit"
+                android:title="@string/modifica_cliente" />
+        </menu>
+    </item>
+
     <item android:title="@string/resolucion_menu">
         <menu>
             <item
