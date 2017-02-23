@@ -27,6 +27,7 @@ public class ConsultaClientePresenterImpl implements ConsultaClienteContract.Pre
                         clientes.get(i).getNombreCliente(),
                         clientes.get(i).getPrimerApellidoCliente(),
                         clientes.get(i).getSegundoApellidoCliente(),
+                        clientes.get(i).getNombreApellidos(),
                         clientes.get(i).getTelefonoCliente(),
                         clientes.get(i).getMarcaVehiculo(),
                         clientes.get(i).getModeloVehiculo(),

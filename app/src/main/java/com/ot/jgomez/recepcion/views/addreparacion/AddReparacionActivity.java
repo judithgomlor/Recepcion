@@ -221,6 +221,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
                         clients.getNombreCliente(),
                         clients.getPrimerApellidoCliente(),
                         clients.getSegundoApellidoCliente(),
+                        clients.getNombreApellidos(),
                         clients.getTelefonoCliente(),
                         clients.getMarcaVehiculo(),
                         clients.getModeloVehiculo(),

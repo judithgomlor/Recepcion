@@ -23,12 +23,13 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         List<DBClientes> clientes = DBClientes.getAllClientes();
         if (clientes.size() > 0) {
             for (DBClientes entries : clientes) {
-                if(entries.getNombreCliente().contains(search) ||
+                if (entries.getNombreApellidos().contains(search) ||
                         entries.getPrimerApellidoCliente().contains(search)) {
                     list.add(new ConsultaClientes(
                             entries.getNombreCliente(),
                             entries.getPrimerApellidoCliente(),
                             entries.getSegundoApellidoCliente(),
+                            entries.getNombreApellidos(),
                             entries.getTelefonoCliente(),
                             entries.getMarcaVehiculo(),
                             entries.getModeloVehiculo(),
@@ -36,8 +37,28 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                     ));
                 }
             }
+            list = this.trataList(list);
         }
         return list;
+    }
+
+    private List<ConsultaClientes> trataList(List<ConsultaClientes> list) {
+        List<ConsultaClientes> aux = new ArrayList<>();
+        ConsultaClientes clienteAnterior, clienteActual;
+        clienteAnterior = list.get(0);
+        aux.add(clienteAnterior);
+        if (list.size() > 1) {
+            for (int i = 0; i < list.size(); ++i) {
+                clienteActual = list.get(i);
+                if (!clienteAnterior.getmNombre().equals(clienteActual.getmNombre()) ||
+                        !clienteAnterior.getmPrimerApellido().equals(clienteActual.getmPrimerApellido()) ||
+                        !clienteAnterior.getmSegundoApellido().equals(clienteActual.getmSegundoApellido())) {
+                    aux.add(clienteActual);
+                }
+                clienteAnterior = clienteActual;
+            }
+        }
+        return aux;
     }
 
     @Override

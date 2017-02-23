@@ -8,17 +8,19 @@ public class ConsultaClientes {
     private String mNombre;
     private String mPrimerApellido;
     private String mSegundoApellido;
+    private String mNombreApellidos;
     private String mTelefono;
     private String mMarcaVehiculo;
     private String mModeloVehiculo;
     private String mMatriculaVehiculo;
 
     public ConsultaClientes(String mNombre, String mPrimerApellido, String mSegundoApellido,
-                            String mTelefono, String mMarcaVehiculo, String mModeloVehiculo,
-                            String mMatriculaVehiculo) {
+                            String mNombreApellidos, String mTelefono, String mMarcaVehiculo,
+                            String mModeloVehiculo, String mMatriculaVehiculo) {
         this.mNombre = mNombre;
         this.mPrimerApellido = mPrimerApellido;
         this.mSegundoApellido = mSegundoApellido;
+        this.mNombreApellidos = mNombreApellidos;
         this.mTelefono = mTelefono;
         this.mMarcaVehiculo = mMarcaVehiculo;
         this.mModeloVehiculo = mModeloVehiculo;
@@ -47,6 +49,14 @@ public class ConsultaClientes {
 
     public void setmSegundoApellido(String mSegundoApellido) {
         this.mSegundoApellido = mSegundoApellido;
+    }
+
+    public String getmNombreApellidos() {
+        return mNombreApellidos;
+    }
+
+    public void setmNombreApellidos(String mNombreApellidos) {
+        this.mNombreApellidos = mNombreApellidos;
     }
 
     public String getmTelefono() {

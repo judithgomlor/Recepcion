@@ -18,6 +18,7 @@
     <string name="ficha_cliente">Ficha cliente</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="busqueda">Búsqueda</string>
     <string name="matricula_vehiculo">Matrícula...</string>
     <string name="marca_modelo_vehiculo">Marca - Modelo...</string>
     <string name="telefono_modifica_cliente">Teléfono...</string>

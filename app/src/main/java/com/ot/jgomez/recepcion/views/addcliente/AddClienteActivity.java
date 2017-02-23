@@ -479,12 +479,13 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         String aux_nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
         String aux_primer_apellido = primerApellido.substring(0, 1).toUpperCase() + primerApellido.substring(1, primerApellido.length());
         String aux_segundo_apellido = segundoApellido.substring(0, 1).toUpperCase() + segundoApellido.substring(1, segundoApellido.length());
+        String aux_nombre_apellidos = aux_nombre + " " + aux_primer_apellido + " " + aux_segundo_apellido;
         String aux_marca = marca.substring(0, 1).toUpperCase() + marca.substring(1, marca.length());
         String aux_modelo = modelo.substring(0, 1).toUpperCase() + modelo.substring(1, modelo.length());
         String aux_matricula = matricula.substring(0, 4) + matricula.substring(4, matricula.length()).toUpperCase();
 
-        DBClientes cliente = new DBClientes(aux_nombre, aux_primer_apellido, aux_segundo_apellido, aux_marca,
-                aux_modelo, aux_matricula, telefono);
+        DBClientes cliente = new DBClientes(aux_nombre, aux_primer_apellido, aux_segundo_apellido,
+                aux_nombre_apellidos, aux_marca, aux_modelo, aux_matricula, telefono);
         cliente.save();
         Toast.makeText(this, "Cliente guardado", Toast.LENGTH_LONG).show();
         Intent returnIntent = new Intent();

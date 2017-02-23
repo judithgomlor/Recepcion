@@ -29,6 +29,9 @@ public class DBClientes extends BaseModel {
     String segundoApellidoCliente;
 
     @Column
+    String nombreApellidos;
+
+    @Column
     String marcaVehiculo;
 
     @Column
@@ -41,11 +44,12 @@ public class DBClientes extends BaseModel {
     String telefonoCliente;
 
     public DBClientes(String nombreCliente, String primerApellidoCliente, String segundoApellidoCliente,
-                      String marcaVehiculo, String modeloVehiculo,
+                      String nombreApellidos, String marcaVehiculo, String modeloVehiculo,
                       String matriculaVehiculo, String telefonoCliente) {
         this.nombreCliente = nombreCliente;
         this.primerApellidoCliente = primerApellidoCliente;
         this.segundoApellidoCliente = segundoApellidoCliente;
+        this.nombreApellidos = nombreApellidos;
         this.marcaVehiculo = marcaVehiculo;
         this.modeloVehiculo = modeloVehiculo;
         this.matriculaVehiculo = matriculaVehiculo;
@@ -82,6 +86,14 @@ public class DBClientes extends BaseModel {
 
     public void setSegundoApellidoCliente(String segundoApellidoCliente) {
         this.segundoApellidoCliente = segundoApellidoCliente;
+    }
+
+    public String getNombreApellidos() {
+        return nombreApellidos;
+    }
+
+    public void setNombreApellidos(String nombreApellidos) {
+        this.nombreApellidos = nombreApellidos;
     }
 
     public String getMarcaVehiculo() {

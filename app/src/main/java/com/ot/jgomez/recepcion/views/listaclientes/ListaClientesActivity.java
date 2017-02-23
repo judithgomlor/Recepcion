@@ -80,6 +80,7 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
                     this.mListClientes.get(pos).getmNombre(),
                     this.mListClientes.get(pos).getmPrimerApellido(),
                     this.mListClientes.get(pos).getmSegundoApellido(),
+                    this.mListClientes.get(pos).getmNombreApellidos(),
                     this.mListClientes.get(pos).getmTelefono(),
                     this.mListClientes.get(pos).getmMarcaVehiculo(),
                     this.mListClientes.get(pos).getmModeloVehiculo(),
