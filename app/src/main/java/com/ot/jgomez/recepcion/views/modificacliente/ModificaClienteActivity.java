@@ -1,13 +1,10 @@
 package com.ot.jgomez.recepcion.views.modificacliente;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,18 +13,23 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ListaBuscaClientesDialogAdapters;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
+import com.ot.jgomez.recepcion.views.modificacliente.buscacliente.BuscaClienteActivity;
 
 import java.util.List;
 
 public class ModificaClienteActivity extends AppCompatActivity implements
         ModificaClienteContract.View, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+
+    private static final int REQUEST_CODE_OK = 1;
+    private static final int REQUEST_CODE_KO = 2;
+    private static final String EXTRA_NOMBRE = "nombre";
+    private static final String EXTRA_APELLIDOS = "apellidos";
+    private static final String EXTRA_TELEFONO = "telefono";
 
     private ModificaClientePresenterImpl mPresenter;
     private List<ConsultaClientes> mList;
@@ -38,6 +40,14 @@ public class ModificaClienteActivity extends AppCompatActivity implements
     private CheckBox mCheckBoxModificarVehiculo;
     private CheckBox mCheckBoxEliminarVehiculo;
     private RecyclerView mRecyclerDialog;
+    private boolean mBoolPrimerEspacio;
+    private boolean mBoolSegundoEspacio;
+    private int mLengthPrimeraPalabra;
+    private int mLengthSegundaPalabra;
+    private String mPrimeraPalabra;
+    private String mSegundaPalabra;
+    private String mTerceraPalabra;
+    private ListaBuscaClientesDialogAdapters mAdapter;
 
     //datos personales
     private EditText mEditNombreApellidos;
@@ -129,6 +139,13 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckBoxModificarVehiculo = (CheckBox) findViewById(R.id.ckbox_modifica_vehiculos);
         this.mCheckBoxModificarVehiculo.setOnCheckedChangeListener(this);
         this.mCheckBoxEliminarVehiculo = (CheckBox) findViewById(R.id.ckbox_elimina_vehiculos);
+        this.mBoolPrimerEspacio = false;
+        this.mBoolSegundoEspacio = false;
+        this.mLengthPrimeraPalabra = 0;
+        this.mLengthSegundaPalabra = 0;
+        this.mPrimeraPalabra = "";
+        this.mSegundaPalabra = "";
+        this.mTerceraPalabra = "";
 
         //datos personales
         this.mEditNombreApellidos = (EditText) findViewById(R.id.edtxt_busca_nombre_apellidos);
@@ -228,90 +245,10 @@ public class ModificaClienteActivity extends AppCompatActivity implements
             //cancelar cambios -->  si se ha modificado algo, preguntar si se quiere ir sin guardar
             //                      si no hay cambios nuevos, NP
         } else if (v == this.mEditNombreApellidos) {
-            this.dialogBuscaCliente();
-        }
-    }
-
-    /**
-     * Con esta función conseguimos que se abra un dialog externo a la pantalla y podremos
-     * visualizar mejor la búsqueda de nuestro cliente.
-     */
-    private void dialogBuscaCliente() {
-        final Dialog dialog = new Dialog(this);
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.custom_dialog_looking_for);
-
-        //set the custom dialog components
-        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        //textoTitulo.setText(R.string.confirmacion);
-
-        dialog.setTitle(R.string.busqueda);
-
-        //usamos una recyclerview para enseñar la lista de nombres
-        EditText editBusqueda = (EditText) dialog.findViewById(R.id.edit_busca_nombre_dialog);
-        editBusqueda.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String aux;
-                int index;
-                String espacio = " ";
-                if (s.length() >= 2) {
-                    index = s.length();
-                    Log.d("ModificaCliente", "index = " + index);
-                    Log.d("ModificaCliente", "s.toString().substring(index) = "
-                            + s.toString().substring(0, index - 1));
-                    if (espacio.equals(s.charAt(index - 1))) {
-                        aux = s.toString().substring(0, 1).toUpperCase() +
-                                s.toString().substring(1, index - 1) +
-                                s.toString().substring(index - 1, index).toUpperCase();
-                        Log.d("ModificaCliente", "if -> aux = " + aux);
-                    } else {
-                        aux = s.toString().substring(0, 1).toUpperCase() +
-                                s.toString().substring(1, s.length());
-                        Log.d("ModificaCliente", "else -> aux = " + aux);
-                    }
-                    buscaNombre(aux);
-                }
-            }
-        });
-
-        this.mRecyclerDialog = (RecyclerView) dialog.findViewById(R.id.recycler_view_dialog_busca_nombre);
-        Button buttonCancelar = (Button) dialog.findViewById(R.id.boton_cancelar_dialog_busca_cliente);
-        buttonCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        Button buttonAceptar = (Button) dialog.findViewById(R.id.boton_aceptar_dialog_busca_cliente);
-        buttonAceptar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        dialog.show();
-    }
-
-    private void buscaNombre(String nombre) {
-        this.mList = this.mPresenter.getClientes(nombre);
-        if (this.mList.size() > 0) {
-            ListaBuscaClientesDialogAdapters adapter = new ListaBuscaClientesDialogAdapters(this, this.mList);
-            this.mRecyclerDialog.setLayoutManager(new LinearLayoutManager(this));
-            this.mRecyclerDialog.setAdapter(adapter);
-        } else {
-            this.showMessage("No existen clientes con ese nombre");
+            //iremos a una pantalla nueva para que sea más fácil el flujo de información, pero sería
+            // lo mismo.
+            Intent myIntent = new Intent(this, BuscaClienteActivity.class);
+            startActivityForResult(myIntent, this.REQUEST_CODE_OK);
         }
     }
 
@@ -338,5 +275,16 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         } else if (buttonView == this.mCheckBoxModificarVehiculo) {
 
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == this.REQUEST_CODE_KO) {
+            Log.d("ModificaCliente","No tenía datos");
+        } else if (requestCode == this.REQUEST_CODE_OK) {
+            Log.d("ModificaCliente","Esta vez sí tenía datos");
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

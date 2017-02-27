@@ -18,6 +18,9 @@
     <string name="ficha_cliente">Ficha cliente</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="vuelve_busca">Vuelve a buscar</string>
+    <string name="busca_cliente">Nombre...</string>
+    <string name="refresca">Refresca lista</string>
     <string name="busqueda">Búsqueda</string>
     <string name="matricula_vehiculo">Matrícula...</string>
     <string name="marca_modelo_vehiculo">Marca - Modelo...</string>
