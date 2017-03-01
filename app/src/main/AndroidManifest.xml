@@ -31,8 +31,8 @@
         <activity android:name=".views.consultarreparaciones.ConsultarReparacionesActivity" />
         <activity
             android:name=".views.modificacliente.ModificaClienteActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".views.modificacliente.buscacliente.BuscaClienteActivity"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".views.modificacliente.buscacliente.BuscaClienteActivity"/>
     </application>
 
 </manifest>

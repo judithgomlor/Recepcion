@@ -3,6 +3,7 @@ package com.ot.jgomez.recepcion.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.views.modificacliente.ModificaClienteActivity;
+import com.ot.jgomez.recepcion.views.modificacliente.buscacliente.BuscaClienteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +37,16 @@ public class ListaBuscaClientesDialogAdapters extends RecyclerView.Adapter<
         }
     }
 
-    private static final String EXTRA_NOMBRE = "nombre";
-    private static final String EXTRA_APELLIDOS = "apellidos";
-    private static final String EXTRA_TELEFONO = "telefono";
     private Context mContext;
     private List<ConsultaClientes> mList;
     private ConsultaClientes mClienteSeleccionado;
     private int mPosition;
     private boolean mBoolSelected = false;
     private List<ConsultaClientes> mListAux;
+    private static final String EXTRA_NOMBRE = "nombre";
+    private static final String EXTRA_PRIMER_APELLIDO = "primer_apellido";
+    private static final String EXTRA_SEGUNDO_APELLIDO = "segundo_apellido";
+    private static final String EXTRA_TELEFONO = "telefono";
 
     public ListaBuscaClientesDialogAdapters(Context mContext, List<ConsultaClientes> mList) {
         this.mContext = mContext;
@@ -61,54 +64,35 @@ public class ListaBuscaClientesDialogAdapters extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(ListaBuscaClientesDialogAdapters.ViewHolder holder, final int position) {
         final String nombre = this.mList.get(position).getmNombre();
-        final String apellidos = this.mList.get(position).getmPrimerApellido() + " " +
-                this.mList.get(position).getmSegundoApellido();
+        final String primer_apellido = this.mList.get(position).getmPrimerApellido();
+        final String segundo_apellido = this.mList.get(position).getmSegundoApellido();
+        final String apellidos = primer_apellido + " " +segundo_apellido;
         final String telefono = this.mList.get(position).getmTelefono();
 
         holder.mNombreApellido.setText(nombre + " " + apellidos);
-/*
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mBoolSelected = true;
-                mPosition = position;
-                igualaListas();
-                cogeClienteSeleccionado();
-                mList = new ArrayList<>();
-                mList.add(mClienteSeleccionado);
-                notifyDataSetChanged();
+                Bundle bundle = new Bundle();
+                bundle.putString(EXTRA_NOMBRE, nombre);
+                bundle.putString(EXTRA_PRIMER_APELLIDO, primer_apellido);
+                bundle.putString(EXTRA_SEGUNDO_APELLIDO, segundo_apellido);
+                bundle.putString(EXTRA_TELEFONO, telefono);
+
+                pasaOtraActividad(bundle);
             }
-        });*/
+        });
     }
 
-    private void igualaListas() {
-        this.mListAux = new ArrayList<>();
-        this.mListAux = this.mList;
+    private void pasaOtraActividad(Bundle bundle) {
+        if(this.mContext == null) {
+            return;
+        } else if (this.mContext instanceof BuscaClienteActivity) {
+            BuscaClienteActivity activity = (BuscaClienteActivity) this.mContext;
+            activity.pasaOtraActividad(bundle);
+        }
     }
-
-    public boolean ismBoolSelected() {
-        return this.mBoolSelected;
-    }
-
-    public void refrescaLista() {
-        this.mList = new ArrayList<>();
-        this.mList = this.mListAux;
-        notifyDataSetChanged();
-    }
-
-    public ConsultaClientes cogeClienteSeleccionado() {
-        this.mClienteSeleccionado = new ConsultaClientes(
-                mList.get(this.mPosition).getmNombre(),
-                mList.get(this.mPosition).getmPrimerApellido(),
-                mList.get(this.mPosition).getmSegundoApellido(),
-                mList.get(this.mPosition).getmNombreApellidos(),
-                mList.get(this.mPosition).getmTelefono(),
-                mList.get(this.mPosition).getmMarcaVehiculo(),
-                mList.get(this.mPosition).getmModeloVehiculo(),
-                mList.get(this.mPosition).getmMatriculaVehiculo());
-        return this.mClienteSeleccionado;
-    }
-
 
     @Override
     public int getItemCount() {

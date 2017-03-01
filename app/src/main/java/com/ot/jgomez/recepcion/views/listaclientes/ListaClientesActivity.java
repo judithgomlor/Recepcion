@@ -90,7 +90,7 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         }
     }
 
-    /*
+    /**
     Copiaremos los nombres de la lista de clientes junto con la posición que ocupen
      */
     private void copiaNombres() {

@@ -19,5 +19,7 @@ public interface ModificaClienteContract {
 
     interface Presenter extends BasePresenter<Context, View> {
         List<ConsultaClientes> getClientes(String search);
+        List<ConsultaClientes> getAllClientes();
+        List<ConsultaClientes> getClientesSinTratarLista();
     }
 }

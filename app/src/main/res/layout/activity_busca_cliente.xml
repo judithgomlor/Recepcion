@@ -41,7 +41,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/boton_vuelve_busca_cliente"
+            android:id="@+id/boton_reinicia_busqueda_cliente"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,23 +49,7 @@
             android:layout_weight="1"
             android:background="@color/colorAccent"
             android:gravity="center"
-            android:text="@string/vuelve_busca"
-            android:textColor="@color/colorWhite" />
-
-        <View
-            android:layout_width="5dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/boton_refresca_busca_cliente"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:background="@color/colorAccent"
-            android:gravity="center"
-            android:text="@string/refresca"
+            android:text="@string/reinicia_busqueda"
             android:textColor="@color/colorWhite" />
 
     </LinearLayout>

@@ -580,6 +580,58 @@
             android:text="@string/datos_personales"
             android:textSize="@dimen/text_size" />
 
+        <LinearLayout
+            android:id="@+id/layout_modifica_datos_personales"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/modifica_cliente_nuevo_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nuevo_nombre" />
+
+                <EditText
+                    android:id="@+id/modifica_cliente_nuevo_primer_apellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nuevo_primer_apellido" />
+
+                <EditText
+                    android:id="@+id/modifica_cliente_nuevo_segundo_apellido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nuevo_segundo_apellido" />
+
+                <EditText
+                    android:id="@+id/modifica_cliente_nuevo_telefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/telefono_modifica_cliente"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/ckbox_modifica_vehiculos"
             android:layout_width="match_parent"
@@ -587,6 +639,401 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/modificar_vehiculo"
             android:textSize="@dimen/text_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_modifica_vehiculos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_edit" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_car" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_primer_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el primer vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_primer_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_primer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_primer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_primer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_segundo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el segundo vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_segundo_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_segundo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_segundo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_segundo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_tercer_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el tercer vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_tercer_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_tercer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_tercer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_tercer_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_cuarto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el cuarto vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_cuarto_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_cuarto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_cuarto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_cuarto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_quinto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el quinto vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_quinto_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_quinto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_quinto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_quinto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_sexto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el sexto vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_sexto_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_sexto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_sexto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_sexto_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_septimo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el septimo vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_septimo_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_septimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_septimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_septimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_octavo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el octavo vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_octavo_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_octavo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_octavo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_octavo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_noveno_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el noveno vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_noveno_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_noveno_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_noveno_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_noveno_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/checkbox_modifica_decimo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Modifica el décimo vehículo. Necesitaremos Marca, modelo, matrícula -->
+
+                <LinearLayout
+                    android:id="@+id/layout_modifica_decimo_vehiculo_modifica_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_marca_modifica_cliente_modifica_decimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_modelo_modifica_cliente_modifica_decimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_matricula_modifica_cliente_modifica_decimo_vehiculo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/ckbox_añadir_vehiculos"
@@ -596,6 +1043,60 @@
             android:text="@string/añadir_vehiculo"
             android:textSize="@dimen/text_size" />
 
+        <LinearLayout
+            android:id="@+id/layout_añade_vehiculo_modifica_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_add_black" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_car" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/editar_nueva_marca_modifica_cliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_marca" />
+
+
+                    <EditText
+                        android:id="@+id/editar_nuevo_modelo_modifica_cliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nuevo_modelo" />
+
+
+                    <EditText
+                        android:id="@+id/editar_nueva_matricula_modifica_cliente"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nueva_matricula" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/ckbox_elimina_vehiculos"
             android:layout_width="match_parent"
@@ -603,6 +1104,82 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/eliminar_vehiculo"
             android:textSize="@dimen/text_size" />
+
+        <LinearLayout
+            android:id="@+id/layout_elimina_vehiculos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_delete" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_car" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_primer_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_segundo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_tercer_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_cuarto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_quinto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_sexto_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_septimo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_octavo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_noveno_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_elimina_decimo_vehiculo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </ScrollView>

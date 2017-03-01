@@ -18,9 +18,15 @@
     <string name="ficha_cliente">Ficha cliente</string>
 
     <!-- Etiquetas para las activities -->
-    <string name="vuelve_busca">Vuelve a buscar</string>
+    <string name="nueva_matricula">Matrícula...</string>
+    <string name="nuevo_modelo">Modelo...</string>
+    <string name="nueva_marca">Marca...</string>
+    <string name="nuevo_nombre">Nombre...</string>
+    <string name="nuevo_primer_apellido">Primer apellido...</string>
+    <string name="nuevo_segundo_apellido">Segundo apellido...</string>
+    <string name="reinicia_busqueda">Reinicia búsqueda</string>
     <string name="busca_cliente">Nombre...</string>
-    <string name="refresca">Refresca lista</string>
+    <string name="muestra_todo">Muestra todo</string>
     <string name="busqueda">Búsqueda</string>
     <string name="matricula_vehiculo">Matrícula...</string>
     <string name="marca_modelo_vehiculo">Marca - Modelo...</string>
