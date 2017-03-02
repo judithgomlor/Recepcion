@@ -54,6 +54,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
     private String mOctavaMarca, mOctavoModelo, mOctavaMatricula;
     private String mNovenaMarca, mNovenoModelo, mNovenaMatricula;
     private String mDecimaMarca, mDecimoModelo, mDecimaMatricula;
+    private List<ConsultaClientes> mListVehiculos;
 
     /**
      * En el caso de que tenga más de un vehículo la misma persona, tendremos que tener listos los
@@ -224,6 +225,9 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.init();
     }
 
+    /**
+     * Inicialización de variables e IDs
+     */
     private void init() {
         this.mBtnAceptar = (Button) findViewById(R.id.boton_aceptar_modificacion_cliente);
         this.mBtnAceptar.setOnClickListener(this);
@@ -239,6 +243,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckBoxEliminarVehiculo.setOnCheckedChangeListener(this);
         this.mList = new ArrayList<>();
         this.mList = this.mPresenter.getClientesSinTratarLista();
+        this.mListVehiculos = new ArrayList<>();
 
         //datos personales
         this.mEditNombreApellidos = (EditText) findViewById(R.id.edtxt_busca_nombre_apellidos);
@@ -449,6 +454,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setOnCheckedChangeListener(this);
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -481,6 +487,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         if (v == this.mBtnAceptar) {
             //guardar cambios
             this.guardaCambios();
+            finish();
         } else if (v == this.mBtnCancelar) {
             //cancelar cambios -->  si se ha modificado algo, preguntar si se quiere ir sin guardar
             //                      si no hay cambios nuevos, NP
@@ -497,10 +504,588 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         }
     }
 
-    private void guardaCambios() {
 
+    /**
+     * Guardamos todos los modificaciones que se hayan realizado
+     */
+    private void guardaCambios() {
+        if (this.mCheckBoxAñadirVehiculo.isChecked()) {
+            if (this.mAñadeMarca.getText().toString().length() == 0) {
+                this.mAñadeMarca.setError(this.getResources().getString(R.string.falta_marca));
+            }
+            if (this.mAñadeModelo.getText().toString().length() == 0) {
+                this.mAñadeModelo.setError(this.getResources().getString(R.string.falta_modelo));
+            }
+            if (this.mAñadeMatricula.getText().toString().length() == 0) {
+                this.mAñadeMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+            } else {
+                String marca = this.mAñadeMarca.getText().toString();
+                String modelo = this.mAñadeModelo.getText().toString();
+                String matricula = this.mAñadeMatricula.getText().toString();
+                matricula = matricula.substring(0, 3) + matricula.substring(3, matricula.length()).toUpperCase();
+                String nombreApellidos = this.mNombre + " " + this.mPrimerApellido + " " + this.mSegundoApellido;
+                this.mPresenter.guardaVehiculoNuevo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, marca, modelo, matricula);
+            }
+        }
+        if (this.mCheckBoxEliminarVehiculo.isChecked()) {
+            String nombreApellidos = this.mNombre + " " + this.mPrimerApellido + " " + this.mSegundoApellido;
+            if (this.mCheckEliminaPrimerVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mPrimeraMarca, this.mPrimerModelo,
+                        this.mPrimeraMatricula);
+            }
+            if (this.mCheckEliminaSegundoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mSegundaMarca, this.mSegundoModelo,
+                        this.mSegundaMatricula);
+            }
+            if (this.mCheckEliminaTercerVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mTerceraMarca, this.mTercerModelo,
+                        this.mTerceraMatricula);
+            }
+            if (this.mCheckEliminaCuartoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mCuartaMarca, this.mCuartoModelo,
+                        this.mCuartaMatricula);
+            }
+            if (this.mCheckEliminaQuintoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mQuintaMarca, this.mQuintoModelo,
+                        this.mQuintaMatricula);
+            }
+            if (this.mCheckEliminaSextoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mSextaMarca, this.mSextoModelo,
+                        this.mSextaMatricula);
+            }
+            if (this.mCheckEliminaSeptimoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mSeptimaMarca, this.mSeptimoModelo,
+                        this.mSeptimaMatricula);
+            }
+            if (this.mCheckEliminaOctavoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mOctavaMarca, this.mOctavoModelo,
+                        this.mOctavaMatricula);
+            }
+            if (this.mCheckEliminaNovenoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mNovenaMarca, this.mNovenoModelo,
+                        this.mNovenaMatricula);
+            }
+            if (this.mCheckEliminaDecimoVehiculo.isChecked()) {
+                this.mPresenter.eliminaVehiculo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                        nombreApellidos, this.mTelefono, this.mDecimaMarca, this.mDecimoModelo,
+                        this.mDecimaMatricula);
+            }
+            this.showMessage("Vehículo/s eliminado/s correctamente");
+        }
+        if (this.mCheckBoxDatosPersonales.isChecked()) {
+            String segundoApellido = "";
+            if (this.mEditModificaSegundoApellido.getText().toString().length() != 0) {
+                segundoApellido = this.mEditModificaSegundoApellido.getText().toString();
+            }
+            if (this.mEditModificaNombre.getText().toString().length() == 0) {
+                this.mEditModificaNombre.setError(this.getResources().getString(R.string.falta_nombre));
+            }
+            if (this.mEditModificaPrimerApellido.getText().toString().length() == 0) {
+                this.mEditModificaPrimerApellido.setError(this.getResources().getString(R.string.falta_primer_apellido));
+            }
+            if (this.mEditTelefono.getText().toString().length() == 0) {
+                this.mEditTelefono.setError(this.getResources().getString(R.string.falta_telefono));
+            }
+            boolean boolNombre = this.modificacionStrings(this.mNombre,
+                    this.mEditModificaNombre.getText().toString());
+            boolean boolPrimerApellido = this.modificacionStrings(this.mPrimerApellido,
+                    this.mEditModificaPrimerApellido.getText().toString());
+            boolean boolSegundoApellido = this.modificacionStrings(this.mSegundoApellido,
+                    segundoApellido);
+            boolean boolTelefono = this.modificacionStrings(this.mTelefono,
+                    this.mEditModificaTelefono.getText().toString());
+            this.modificacionDatosPersonales(boolNombre, boolPrimerApellido, boolSegundoApellido,
+                    boolTelefono);
+        }
+        if (this.mCheckBoxModificarVehiculo.isChecked()) {
+            String marca, modelo, matricula;
+            if (this.mCheckModificaPrimerVehiculo.isChecked()) {
+                if (this.mEditModificaPrimeraMarca.getText().toString().length() == 0) {
+                    this.mEditModificaPrimeraMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaPrimerModelo.getText().toString().length() == 0) {
+                    this.mEditModificaPrimerModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaPrimeraMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaPrimeraMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mPrimeraMarca,
+                        this.mEditModificaPrimeraMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mPrimerModelo,
+                        this.mEditModificaPrimerModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mPrimeraMatricula,
+                        this.mEditModificaPrimeraMatricula.getText().toString());
+
+                marca = this.mEditModificaPrimeraMarca.getText().toString();
+                modelo = this.mEditModificaPrimerModelo.getText().toString();
+                matricula = this.mEditModificaPrimeraMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mPrimeraMarca, this.mPrimerModelo,
+                        this.mPrimeraMatricula);
+            }
+            if (this.mCheckModificaSegundoVehiculo.isChecked()) {
+                if (this.mEditModificaSegundaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaSegundaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaSegundoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaSegundoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaSegundaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaSegundaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mSegundaMarca,
+                        this.mEditModificaSegundaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mSegundoModelo,
+                        this.mEditModificaSegundoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mSegundaMatricula,
+                        this.mEditModificaSegundaMatricula.getText().toString());
+
+                marca = this.mEditModificaSegundaMarca.getText().toString();
+                modelo = this.mEditModificaSegundoModelo.getText().toString();
+                matricula = this.mEditModificaSegundaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mSegundaMarca, this.mSegundoModelo,
+                        this.mSegundaMatricula);
+            }
+            if (this.mCheckModificaTercerVehiculo.isChecked()) {
+                if (this.mEditModificaTerceraMarca.getText().toString().length() == 0) {
+                    this.mEditModificaTerceraMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaTerceroModelo.getText().toString().length() == 0) {
+                    this.mEditModificaTerceroModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaTerceraMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaTerceraMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mTerceraMarca,
+                        this.mEditModificaTerceraMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mTercerModelo,
+                        this.mEditModificaTerceroModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mTerceraMatricula,
+                        this.mEditModificaTerceraMatricula.getText().toString());
+
+                marca = this.mEditModificaTerceraMarca.getText().toString();
+                modelo = this.mEditModificaTerceroModelo.getText().toString();
+                matricula = this.mEditModificaTerceraMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mTerceraMarca, this.mTercerModelo,
+                        this.mTerceraMatricula);
+            }
+            if (this.mCheckModificaCuartoVehiculo.isChecked()) {
+                if (this.mEditModificaCuartaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaCuartaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaCuartoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaCuartoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaCuartaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaCuartaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mCuartaMarca,
+                        this.mEditModificaCuartaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mCuartoModelo,
+                        this.mEditModificaCuartoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mCuartaMatricula,
+                        this.mEditModificaCuartaMatricula.getText().toString());
+
+                marca = this.mEditModificaCuartaMarca.getText().toString();
+                modelo = this.mEditModificaCuartoModelo.getText().toString();
+                matricula = this.mEditModificaCuartaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mCuartaMarca, this.mCuartoModelo,
+                        this.mCuartaMatricula);
+            }
+            if (this.mCheckModificaQuintoVehiculo.isChecked()) {
+                if (this.mEditModificaQuintaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaQuintaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaQuintoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaQuintoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaQuintaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaQuintaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mQuintaMarca,
+                        this.mEditModificaQuintaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mQuintoModelo,
+                        this.mEditModificaQuintoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mQuintaMatricula,
+                        this.mEditModificaQuintaMatricula.getText().toString());
+
+
+                marca = this.mEditModificaQuintaMarca.getText().toString();
+                modelo = this.mEditModificaQuintoModelo.getText().toString();
+                matricula = this.mEditModificaQuintaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mQuintaMarca, this.mQuintoModelo,
+                        this.mQuintaMatricula);
+            }
+            if (this.mCheckModificaSextoVehiculo.isChecked()) {
+                if (this.mEditModificaSextaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaSextaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaSextoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaSextoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaSextaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaSextaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mSextaMarca,
+                        this.mEditModificaSextaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mSextoModelo,
+                        this.mEditModificaSextoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mSextaMatricula,
+                        this.mEditModificaSextaMatricula.getText().toString());
+
+                marca = this.mEditModificaSextaMarca.getText().toString();
+                modelo = this.mEditModificaSextoModelo.getText().toString();
+                matricula = this.mEditModificaSextaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mSextaMarca, this.mSextoModelo,
+                        this.mSextaMatricula);
+            }
+            if (this.mCheckModificaSeptimoVehiculo.isChecked()) {
+                if (this.mEditModificaSeptimaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaSeptimaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaSeptimoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaSeptimoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaSeptimaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaSeptimaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mSeptimaMarca,
+                        this.mEditModificaSeptimaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mSeptimoModelo,
+                        this.mEditModificaSeptimoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mSeptimaMatricula,
+                        this.mEditModificaSeptimaMatricula.getText().toString());
+
+                marca = this.mEditModificaSeptimaMarca.getText().toString();
+                modelo = this.mEditModificaSeptimoModelo.getText().toString();
+                matricula = this.mEditModificaSeptimaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mSeptimaMarca, this.mSeptimoModelo,
+                        this.mSeptimaMatricula);
+
+            }
+            if (this.mCheckModificaOctavoVehiculo.isChecked()) {
+                if (this.mEditModificaOctavaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaOctavaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaOctavoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaOctavoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaOctavaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaOctavaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mOctavaMarca,
+                        this.mEditModificaOctavaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mOctavoModelo,
+                        this.mEditModificaOctavoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mOctavaMatricula,
+                        this.mEditModificaOctavaMatricula.getText().toString());
+
+                marca = this.mEditModificaOctavaMarca.getText().toString();
+                modelo = this.mEditModificaOctavoModelo.getText().toString();
+                matricula = this.mEditModificaOctavaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mOctavaMarca, this.mOctavoModelo,
+                        this.mOctavaMatricula);
+            }
+            if (this.mCheckModificaNovenoVehiculo.isChecked()) {
+                if (this.mEditModificaNovenaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaNovenaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaNovenoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaNovenoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaNovenaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaNovenaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mNovenaMarca,
+                        this.mEditModificaNovenaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mNovenoModelo,
+                        this.mEditModificaNovenoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mNovenaMatricula,
+                        this.mEditModificaNovenaMatricula.getText().toString());
+
+                marca = this.mEditModificaNovenaMarca.getText().toString();
+                modelo = this.mEditModificaNovenoModelo.getText().toString();
+                matricula = this.mEditModificaNovenaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mNovenaMarca, this.mNovenoModelo,
+                        this.mNovenaMatricula);
+            }
+            if (this.mCheckModificaDecimoVehiculo.isChecked()) {
+                if (this.mEditModificaDecimaMarca.getText().toString().length() == 0) {
+                    this.mEditModificaDecimaMarca.setError(this.getResources().getString(R.string.falta_marca));
+                }
+                if (this.mEditModificaDecimoModelo.getText().toString().length() == 0) {
+                    this.mEditModificaDecimoModelo.setError(this.getResources().getString(R.string.falta_modelo));
+                }
+                if (this.mEditModificaDecimaMatricula.getText().toString().length() == 0) {
+                    this.mEditModificaDecimaMatricula.setError(this.getResources().getString(R.string.falta_matricula));
+                }
+                boolean boolMarca = this.modificacionStrings(this.mDecimaMarca,
+                        this.mEditModificaDecimaMarca.getText().toString());
+                boolean boolModelo = this.modificacionStrings(this.mDecimoModelo,
+                        this.mEditModificaDecimoModelo.getText().toString());
+                boolean boolMatricula = this.modificacionStrings(this.mDecimaMatricula,
+                        this.mEditModificaDecimaMatricula.getText().toString());
+
+                marca = this.mEditModificaDecimaMarca.getText().toString();
+                modelo = this.mEditModificaDecimoModelo.getText().toString();
+                matricula = this.mEditModificaDecimaMatricula.getText().toString();
+                this.modificacionDatosVehiculo(boolMarca, boolModelo, boolMatricula,
+                        marca, modelo, matricula, this.mDecimaMarca, this.mDecimoModelo,
+                        this.mDecimaMatricula);
+            }
+            this.showMessage("Vehículo/s modificado/s correctamente");
+        }
     }
 
+    /**
+     * Envía al presentador hacer las modificaciones de los datos correspondientes de los vehículos
+     * modificados.
+     *
+     * @param boolMarca        indica si la marca del vehículo se ha modificado.
+     * @param boolModelo       indica si el modelo del vehículo se ha modificado.
+     * @param boolMatricula    indica si la matrícula del vehículo se ha modificado.
+     * @param marcaNueva       indica la nueva marca del vehículo
+     * @param modeloNuevo      indica el nuevo modelo del vehículo
+     * @param matriculaNueva   indica la nueva matrícula del vehículo
+     * @param marcaAntigua     indica la marca antigua del vehículo
+     * @param modeloAntiguo    indica el modelo antiguo del vehículo
+     * @param matriculaAntigua indica la matrícula antigua del vehículo
+     */
+    private void modificacionDatosVehiculo(boolean boolMarca, boolean boolModelo, boolean boolMatricula,
+                                           String marcaNueva, String modeloNuevo, String matriculaNueva,
+                                           String marcaAntigua, String modeloAntiguo, String matriculaAntigua) {
+        String nombreApellidos = this.mNombre + " " + this.mPrimerApellido + " " + this.mSegundoApellido;
+        if (boolMarca) {
+            if (boolModelo) {
+                if (boolMatricula) { //SSS
+                    this.mPresenter.modificaMarcaModeloMatricula(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            marcaNueva, modeloNuevo, matriculaNueva);
+                } else { //SSN
+                    this.mPresenter.modificaMarcaModelo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            marcaNueva, modeloNuevo);
+                }
+            } else {
+                if (boolMatricula) { //SNS
+                    this.mPresenter.modificaMarcaMatricula(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            marcaNueva, matriculaNueva);
+                } else { //SNN
+                    this.mPresenter.modificaMarca(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            marcaNueva);
+                }
+            }
+        } else {
+            if (boolModelo) {
+                if (boolMatricula) { //NSS
+                    this.mPresenter.modificaModeloMatricula(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            modeloNuevo, matriculaNueva);
+                } else { //NSN
+                    this.mPresenter.modificaModelo(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            modeloNuevo);
+                }
+            } else {
+                if (boolMatricula) { //NNS
+                    this.mPresenter.modificaMatricula(this.mNombre, this.mPrimerApellido, this.mSegundoApellido,
+                            nombreApellidos, this.mTelefono, marcaAntigua, modeloAntiguo, matriculaAntigua,
+                            matriculaNueva);
+                } else { //NNN
+                    //En principio esta no se usará nunca porque ya estamos controlando que esté
+                    // checkeado el checkbox de modificar
+                }
+            }
+        }
+    }
+
+    /**
+     * Envía al presentador hacer las modificaciones de los datos personales correspondientes.
+     *
+     * @param nombre          indica si el nombre se ha modificado.
+     * @param primerApellido  indica si el primer apellido se ha modificado.
+     * @param segundoApellido indica si el segundo apellido se ha modificado.
+     * @param telefono        indica si el teléfono se ha modificado.
+     */
+    private void modificacionDatosPersonales(boolean nombre, boolean primerApellido, boolean segundoApellido,
+                                             boolean telefono) {
+        if (nombre) {
+            this.mNombre = this.mEditModificaNombre.getText().toString();
+            if (primerApellido) {
+                this.mPrimerApellido = this.mEditModificaPrimerApellido.getText().toString();
+                if (segundoApellido) {
+                    this.mSegundoApellido = this.mEditModificaSegundoApellido.getText().toString();
+                    if (telefono) { //SSSS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombrePrimerSegundoTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //SSSN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombrePrimerSegundoApellido(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                } else {
+                    if (telefono) {//SSNS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombrePrimerTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //SSNN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombrePrimerApellidoModificados(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                }
+            } else {
+                if (segundoApellido) {
+                    this.mSegundoApellido = this.mEditModificaSegundoApellido.getText().toString();
+                    if (telefono) { //SNSS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombreSegundoTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //SNSN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombreSegundo(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                } else {
+                    if (telefono) { //SNNS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombreTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //SNNN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaNombreModificado(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                }
+            }
+        } else {
+            if (primerApellido) {
+                this.mPrimerApellido = this.mEditModificaPrimerApellido.getText().toString();
+                if (segundoApellido) {
+                    this.mSegundoApellido = this.mEditModificaSegundoApellido.getText().toString();
+                    if (telefono) { //NSSS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaPrimeroSegundoTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //NSSN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaPrimeroSegundo(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                } else {
+                    if (telefono) { //NSNS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaPrimeroTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //NSNN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaPrimero(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                }
+            } else {
+                if (segundoApellido) {
+                    this.mSegundoApellido = this.mEditModificaSegundoApellido.getText().toString();
+                    if (telefono) { //NNSS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaSegundoTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //NNSN
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaSegundo(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    }
+                } else {
+                    if (telefono) { //NNNS
+                        this.mTelefono = this.mEditModificaTelefono.getText().toString();
+                        for (int i = 0; i < this.mCont; ++i) {
+                            this.mPresenter.guardaTelefono(this.mNombre, this.mPrimerApellido,
+                                    this.mSegundoApellido, this.mTelefono, this.mListVehiculos.get(i).getmMarcaVehiculo(),
+                                    this.mListVehiculos.get(i).getmModeloVehiculo(), this.mListVehiculos.get(i).getmMatriculaVehiculo());
+                        }
+                    } else { //NNNN
+                        //este en principio no tendría que salir nunca ya que querría decir que
+                        //está seleccionado pero que no hay cambios (debería controlarse con booleanos)
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Compara el string antiguo con el nuevo.
+     *
+     * @param antiguo
+     * @param nuevo
+     * @return true si el antiguo y el nuevo no son iguales -> Querrá decir que se ha modificado.
+     */
+    private boolean modificacionStrings(String antiguo, String nuevo) {
+        if (!antiguo.equals(nuevo)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Pop up para asegurarnos que el usuario quiere salir de la pantalla aún habiendo
+     * efectuado algún cambio (existe la opción de volver atrás o directamente salir).
+     */
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
         //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -532,6 +1117,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         dialog.show();
     }
 
+    /**
+     * Detectaremos si se ha efectuado algún cambio.
+     *
+     * @return devuelve true si hay algún cambio en alguno de los campos a rellenar.
+     */
     private boolean hayCambios() {
         if (this.mCheckBoxDatosPersonales.isChecked()) {
             if (!this.mNombre.equals(this.mEditModificaNombre.getText()) ||
@@ -644,46 +1234,6 @@ public class ModificaClienteActivity extends AppCompatActivity implements
             } else {
                 this.mLayoutEliminaVehiculos.setVisibility(View.GONE);
             }
-        } else if (buttonView == this.mCheckEliminaPrimerVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaSegundoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaTercerVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaCuartoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaQuintoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaSextoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaSeptimoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaOctavoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaNovenoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
-        } else if (buttonView == this.mCheckEliminaDecimoVehiculo) {
-            if (isChecked) {
-                //función para eliminar el vehículo correspondiente
-            }
         } else if (buttonView == this.mCheckBoxModificarVehiculo) {
             if (isChecked) {
                 this.mLayoutModificaVehiculos.setVisibility(View.VISIBLE);
@@ -783,9 +1333,13 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         }
     }
 
+    /**
+     * Calcula cuántas veces aparece una persona en la BBDD para saber cuántos vehículos
+     * hay registrados a su nombre.
+     */
     private void consultaCampos() {
         ConsultaClientes cliente;
-        List<ConsultaClientes> listVehiculosClientes = new ArrayList<>();
+        this.mListVehiculos.clear();
         this.mCont = 0;
         for (int i = 0; i < this.mList.size(); ++i) {
             cliente = this.mList.get(i);
@@ -794,12 +1348,19 @@ public class ModificaClienteActivity extends AppCompatActivity implements
                     cliente.getmSegundoApellido().equals(this.mSegundoApellido) &&
                     cliente.getmTelefono().equals(this.mTelefono)) {
                 this.mCont++;
-                listVehiculosClientes.add(cliente);
+                mListVehiculos.add(cliente);
             }
         }
-        this.rellenaCampos(listVehiculosClientes, this.mCont);
+        this.rellenaCampos(mListVehiculos, this.mCont);
     }
 
+    /**
+     * Rellena los campos de cada vehículo
+     *
+     * @param listVehiculosClientes lista que contiene todos los vehículos que tiene un
+     *                              mismo cliente.
+     * @param cont                  contador que indica cuántos campos habrá que rellenar.
+     */
     private void rellenaCampos(List<ConsultaClientes> listVehiculosClientes, int cont) {
         switch (cont) {
             case 1:
@@ -907,6 +1468,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+
+    /**
+     * Al cambiar de pantalla, sería mejor que los checkboxs y las variables se quedasen sin seleccionar
+     * y vacías.
+     */
     private void reseteaCheckBox() {
         this.mCheckBoxAñadirVehiculo.setChecked(false);
         this.mCheckBoxDatosPersonales.setChecked(false);
@@ -978,6 +1544,10 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+
+    /**
+     * Selecciona qué campos se tienen que dejar en el estado inicial.
+     */
     private void reseteaCamposAModificar() {
         this.borraCampos(this.mEditModificaPrimeraMarca, this.mEditModificaPrimerModelo,
                 this.mEditModificaPrimeraMatricula);
@@ -1001,12 +1571,24 @@ public class ModificaClienteActivity extends AppCompatActivity implements
                 this.mEditModificaDecimaMatricula);
     }
 
+    /**
+     * Borra el editable de los vehículos
+     *
+     * @param marca     referente a la marca del vehículo
+     * @param modelo    referente al modelo del vehículo
+     * @param matricula referente a la matrícula del vehículo
+     */
     private void borraCampos(EditText marca, EditText modelo, EditText matricula) {
         marca.setText("");
         modelo.setText("");
         matricula.setText("");
     }
 
+    /**
+     * Rellena los datos para el primer vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaPrimerVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mPrimeraMarca = listVehiculosClientes.get(0).getmMarcaVehiculo();
         this.mPrimerModelo = listVehiculosClientes.get(0).getmModeloVehiculo();
@@ -1045,6 +1627,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el segundo vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaSegundoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mSegundaMarca = listVehiculosClientes.get(1).getmMarcaVehiculo();
         this.mSegundoModelo = listVehiculosClientes.get(1).getmModeloVehiculo();
@@ -1082,6 +1669,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el tercer vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaTercerVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mTerceraMarca = listVehiculosClientes.get(2).getmMarcaVehiculo();
         this.mTercerModelo = listVehiculosClientes.get(2).getmModeloVehiculo();
@@ -1116,6 +1708,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el cuarto vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaCuartoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mCuartaMarca = listVehiculosClientes.get(3).getmMarcaVehiculo();
         this.mCuartoModelo = listVehiculosClientes.get(3).getmModeloVehiculo();
@@ -1148,6 +1745,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el quinto vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaQuintoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mQuintaMarca = listVehiculosClientes.get(4).getmMarcaVehiculo();
         this.mQuintoModelo = listVehiculosClientes.get(4).getmModeloVehiculo();
@@ -1178,6 +1780,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el sexto vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaSextoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mSextaMarca = listVehiculosClientes.get(5).getmMarcaVehiculo();
         this.mSextoModelo = listVehiculosClientes.get(5).getmModeloVehiculo();
@@ -1208,6 +1815,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el séptimo vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaSeptimoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mSeptimaMarca = listVehiculosClientes.get(6).getmMarcaVehiculo();
         this.mSeptimoModelo = listVehiculosClientes.get(6).getmModeloVehiculo();
@@ -1235,6 +1847,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el octavo vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaOctavoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mOctavaMarca = listVehiculosClientes.get(7).getmMarcaVehiculo();
         this.mOctavoModelo = listVehiculosClientes.get(7).getmModeloVehiculo();
@@ -1260,6 +1877,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el noveno vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaNovenoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mNovenaMarca = listVehiculosClientes.get(8).getmMarcaVehiculo();
         this.mNovenoModelo = listVehiculosClientes.get(8).getmModeloVehiculo();
@@ -1283,6 +1905,11 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mCheckEliminaDecimoVehiculo.setVisibility(View.GONE);
     }
 
+    /**
+     * Rellena los datos para el décimo vehículo
+     *
+     * @param listVehiculosClientes lista de vehículos del mismo cliente
+     */
     private void rellenaDecimoVehiculo(List<ConsultaClientes> listVehiculosClientes) {
         this.mDecimaMarca = listVehiculosClientes.get(9).getmMarcaVehiculo();
         this.mDecimoModelo = listVehiculosClientes.get(9).getmModeloVehiculo();

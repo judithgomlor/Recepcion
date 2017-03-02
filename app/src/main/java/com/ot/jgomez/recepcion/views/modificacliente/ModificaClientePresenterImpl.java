@@ -5,8 +5,10 @@ import android.util.Log;
 
 import com.ot.jgomez.recepcion.control.MergeSort;
 import com.ot.jgomez.recepcion.database.DBClientes;
+import com.ot.jgomez.recepcion.database.DBClientes_Table;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.items.NombrePos;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +49,518 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
             }
         }
         return list;
+    }
+
+    @Override
+    public void guardaVehiculoNuevo(String nombre, String primerApellido, String segundoApellido,
+                                    String nombreApellidos, String telefono, String marca,
+                                    String modelo, String matricula) {
+
+        DBClientes cliente = new DBClientes(nombre, primerApellido, segundoApellido, nombreApellidos,
+                marca, modelo, matricula, telefono);
+        cliente.save();
+
+        this.mView.showMessage("Añadido nuevo vehículo");
+    }
+
+    @Override
+    public void eliminaVehiculo(String nombre, String primerApellido, String segundoApellido,
+                                String nombreApellidos, String telefono, String marca, String modelo,
+                                String matricula) {
+        SQLite.delete()
+                .from(DBClientes.class)
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+    }
+
+    //SSS
+    @Override
+    public void modificaMarcaModeloMatricula(String nombre, String primerApellido, String segundoApellido,
+                                             String nombreApellidos, String telefono, String marcaAntigua,
+                                             String modeloAntiguo, String matriculaAntigua, String marcaNueva,
+                                             String modeloNuevo, String matriculaNueva) {
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.marcaVehiculo.eq(marcaNueva),
+                        DBClientes_Table.modeloVehiculo.eq(modeloNuevo),
+                        DBClientes_Table.matriculaVehiculo.eq(matriculaNueva))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Marca, modelo y matrícula modificados");
+    }
+
+    //SSN
+    @Override
+    public void modificaMarcaModelo(String nombre, String primerApellido, String segundoApellido,
+                                    String nombreApellidos, String telefono, String marcaAntigua,
+                                    String modeloAntiguo, String matriculaAntigua, String marcaNueva,
+                                    String modeloNuevo) {
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.marcaVehiculo.eq(marcaNueva),
+                        DBClientes_Table.modeloVehiculo.eq(modeloNuevo))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Marca y modelo modificados");
+    }
+
+    //SNS
+    @Override
+    public void modificaMarcaMatricula(String nombre, String primerApellido, String segundoApellido,
+                                       String nombreApellidos, String telefono, String marcaAntigua,
+                                       String modeloAntiguo, String matriculaAntigua, String marcaNueva,
+                                       String matriculaNueva) {
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.marcaVehiculo.eq(marcaNueva),
+                        DBClientes_Table.matriculaVehiculo.eq(matriculaNueva))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Marca y matrícula modificados");
+    }
+
+    //SNN
+    @Override
+    public void modificaMarca(String nombre, String primerApellido, String segundoApellido,
+                              String nombreApellidos, String telefono, String marcaAntigua,
+                              String modeloAntiguo, String matriculaAntigua, String marcaNueva) {
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.marcaVehiculo.eq(marcaNueva))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Marca, modelo y matrícula modificados");
+    }
+
+    //NSS
+    @Override
+    public void modificaModeloMatricula(String nombre, String primerApellido, String segundoApellido,
+                                        String nombreApellidos, String telefono, String marcaAntigua,
+                                        String modeloAntiguo, String matriculaAntigua, String modeloNuevo,
+                                        String matriculaNueva) {
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.modeloVehiculo.eq(modeloNuevo),
+                        DBClientes_Table.matriculaVehiculo.eq(matriculaNueva))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Modelo y matrícula modificados");
+    }
+
+    //NSN
+    @Override
+    public void modificaModelo(String nombre, String primerApellido, String segundoApellido,
+                               String nombreApellidos, String telefono, String marcaAntigua,
+                               String modeloAntiguo, String matriculaAntigua, String modeloNuevo) {
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.modeloVehiculo.eq(modeloNuevo))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Modelo modificados");
+    }
+
+    //NNS
+    @Override
+    public void modificaMatricula(String nombre, String primerApellido, String segundoApellido,
+                                  String nombreApellidos, String telefono, String marcaAntigua,
+                                  String modeloAntiguo, String matriculaAntigua,
+                                  String matriculaNueva) {
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.matriculaVehiculo.eq(matriculaNueva))
+                .where(DBClientes_Table.marcaVehiculo.is(marcaAntigua))
+                .and(DBClientes_Table.modeloVehiculo.is(modeloAntiguo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matriculaAntigua))
+                .and(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Marca, modelo y matrícula modificados");
+    }
+
+    //SSSS
+    @Override
+    public void guardaNombrePrimerSegundoTelefono(String nombre, String primerApellido,
+                                                  String segundoApellido, String telefono, String marca,
+                                                  String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos),
+                        DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre, primer, segundo apellido y teléfono modificados");
+    }
+
+    //SSSN
+    @Override
+    public void guardaNombrePrimerSegundoApellido(String nombre, String primerApellido,
+                                                  String segundoApellido, String telefono,
+                                                  String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre, primer y segundo apellido modificados");
+    }
+
+    //SSNS
+    @Override
+    public void guardaNombrePrimerTelefono(String nombre, String primerApellido,
+                                           String segundoApellido, String telefono, String marca,
+                                           String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos),
+                        DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre, primer apellido y teléfono modificados");
+    }
+
+
+    //SSNN
+    @Override
+    public void guardaNombrePrimerApellidoModificados(String nombre, String primerApellido,
+                                                      String segundoApellido, String telefono,
+                                                      String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre y primer apellido modificados");
+    }
+
+    //SNSS
+    @Override
+    public void guardaNombreSegundoTelefono(String nombre, String primerApellido,
+                                            String segundoApellido, String telefono, String marca,
+                                            String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos),
+                        DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre, segundo apellido y teléfono modificados");
+    }
+
+    //SNSN
+    @Override
+    public void guardaNombreSegundo(String nombre, String primerApellido, String segundoApellido,
+                                    String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre y segundo apellido modificados");
+    }
+
+    //SNNS
+    @Override
+    public void guardaNombreTelefono(String nombre, String primerApellido, String segundoApellido,
+                                     String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.telefonoCliente.eq(telefono),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre y teléfono modificados");
+    }
+
+    //SNNN
+    @Override
+    public void guardaNombreModificado(String nombre, String primerApellido, String segundoApellido,
+                                       String telefono, String marca,
+                                       String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.nombreCliente.eq(nombre),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Nombre modificado");
+    }
+
+    //NSSS
+    @Override
+    public void guardaPrimeroSegundoTelefono(String nombre, String primerApellido, String segundoApellido,
+                                             String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos),
+                        DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Primer, segundo apellido y teléfono modificados");
+    }
+
+    //NSSN
+    @Override
+    public void guardaPrimeroSegundo(String nombre, String primerApellido, String segundoApellido,
+                                     String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Primer y segundo apellido modificados");
+    }
+
+    //NSNS
+    @Override
+    public void guardaPrimeroTelefono(String nombre, String primerApellido, String segundoApellido,
+                                      String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.telefonoCliente.eq(telefono),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.segundoApellidoCliente.eq(segundoApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Primer apellido y teléfono modificados");
+    }
+
+    //NSNN
+    @Override
+    public void guardaPrimero(String nombre, String primerApellido, String segundoApellido,
+                              String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.primerApellidoCliente.eq(primerApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Primer apellido modificado");
+    }
+
+    //NNSS
+    @Override
+    public void guardaSegundoTelefono(String nombre, String primerApellido, String segundoApellido,
+                                      String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos),
+                        DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Segundo apellido y teléfono modificados");
+    }
+
+    //NNSN
+    @Override
+    public void guardaSegundo(String nombre, String primerApellido, String segundoApellido,
+                              String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.segundoApellidoCliente.eq(segundoApellido),
+                        DBClientes_Table.nombreApellidos.eq(nombreApellidos))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.telefonoCliente.is(telefono))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Segundo apellido modificados");
+    }
+
+    //NNNS
+    @Override
+    public void guardaTelefono(String nombre, String primerApellido, String segundoApellido,
+                               String telefono, String marca, String modelo, String matricula) {
+        String nombreApellidos = nombre + " " + primerApellido + " " + segundoApellido;
+
+        SQLite.update(DBClientes.class)
+                .set(DBClientes_Table.telefonoCliente.eq(telefono))
+                .where(DBClientes_Table.nombreCliente.is(nombre))
+                .and(DBClientes_Table.primerApellidoCliente.is(primerApellido))
+                .and(DBClientes_Table.segundoApellidoCliente.is(segundoApellido))
+                .and(DBClientes_Table.nombreApellidos.is(nombreApellidos))
+                .and(DBClientes_Table.marcaVehiculo.is(marca))
+                .and(DBClientes_Table.modeloVehiculo.is(modelo))
+                .and(DBClientes_Table.matriculaVehiculo.is(matricula))
+                .async()
+                .execute();
+
+        this.mView.showMessage("Teléfono modificado");
     }
 
     @Override
