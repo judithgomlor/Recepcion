@@ -487,6 +487,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         if (v == this.mBtnAceptar) {
             //guardar cambios
             this.guardaCambios();
+            this.showMessage("Cambios guardados correctamente");
             finish();
         } else if (v == this.mBtnCancelar) {
             //cancelar cambios -->  si se ha modificado algo, preguntar si se quiere ir sin guardar
@@ -580,7 +581,6 @@ public class ModificaClienteActivity extends AppCompatActivity implements
                         nombreApellidos, this.mTelefono, this.mDecimaMarca, this.mDecimoModelo,
                         this.mDecimaMatricula);
             }
-            this.showMessage("Vehículo/s eliminado/s correctamente");
         }
         if (this.mCheckBoxDatosPersonales.isChecked()) {
             String segundoApellido = "";
@@ -851,7 +851,6 @@ public class ModificaClienteActivity extends AppCompatActivity implements
                         marca, modelo, matricula, this.mDecimaMarca, this.mDecimoModelo,
                         this.mDecimaMatricula);
             }
-            this.showMessage("Vehículo/s modificado/s correctamente");
         }
     }
 

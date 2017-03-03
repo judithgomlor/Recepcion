@@ -30,6 +30,11 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
     private boolean mBoolConBusqueda;
     private boolean mBoolSinBusqueda;
 
+    /**
+     * Devuelve una lista de clientes sin tratarla préviamente
+     *
+     * @return lista de clientes
+     */
     @Override
     public List<ConsultaClientes> getClientesSinTratarLista() {
         List<ConsultaClientes> list = new ArrayList<>();
@@ -51,6 +56,18 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         return list;
     }
 
+    /**
+     * Guarda un vehículo nuevo mediante los datos personales del cliente
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     @Override
     public void guardaVehiculoNuevo(String nombre, String primerApellido, String segundoApellido,
                                     String nombreApellidos, String telefono, String marca,
@@ -60,9 +77,21 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 marca, modelo, matricula, telefono);
         cliente.save();
 
-        this.mView.showMessage("Añadido nuevo vehículo");
+        //  this.mView.showMessage("Añadido nuevo vehículo");
     }
 
+    /**
+     * Elimina el vehículo que se le pasa por parámetros junto con los datos personales.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     @Override
     public void eliminaVehiculo(String nombre, String primerApellido, String segundoApellido,
                                 String nombreApellidos, String telefono, String marca, String modelo,
@@ -81,6 +110,21 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .execute();
     }
 
+    /**
+     * Modifica la marca, el modelo y la matrícula de un vehículo en concreto
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param marcaNueva
+     * @param modeloNuevo
+     * @param matriculaNueva
+     */
     //SSS
     @Override
     public void modificaMarcaModeloMatricula(String nombre, String primerApellido, String segundoApellido,
@@ -103,9 +147,23 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Marca, modelo y matrícula modificados");
+        //   this.mView.showMessage("Marca, modelo y matrícula modificados");
     }
 
+    /**
+     * Modifica la marca y el modelo de un vehículo en concreto
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param marcaNueva
+     * @param modeloNuevo
+     */
     //SSN
     @Override
     public void modificaMarcaModelo(String nombre, String primerApellido, String segundoApellido,
@@ -126,9 +184,23 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Marca y modelo modificados");
+        // this.mView.showMessage("Marca y modelo modificados");
     }
 
+    /**
+     * Modifica la marca y la matrícula de un vehículo en concreto.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param marcaNueva
+     * @param matriculaNueva
+     */
     //SNS
     @Override
     public void modificaMarcaMatricula(String nombre, String primerApellido, String segundoApellido,
@@ -149,9 +221,22 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Marca y matrícula modificados");
+        // this.mView.showMessage("Marca y matrícula modificados");
     }
 
+    /**
+     * Modifica la marca de un vehículo en concreto.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param marcaNueva
+     */
     //SNN
     @Override
     public void modificaMarca(String nombre, String primerApellido, String segundoApellido,
@@ -170,9 +255,23 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Marca, modelo y matrícula modificados");
+        //    this.mView.showMessage("Marca modificada");
     }
 
+    /**
+     * Modifica el modelo y la matrícula de un vehículo en concreto.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param modeloNuevo
+     * @param matriculaNueva
+     */
     //NSS
     @Override
     public void modificaModeloMatricula(String nombre, String primerApellido, String segundoApellido,
@@ -194,9 +293,22 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Modelo y matrícula modificados");
+//        this.mView.showMessage("Modelo y matrícula modificados");
     }
 
+    /**
+     * Modifica el modelo de un vehículo en concreto.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param modeloNuevo
+     */
     //NSN
     @Override
     public void modificaModelo(String nombre, String primerApellido, String segundoApellido,
@@ -216,9 +328,22 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Modelo modificados");
+        //   this.mView.showMessage("Modelo modificados");
     }
 
+    /**
+     * Modifica la matrícula de un vehículo en concreto.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param nombreApellidos
+     * @param telefono
+     * @param marcaAntigua
+     * @param modeloAntiguo
+     * @param matriculaAntigua
+     * @param matriculaNueva
+     */
     //NNS
     @Override
     public void modificaMatricula(String nombre, String primerApellido, String segundoApellido,
@@ -238,9 +363,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Marca, modelo y matrícula modificados");
+        //   this.mView.showMessage("matrícula modificados");
     }
 
+    /**
+     * Guarda el nombre, el primer, el segundo apellido y el teléfono del cliente
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SSSS
     @Override
     public void guardaNombrePrimerSegundoTelefono(String nombre, String primerApellido,
@@ -260,9 +396,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre, primer, segundo apellido y teléfono modificados");
+        // this.mView.showMessage("Nombre, primer, segundo apellido y teléfono modificados");
     }
 
+    /**
+     * Guarda el nombre, el primer apellido y el segundo del cliente
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SSSN
     @Override
     public void guardaNombrePrimerSegundoApellido(String nombre, String primerApellido,
@@ -282,9 +429,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre, primer y segundo apellido modificados");
+        // this.mView.showMessage("Nombre, primer y segundo apellido modificados");
     }
 
+    /**
+     * Guarda el nombre, el primer apellido y el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SSNS
     @Override
     public void guardaNombrePrimerTelefono(String nombre, String primerApellido,
@@ -304,10 +462,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre, primer apellido y teléfono modificados");
+        //  this.mView.showMessage("Nombre, primer apellido y teléfono modificados");
     }
 
-
+    /**
+     * Guarda el nombre y el primer apellido del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SSNN
     @Override
     public void guardaNombrePrimerApellidoModificados(String nombre, String primerApellido,
@@ -327,9 +495,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre y primer apellido modificados");
+        //  this.mView.showMessage("Nombre y primer apellido modificados");
     }
 
+    /**
+     * Guarda nombre, el segundo apellido y el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SNSS
     @Override
     public void guardaNombreSegundoTelefono(String nombre, String primerApellido,
@@ -349,9 +528,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre, segundo apellido y teléfono modificados");
+        //   this.mView.showMessage("Nombre, segundo apellido y teléfono modificados");
     }
 
+    /**
+     * Guarda el nombre y el segundo apellido del teléfono.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SNSN
     @Override
     public void guardaNombreSegundo(String nombre, String primerApellido, String segundoApellido,
@@ -370,9 +560,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre y segundo apellido modificados");
+        //  this.mView.showMessage("Nombre y segundo apellido modificados");
     }
 
+    /**
+     * Guarda el nombre y el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SNNS
     @Override
     public void guardaNombreTelefono(String nombre, String primerApellido, String segundoApellido,
@@ -391,9 +592,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre y teléfono modificados");
+        //   this.mView.showMessage("Nombre y teléfono modificados");
     }
 
+    /**
+     * Guarda el nombre del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //SNNN
     @Override
     public void guardaNombreModificado(String nombre, String primerApellido, String segundoApellido,
@@ -413,9 +625,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Nombre modificado");
+        //  this.mView.showMessage("Nombre modificado");
     }
 
+    /**
+     * Guarda el primer apellido, el segundo y el teléfono.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NSSS
     @Override
     public void guardaPrimeroSegundoTelefono(String nombre, String primerApellido, String segundoApellido,
@@ -434,9 +657,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Primer, segundo apellido y teléfono modificados");
+        //   this.mView.showMessage("Primer, segundo apellido y teléfono modificados");
     }
 
+    /**
+     * Guarda el primer y el segundo apellido del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NSSN
     @Override
     public void guardaPrimeroSegundo(String nombre, String primerApellido, String segundoApellido,
@@ -455,9 +689,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Primer y segundo apellido modificados");
+        //   this.mView.showMessage("Primer y segundo apellido modificados");
     }
 
+    /**
+     * Guarda el primer apellido y el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NSNS
     @Override
     public void guardaPrimeroTelefono(String nombre, String primerApellido, String segundoApellido,
@@ -476,9 +721,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Primer apellido y teléfono modificados");
+        //  this.mView.showMessage("Primer apellido y teléfono modificados");
     }
 
+    /**
+     * Guarda el primer apellido del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NSNN
     @Override
     public void guardaPrimero(String nombre, String primerApellido, String segundoApellido,
@@ -497,9 +753,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Primer apellido modificado");
+        //  this.mView.showMessage("Primer apellido modificado");
     }
 
+    /**
+     * Guarda el segundo apellido y el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NNSS
     @Override
     public void guardaSegundoTelefono(String nombre, String primerApellido, String segundoApellido,
@@ -518,9 +785,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Segundo apellido y teléfono modificados");
+        //   this.mView.showMessage("Segundo apellido y teléfono modificados");
     }
 
+    /**
+     * Guarda el segundo apellido del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NNSN
     @Override
     public void guardaSegundo(String nombre, String primerApellido, String segundoApellido,
@@ -539,9 +817,20 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Segundo apellido modificados");
+        //  this.mView.showMessage("Segundo apellido modificados");
     }
 
+    /**
+     * Guarda el teléfono del cliente.
+     *
+     * @param nombre
+     * @param primerApellido
+     * @param segundoApellido
+     * @param telefono
+     * @param marca
+     * @param modelo
+     * @param matricula
+     */
     //NNNS
     @Override
     public void guardaTelefono(String nombre, String primerApellido, String segundoApellido,
@@ -560,9 +849,15 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                 .async()
                 .execute();
 
-        this.mView.showMessage("Teléfono modificado");
+//        this.mView.showMessage("Teléfono modificado");
     }
 
+    /**
+     * Búsqueda de clientes mediante una palabra clave
+     *
+     * @param search contiene la búsqueda del cliente
+     * @return Lista de clientes que coincidan con el parámetro
+     */
     @Override
     public List<ConsultaClientes> getClientes(String search) {
         this.mBoolConBusqueda = true;
@@ -596,6 +891,11 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         return this.mListClientesBusqueda;
     }
 
+    /**
+     * Búsqueda de todos los clientes
+     *
+     * @return Lista de todos los clientes del sistema
+     */
     @Override
     public List<ConsultaClientes> getAllClientes() {
         this.mBoolSinBusqueda = true;
@@ -647,6 +947,9 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         }
     }
 
+    /**
+     * Ordena la lista inicial alfabéticamente por nombre.
+     */
     private void ordenaListaInicial() {
         if (this.mBoolConBusqueda) {
             ConsultaClientes cliente;
@@ -685,6 +988,9 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         }
     }
 
+    /**
+     * Mira que no hayan registros repetidos.
+     */
     private void preparaListas() {
         if (this.mBoolSinBusqueda) {
             List<ConsultaClientes> clientes = new ArrayList<>();
@@ -725,6 +1031,12 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         }
     }
 
+    /**
+     * Trata el parámetro por si hubiesen espacios entre palabra y palabra
+     *
+     * @param search búsqueda de cliente
+     * @return un string tratado con espacios
+     */
     private String trataBusqueda(String search) {
         String aux = search.substring(0, 1).toUpperCase();
         for (int i = 1; i < search.length(); ++i) {
