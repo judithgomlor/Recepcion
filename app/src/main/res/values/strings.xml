@@ -16,8 +16,14 @@
     <string name="calendario">Calendario</string>
     <string name="modificar">Modificar</string>
     <string name="ficha_cliente">Ficha cliente</string>
+    <string name="clientes_titulo">Clientes</string>
+    <string name="reparaciones_titulo">Reparaciones</string>
+    <string name="cuentas_titulo">Cuentas</string>
+    <string name="repuestos_titulo">Respuestos - Piezas</string>
+    <string name="resolver_titulo">Resolver</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="titulo_modifica_reparacion">Modifica reparación</string>
     <string name="falta_segundo_apellido">Hay que especificar un segundo apellido</string>
     <string name="nueva_matricula">Matrícula...</string>
     <string name="nuevo_modelo">Modelo...</string>

@@ -865,11 +865,13 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
         this.mListClientesBusqueda.clear();
         this.mListNombresPosBusqueda.clear();
         this.mListAuxClientesBusqueda.clear();
+        boolean hayDatos = false;
         List<DBClientes> clientes = DBClientes.getAllClientes();
         String search_aux = this.trataBusqueda(search);
         if (clientes.size() > 0) {
             for (DBClientes entries : clientes) {
                 if (entries.getNombreApellidos().contains(search_aux)) {
+                    hayDatos = true;
                     this.mListClientesBusqueda.add(new ConsultaClientes(
                             entries.getNombreCliente(),
                             entries.getPrimerApellidoCliente(),
@@ -882,11 +884,13 @@ public class ModificaClientePresenterImpl implements ModificaClienteContract.Pre
                     ));
                 }
             }
-            this.copiaNombres();
-            MergeSort merge = new MergeSort(this.mListNombresPosBusqueda);
-            merge.sort();
-            this.ordenaListaInicial();
-            this.preparaListas();
+            if(hayDatos) {
+                this.copiaNombres();
+                MergeSort merge = new MergeSort(this.mListNombresPosBusqueda);
+                merge.sort();
+                this.ordenaListaInicial();
+                this.preparaListas();
+            }
         }
         return this.mListClientesBusqueda;
     }
