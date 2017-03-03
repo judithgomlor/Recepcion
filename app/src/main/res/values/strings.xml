@@ -23,6 +23,10 @@
     <string name="resolver_titulo">Resolver</string>
 
     <!-- Etiquetas para las activities -->
+    <string name="total_mes">Total del mes (€):</string>
+    <string name="cuentas_mensuales">Cuentas del mes:</string>
+    <string name="herramienta">Herramienta:</string>
+    <string name="datos_herramientas">Datos herramientas</string>
     <string name="titulo_modifica_reparacion">Modifica reparación</string>
     <string name="falta_segundo_apellido">Hay que especificar un segundo apellido</string>
     <string name="nueva_matricula">Matrícula...</string>

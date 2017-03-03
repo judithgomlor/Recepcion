@@ -203,7 +203,15 @@ public class ModificaReparacionActivity extends AppCompatActivity implements Vie
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             //habrá que tener en cuenta el dialog
-            finish();
+            boolean resumenDiferentes = this.modificacionStrings(this.mResumen,
+                    this.mEditResumen.getText().toString());
+            boolean descripcionDiferentes = this.modificacionStrings(this.mDescripcion,
+                    this.mEditDescripcion.getText().toString());
+            if (resumenDiferentes || descripcionDiferentes) {
+                this.dialogExit();
+            } else {
+                finish();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

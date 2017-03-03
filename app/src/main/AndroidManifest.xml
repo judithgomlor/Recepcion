@@ -33,7 +33,9 @@
             android:name=".views.modificacliente.ModificaClienteActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".views.modificacliente.buscacliente.BuscaClienteActivity" />
-        <activity android:name=".views.modificareparacion.ModificaReparacionActivity"></activity>
+        <activity android:name=".views.modificareparacion.ModificaReparacionActivity" />
+        <activity android:name=".views.addrepuestos.AddRespuestosActivity" />
+        <activity android:name=".views.visualizacuentasmensuales.CuentasMensualesActivity"></activity>
     </application>
 
 </manifest>
