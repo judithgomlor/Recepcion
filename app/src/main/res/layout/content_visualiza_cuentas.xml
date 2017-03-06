@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_marginBottom="@dimen/activity_vertical_margin">
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,23 +20,83 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="@string/cuentas_dia"
+                android:text="@string/cuentas"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtvw_dia_actual_total_cuentas"
-                android:textSize="@dimen/text_size"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdbtn_cuentas_diarias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dia" />
+
+                <TextView
+                    android:id="@+id/txtvw_cuentas_diarias"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdbtn_cuentas_mensuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mes" />
+
+                <TextView
+                    android:id="@+id/txtvw_cuentas_mensuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rdbtn_cuentas_anuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/año" />
+
+                <TextView
+                    android:id="@+id/txtvw_cuentas_anuales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+
+            </LinearLayout>
 
             <Button
+                android:id="@+id/btn_cambia_fecha_cuentas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="@string/cambia_dia"
-                android:id="@+id/boton_cambia_dia_cuentas"/>
+                android:drawableLeft="@drawable/ic_calendar"
+                android:text="@string/cambia_dia" />
 
         </LinearLayout>
 
@@ -63,20 +123,20 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:id="@+id/txtvw_lista_entradas_vacia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtvw_lista_entradas_vacia"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:textSize="@dimen/text_size"/>
+            android:textSize="@dimen/text_size" />
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:id="@+id/recycler_view_total_entradas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            tools:listitem="@layout/lista_total_cuentas"/>
+            tools:listitem="@layout/lista_total_cuentas" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,18 +161,18 @@
         </LinearLayout>
 
         <TextView
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:id="@+id/txtvw_lista_resueltas_vacia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size"
-            android:id="@+id/txtvw_lista_resueltas_vacia"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:textSize="@dimen/text_size" />
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:id="@+id/recycler_view_total_resueltas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             tools:listitem="@layout/lista_total_cuentas" />
 
@@ -125,7 +185,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_dia"
+                android:text="@string/total"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtvw_total_diario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/total_diario"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtvw_total_mensual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/total_mes"
+                android:textSize="@dimen/text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtvw_total_anual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/total_anual"
                 android:textSize="@dimen/text_size"
                 android:textStyle="bold" />
 
@@ -135,6 +222,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:textSize="@dimen/text_size" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -21,9 +21,7 @@
     <string name="cuentas_titulo">Cuentas</string>
     <string name="repuestos_titulo">Respuestos - Piezas</string>
     <string name="resolver_titulo">Resolver</string>
-
     <!-- Etiquetas para las activities -->
-    <string name="total_mes">Total del mes (€):</string>
     <string name="cuentas_mensuales">Cuentas del mes:</string>
     <string name="herramienta">Herramienta:</string>
     <string name="datos_herramientas">Datos herramientas</string>
@@ -53,12 +51,22 @@
     <string name="fecha_consulta">Fecha a consultar:</string>
     <string name="primer_apellido">Primer apellido:</string>
     <string name="segundo_apellido">Segundo apellido:</string>
-    <string name="cuentas">Cuentas</string>
+    <string name="cuentas">Cuentas:</string>
     <string name="consulta_cuentas">Consulta cuentas</string>
     <string name="total_reparaciones_pendientes">Total pendientes:</string>
     <string name="total_entradas_reparaciones">Total entradas:</string>
     <string name="total_reparaciones_resueltas">Total resueltas:</string>
-    <string name="total_dia">Total del día (€) :</string>
+    <string name="total">Total</string>
+    <string name="titulo_aviso">Atención</string>
+    <string name="texto_elige_una_opcion">Para poder calcular la facturación hay que seleccionar una fecha previamente: \n
+                    - Día: si se quieren calcular los beneficios de un día en concreto. \n
+                    - Mes: si se quieren calcular los beneficios de un mes en concreto. \n
+                    - Año: si se quieren calcular los beneficios de un año en concreto. \n</string>
+    <string name="titulo_elige_año">Escoge año</string>
+    <string name="titulo_elige_mes">Escoge mes</string>
+    <string name="total_diario"> diario (€):</string>
+    <string name="total_mes"> mensual (€):</string>
+    <string name="total_anual">anual (€):</string>
     <string name="cuentas_dia">Cuentas del día </string>
     <string name="lista_clientes">Lista clientes</string>
     <string name="consulta">Consultar</string>
