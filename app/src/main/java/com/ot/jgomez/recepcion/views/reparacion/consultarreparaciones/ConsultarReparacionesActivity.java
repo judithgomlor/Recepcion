@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultarreparaciones;
+package com.ot.jgomez.recepcion.views.reparacion.consultarreparaciones;
 
 import android.app.DatePickerDialog;
 import android.support.v7.app.ActionBar;
@@ -72,6 +72,9 @@ public class ConsultarReparacionesActivity extends AppCompatActivity implements 
         this.init();
     }
 
+    /**
+     * Inicializa todos los campos de la actividad.
+     */
     private void init() {
         this.mCheckHoy = (CheckBox) findViewById(R.id.checkbox_consulta_reparaciones_hoy);
         this.mCheckHoy.setOnCheckedChangeListener(this);
@@ -133,6 +136,9 @@ public class ConsultarReparacionesActivity extends AppCompatActivity implements 
         }
     }
 
+    /**
+     * Inicializa el día por defecto como el día actual.
+     */
     private void initDia() {
         Calendar c = Calendar.getInstance();
         String year = String.valueOf(c.getTime().getYear());
@@ -144,6 +150,9 @@ public class ConsultarReparacionesActivity extends AppCompatActivity implements 
         this.mFechaActual = day + "." + month + "." + aux_year;
     }
 
+    /**
+     * Muestra un dialog para cambiar la fecha de búsqueda.
+     */
     private void cambiaFecha() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = new DatePickerDialog(

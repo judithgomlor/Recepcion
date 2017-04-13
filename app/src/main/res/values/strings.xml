@@ -70,6 +70,7 @@
     <string name="cuentas_dia">Cuentas del día </string>
     <string name="lista_clientes">Lista clientes</string>
     <string name="consulta">Consultar</string>
+    <string name="facturacion">Facturación</string>
     <string name="separacion_vehiculos">-----------------------------------------------------------</string>
     <string name="añadir_vehiculo">Añadir vehículo</string>
     <string name="modificar_vehiculo">Modificar vehículo</string>

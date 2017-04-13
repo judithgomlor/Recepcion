@@ -1,6 +1,5 @@
-package com.ot.jgomez.recepcion.views.modificareparacion;
+package com.ot.jgomez.recepcion.views.reparacion.modificareparacion;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,7 +22,6 @@ import com.ot.jgomez.recepcion.items.ConsultaReparacionesPendientes;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,12 +67,10 @@ public class ModificaReparacionActivity extends AppCompatActivity implements Vie
     private String mSegundoApellido;
     private String mFechaEntrada;
     private String mResumen;
-    private String mResolucion;
     private String mDescripcion;
     private String mMarcaVehiculo;
     private String mModeloVehiculo;
     private String mMatriculaVehiculo;
-    private String mCosteReparacion;
     private boolean mHayReparacionesPendientes;
 
     @Override
@@ -93,6 +88,9 @@ public class ModificaReparacionActivity extends AppCompatActivity implements Vie
         this.initSpinners();
     }
 
+    /**
+     * Inicialización de todas las variables y layouts de la pantalla.
+     */
     private void init() {
         this.mSpinnerNombre = (Spinner) findViewById(R.id.spinner_nombre_modifica_reparacion);
         this.mSpinnerPrimerApellido = (Spinner) findViewById(R.id.spinner_primer_apellido_modifica_reparacion);
@@ -126,6 +124,9 @@ public class ModificaReparacionActivity extends AppCompatActivity implements Vie
         this.mHayReparacionesPendientes = false;
     }
 
+    /**
+     * Inicialización de la información que irá en los spinners.
+     */
     private void initSpinners() {
         this.mListReparaciones.clear();
         this.mListNombres.clear();
@@ -234,6 +235,9 @@ public class ModificaReparacionActivity extends AppCompatActivity implements Vie
         }
     }
 
+    /**
+     * Guarda los cambios que se han efectuado.
+     */
     private void guardaCambios() {
         if (this.mHayReparacionesPendientes) {
             boolean resumenDiferentes = this.modificacionStrings(this.mResumen,

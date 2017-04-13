@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.addreparacion;
+package com.ot.jgomez.recepcion.views.reparacion.addreparacion;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -22,7 +22,7 @@ import com.ot.jgomez.recepcion.control.ComparatorStrings;
 import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.database.DBRegistroEntradas;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
-import com.ot.jgomez.recepcion.views.addcliente.AddClienteActivity;
+import com.ot.jgomez.recepcion.views.cliente.addcliente.AddClienteActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -162,6 +162,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * Comprueba si hay datos restaurados para cerrar la pantalla o no.
+     */
     private void cancelaEntrada() {
         if (!this.mBoolRecupera) {
             finish();
@@ -170,14 +173,12 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * Dialog para confirmar que realmente el usuario quiere cerrar la pantalla sin guardar los cambios.
+     */
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
-
-        //set the custom dialog components
-        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        //textoTitulo.setText(R.string.confirmacion);
 
         dialog.setTitle(R.string.confirmacion);
 
@@ -200,6 +201,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         dialog.show();
     }
 
+    /**
+     * Recupera los datos de los usuarios creados anteriormente.
+     */
     private void recuperaDatos() {
         this.mListClientes.clear();
         this.mListNombres.clear();
@@ -268,6 +272,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    /**
+     * Abre el dialog para cambiar la fecha de entrada.
+     */
     private void cambiaDia() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = new DatePickerDialog(
@@ -282,6 +289,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
 
     }
 
+    /**
+     * Guarda la entrada de la reparación del vehículo del cliente en cuestión.
+     */
     private void guardaEntrada() {
         String aux_resumen, aux_descripcion;
         if (this.mEditResumen.getText().length() == 0) {
@@ -289,8 +299,8 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             aux_resumen = this.mResumen;
         } else {
             this.mResumen = this.mEditResumen.getText().toString();
-            aux_resumen = this.mResumen.substring(0,1).toUpperCase() +
-                    this.mResumen.substring(1,this.mResumen.length());
+            aux_resumen = this.mResumen.substring(0, 1).toUpperCase() +
+                    this.mResumen.substring(1, this.mResumen.length());
         }
 
         if (this.mEditDescripcion.getText().length() == 0) {
@@ -298,7 +308,7 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
             aux_descripcion = this.mDescripcion;
         } else {
             this.mDescripcion = this.mEditDescripcion.getText().toString();
-            aux_descripcion = this.mDescripcion.substring(0,1).toUpperCase() +
+            aux_descripcion = this.mDescripcion.substring(0, 1).toUpperCase() +
                     this.mDescripcion.substring(1, this.mDescripcion.length());
         }
 
@@ -310,6 +320,9 @@ public class AddReparacionActivity extends AppCompatActivity implements View.OnC
         finish();
     }
 
+    /**
+     * Inicializa la fecha de entrada con el día actual por defecto.
+     */
     private void initDia() {
         Calendar c = Calendar.getInstance();
         String year = String.valueOf(c.getTime().getYear());

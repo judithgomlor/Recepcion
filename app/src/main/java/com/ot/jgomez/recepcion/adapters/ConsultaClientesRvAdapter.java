@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
-import com.ot.jgomez.recepcion.views.consultacliente.ConsultaClienteActivity;
+import com.ot.jgomez.recepcion.views.cliente.consultacliente.ConsultaClienteActivity;
 
 import java.util.List;
 

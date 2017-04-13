@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultacliente;
+package com.ot.jgomez.recepcion.views.cliente.consultacliente;
 
 import android.content.Context;
 

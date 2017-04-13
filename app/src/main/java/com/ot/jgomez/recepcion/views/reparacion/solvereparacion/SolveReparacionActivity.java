@@ -1,14 +1,12 @@
-package com.ot.jgomez.recepcion.views.solvereparacion;
+package com.ot.jgomez.recepcion.views.reparacion.solvereparacion;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,14 +21,10 @@ import com.ot.jgomez.recepcion.control.ComparatorStrings;
 import com.ot.jgomez.recepcion.database.DBRegistroEntradas;
 import com.ot.jgomez.recepcion.database.DBRegistroEntradas_Table;
 import com.ot.jgomez.recepcion.items.ConsultaReparacionesPendientes;
-import com.raizlabs.android.dbflow.sql.language.Condition;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
-import com.raizlabs.android.dbflow.sql.language.Update;
-import com.raizlabs.android.dbflow.sql.language.Where;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -114,6 +108,9 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Inicialización de variables y layouts de la pantalla.
+     */
     private void init() {
         this.mSpinnerNombre = (Spinner) findViewById(R.id.spinner_nombre_solve_reparacion);
         this.mSpinnerPrimerApellido = (Spinner) findViewById(R.id.spinner_primer_apellido_reparacion);
@@ -152,6 +149,9 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.mHayReparacionesPendientes = false;
     }
 
+    /**
+     * Inicializa la fecha de salida. Por defecto será la actual.
+     */
     private void initDia() {
         Calendar c = Calendar.getInstance();
         String year = String.valueOf(c.getTime().getYear());
@@ -167,6 +167,9 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.mHayReparacionesPendientes = false;
     }
 
+    /**
+     * Inicializa los spinners con los datos que tendrán.
+     */
     private void initSpinners() {
         this.mListReparaciones.clear();
         this.mListNombres.clear();
@@ -257,6 +260,9 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         }
     }
 
+    /**
+     * Guarda los cambios que se hayan realizado.
+     */
     private void guardaCambios() {
         if (this.mHayReparacionesPendientes) {
             String aux_resolucion;
@@ -265,10 +271,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
                 aux_resolucion = this.mResolucion;
             } else {
                 this.mResolucion = this.mEditResolucion.getText().toString();
-                aux_resolucion = this.mResolucion.substring(0,1).toUpperCase() + this.mResolucion
-                        .substring(1,this.mResolucion.length());
+                aux_resolucion = this.mResolucion.substring(0, 1).toUpperCase() + this.mResolucion
+                        .substring(1, this.mResolucion.length());
             }
-
+            this.mFechaSalida = this.mTextoFechaSalida.getText().toString();
             this.mCosteReparacion = this.mEditCoste.getText().toString();
 
             //actualizar el campo de fechaSalida y resolucionEntrada
@@ -295,6 +301,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         this.initSpinners();
     }
 
+    /**
+     * Popup para confirmar que realmente el usuario quiere cerrar sin haber guardado previamente
+     * los cambios realizados.
+     */
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
         //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -325,6 +335,9 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
         dialog.show();
     }
 
+    /**
+     * Popup para cambiar la fecha que aparece por defecto.
+     */
     private void cambiaFecha() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = new DatePickerDialog(
@@ -500,6 +513,16 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
             this.mSpinnerMarca.setOnItemSelectedListener(this);
 
             this.mResumen = this.mListAuxReparacionesPendientes.get(position);
+
+            for (int i = 0; i < this.mListReparaciones.size(); ++i) {
+                if (this.mNombre.equals(this.mListReparaciones.get(i).getmNombre()) &&
+                        this.mPrimerApellido.equals(this.mListReparaciones.get(i).getmPrimerApellido()) &&
+                        this.mSegundoApellido.equals(this.mListReparaciones.get(i).getmSegundoApellido()) &&
+                        this.mResumen.equals(this.mListReparaciones.get(i).getmResumenEntrada())) {
+                    this.mDescripcion = this.mListReparaciones.get(i).getmDescripcionEntrada();
+                    this.mFechaEntrada = this.mListReparaciones.get(i).getmFechaEntrada();
+                }
+            }
         } else if (parent.getAdapter() == this.mAdapterMarca) {
             this.mListModelos.clear();
             for (int i = 0; i < this.mListReparaciones.size(); ++i) {
@@ -576,19 +599,10 @@ public class SolveReparacionActivity extends AppCompatActivity implements View.O
 
             this.mModeloVehiculo = this.mListModelos.get(position);
         } else if (parent.getAdapter() == this.mAdapterMatricula) {
-            //le añadiremos valores a los campos de texto sobre los datos de la reparación
-            //siendo estos la fecha de entrada, el resumen y la descripción, si los hay.
-            for (int i = 0; i < this.mListReparaciones.size(); ++i) {
-                if (this.mListReparaciones.get(i).getmMatriculaVehiculo().equals(
-                        this.mListAuxMatriculas.get(position))) {
-                    this.mTextoFechaEntrada.setText(this.mListReparaciones.get(i).getmFechaEntrada());
-                    this.mTextoResumen.setText(this.mListReparaciones.get(i).getmResumenEntrada());
-                    this.mTextDescripcion.setText(this.mListReparaciones.get(i).getmDescripcionEntrada());
-                }
-            }
-
+            this.mTextoResumen.setText(this.mResumen);
             this.mMatriculaVehiculo = this.mListMatricula.get(position);
-            this.mFechaEntrada = this.mTextoFechaEntrada.getText().toString();
+            this.mTextDescripcion.setText(this.mDescripcion);
+            this.mTextoFechaEntrada.setText(this.mFechaEntrada);
         }
     }
 

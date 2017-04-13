@@ -1,11 +1,8 @@
 package com.ot.jgomez.recepcion.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +10,8 @@ import android.widget.TextView;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
-import com.ot.jgomez.recepcion.views.modificacliente.ModificaClienteActivity;
-import com.ot.jgomez.recepcion.views.modificacliente.buscacliente.BuscaClienteActivity;
+import com.ot.jgomez.recepcion.views.cliente.modificacliente.buscacliente.BuscaClienteActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

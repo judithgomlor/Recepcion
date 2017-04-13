@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.modificacliente;
+package com.ot.jgomez.recepcion.views.cliente.modificacliente;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
-import com.ot.jgomez.recepcion.views.modificacliente.buscacliente.BuscaClienteActivity;
+import com.ot.jgomez.recepcion.views.cliente.modificacliente.buscacliente.BuscaClienteActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -232,6 +232,7 @@ public class ModificaClienteActivity extends AppCompatActivity implements
         this.mBtnAceptar = (Button) findViewById(R.id.boton_aceptar_modificacion_cliente);
         this.mBtnAceptar.setOnClickListener(this);
         this.mBtnCancelar = (Button) findViewById(R.id.boton_cancelar_modificacion_cliente);
+        this.mBtnCancelar.setOnClickListener(this);
         this.mCheckBoxDatosPersonales = (CheckBox) findViewById(R.id.ckbox_modifica_datos_personales);
         this.mCheckBoxDatosPersonales.setOnClickListener(this);
         this.mCheckBoxDatosPersonales.setOnCheckedChangeListener(this);

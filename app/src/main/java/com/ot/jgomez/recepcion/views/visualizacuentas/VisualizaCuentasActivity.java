@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,8 +32,6 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
 
     private String mAñoSeleccionado;
     private String mMesSeleccionado;
-    private TextView mTextTotalEntradas;
-    private TextView mTextTotalResueltas;
     private TextView mTextTotalDinero;
     private Button mBtnCambiaFecha;
     private RecyclerView mRecyclerEntradas;
@@ -75,13 +72,15 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         myBar.setHomeButtonEnabled(true);
         myBar.setDisplayHomeAsUpEnabled(true);
         myBar.setDisplayShowHomeEnabled(true);
-        myBar.setTitle(R.string.cuentas);
+        myBar.setTitle(R.string.facturacion);
 
         this.init();
     }
 
+    /**
+     * Inicializa la listas con los datos que hay en la base de datos
+     */
     private void initLists() {
-        Log.d("VisualizaCuentas", "initLists");
         this.mListEntradasDiarias.clear();
         this.mListResueltasDiarias.clear();
         this.mHayEntradasDiarias = false;
@@ -106,30 +105,36 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                             entries.getFechaSalida(),
                             entries.getCosteReparacion()
                     ));
-                } else if (entries.getFechaSalida().equals(this.mFechaActual)) {
-                    this.mHayResueltasDiarias = true;
-                    this.mListResueltasDiarias.add(new ConsultaReparacionesPendientes(
-                            entries.getNombre(),
-                            entries.getPrimerApellido(),
-                            entries.getSegundoApellido(),
-                            entries.getMarcaVehiculo(),
-                            entries.getModeloVehículo(),
-                            entries.getMatriculaVehiculo(),
-                            entries.getFechaEntrada(),
-                            entries.getResumenEntrada(),
-                            entries.getDescripcionEntrada(),
-                            entries.getResolucionEntrada(),
-                            entries.getFechaSalida(),
-                            entries.getCosteReparacion()
-                    ));
+                } else if (!entries.getFechaSalida().equals("")) {
+                    if (entries.getFechaSalida().equals(this.mFechaActual)) {
+                        this.mHayResueltasDiarias = true;
+                        this.mListResueltasDiarias.add(new ConsultaReparacionesPendientes(
+                                entries.getNombre(),
+                                entries.getPrimerApellido(),
+                                entries.getSegundoApellido(),
+                                entries.getMarcaVehiculo(),
+                                entries.getModeloVehículo(),
+                                entries.getMatriculaVehiculo(),
+                                entries.getFechaEntrada(),
+                                entries.getResumenEntrada(),
+                                entries.getDescripcionEntrada(),
+                                entries.getResolucionEntrada(),
+                                entries.getFechaSalida(),
+                                entries.getCosteReparacion()
+                        ));
+                    }
                 }
             }
         }
-        Log.d("VisualizaCuentas", "initLists() final -> tamaño de listas = " +
-                this.mListEntradasDiarias.size() + " " + this.mListResueltasDiarias.size());
         this.llenaAdapters(this.mFechaActual);
     }
 
+
+    /**
+     * Genera la lista mensual con los datos que hay en la base de datos.
+     *
+     * @param mes indica qué mes será el que tenemos que coger para buscar los datos.
+     */
     private void initListsMensual(String mes) {
         this.mListEntradasMensuales.clear();
         this.mListResueltasMensuales.clear();
@@ -155,28 +160,35 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                             entries.getFechaSalida(),
                             entries.getCosteReparacion()
                     ));
-                } else if (entries.getFechaSalida().substring(3, 5).equals(mes)) {
-                    this.mHayResueltasMensuales = true;
-                    this.mListResueltasMensuales.add(new ConsultaReparacionesPendientes(
-                            entries.getNombre(),
-                            entries.getPrimerApellido(),
-                            entries.getSegundoApellido(),
-                            entries.getMarcaVehiculo(),
-                            entries.getModeloVehículo(),
-                            entries.getMatriculaVehiculo(),
-                            entries.getFechaEntrada(),
-                            entries.getResumenEntrada(),
-                            entries.getDescripcionEntrada(),
-                            entries.getResolucionEntrada(),
-                            entries.getFechaSalida(),
-                            entries.getCosteReparacion()
-                    ));
+                } else if (!entries.getFechaSalida().equals("")) {
+                    if (entries.getFechaSalida().substring(3, 5).equals(mes)) {
+                        this.mHayResueltasMensuales = true;
+                        this.mListResueltasMensuales.add(new ConsultaReparacionesPendientes(
+                                entries.getNombre(),
+                                entries.getPrimerApellido(),
+                                entries.getSegundoApellido(),
+                                entries.getMarcaVehiculo(),
+                                entries.getModeloVehículo(),
+                                entries.getMatriculaVehiculo(),
+                                entries.getFechaEntrada(),
+                                entries.getResumenEntrada(),
+                                entries.getDescripcionEntrada(),
+                                entries.getResolucionEntrada(),
+                                entries.getFechaSalida(),
+                                entries.getCosteReparacion()
+                        ));
+                    }
                 }
             }
         }
         this.llenaAdapters(mes);
     }
 
+    /**
+     * Genera la lista anual con los datos que hay en la base de datos.
+     *
+     * @param año indica qué mes será el que tenemos que coger para buscar los datos.
+     */
     private void initListsAnuales(String año) {
         this.mListEntradasAnuales.clear();
         this.mListResueltasAnuales.clear();
@@ -202,34 +214,41 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                             entries.getFechaSalida(),
                             entries.getCosteReparacion()
                     ));
-                } else if (entries.getFechaSalida().substring(6, 10).equals(año)) {
-                    this.mHayResueltasAnuales = true;
-                    this.mListResueltasAnuales.add(new ConsultaReparacionesPendientes(
-                            entries.getNombre(),
-                            entries.getPrimerApellido(),
-                            entries.getSegundoApellido(),
-                            entries.getMarcaVehiculo(),
-                            entries.getModeloVehículo(),
-                            entries.getMatriculaVehiculo(),
-                            entries.getFechaEntrada(),
-                            entries.getResumenEntrada(),
-                            entries.getDescripcionEntrada(),
-                            entries.getResolucionEntrada(),
-                            entries.getFechaSalida(),
-                            entries.getCosteReparacion()
-                    ));
+                } else if (!entries.getFechaSalida().equals("")) {
+                    if (entries.getFechaSalida().substring(6, 10).equals(año)) {
+                        this.mHayResueltasAnuales = true;
+                        this.mListResueltasAnuales.add(new ConsultaReparacionesPendientes(
+                                entries.getNombre(),
+                                entries.getPrimerApellido(),
+                                entries.getSegundoApellido(),
+                                entries.getMarcaVehiculo(),
+                                entries.getModeloVehículo(),
+                                entries.getMatriculaVehiculo(),
+                                entries.getFechaEntrada(),
+                                entries.getResumenEntrada(),
+                                entries.getDescripcionEntrada(),
+                                entries.getResolucionEntrada(),
+                                entries.getFechaSalida(),
+                                entries.getCosteReparacion()
+                        ));
+                    }
                 }
             }
         }
         this.llenaAdapters(año);
     }
 
+    /**
+     * Carga información recogida de las listas a los adapters. En caso de que no haya información
+     * se enviará un mensaje en la pantalla.
+     *
+     * @param fecha fecha con la que llenaremos los adapters. Se utiliza para enseñarla por pantalla
+     *              si no hubieran datos para la fecha indicada.
+     */
     private void llenaAdapters(String fecha) {
-        Log.d("VisualizaCuentas", "llenaAdapters() con la fecha = " +fecha);
         String noEntradas = "";
         String noResueltas = "";
         if (this.mRdBtnDia.isChecked()) {
-            Log.d("VisualizaCuentas", "");
             noEntradas = "No hay entradas sin resolver para el día " + fecha;
             noResueltas = "No hay entradas resueltas para el día " + fecha;
             if (!this.mHayEntradasDiarias) {
@@ -256,8 +275,8 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                 this.mRecyclerResueltas.setAdapter(this.mAdapterResueltas);
             }
         } else if (this.mRdBtnMes.isChecked()) {
-            noEntradas = "No hay entradas sin resolver para el mes " + fecha;
-            noResueltas = "No hay entradas resueltas para el mes " + fecha;
+            noEntradas = "No hay entradas sin resolver para el mes " + this.getMesByNumber(fecha);
+            noResueltas = "No hay entradas resueltas para el mes " + this.getMesByNumber(fecha);
             if (!this.mHayEntradasMensuales) {
                 this.mRecyclerEntradas.setVisibility(View.GONE);
                 this.mTextNoEntradas.setVisibility(View.VISIBLE);
@@ -308,10 +327,12 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                 this.mRecyclerResueltas.setAdapter(this.mAdapterResueltas);
             }
         }
-
         this.hazCuentas();
     }
 
+    /**
+     * Cuentas que pueden ser diarias, mensuales y anuales.
+     */
     private void hazCuentas() {
         int count = 0;
         if (this.mRdBtnDia.isChecked()) {
@@ -353,20 +374,21 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         }
     }
 
+    /**
+     * Inicializa todas las variables y layouts de la pantalla.
+     */
     private void init() {
-        this.mTextTotalEntradas = (TextView) findViewById(R.id.txtvw_editar_total_entradas);
-        this.mTextTotalResueltas = (TextView) findViewById(R.id.txtvw_editar_total_resueltas);
         this.mTextTotalDinero = (TextView) findViewById(R.id.txtvw_editar_total_dinero);
         this.mBtnCambiaFecha = (Button) findViewById(R.id.btn_cambia_fecha_cuentas);
         this.mBtnCambiaFecha.setOnClickListener(this);
         this.mRdBtnDia = (RadioButton) findViewById(R.id.rdbtn_cuentas_diarias);
-        this.mRdBtnDia.setChecked(true);
         this.mRdBtnDia.setOnCheckedChangeListener(this);
         this.mRdBtnMes = (RadioButton) findViewById(R.id.rdbtn_cuentas_mensuales);
         this.mRdBtnMes.setOnCheckedChangeListener(this);
         this.mRdBtnAño = (RadioButton) findViewById(R.id.rdbtn_cuentas_anuales);
         this.mRdBtnAño.setOnCheckedChangeListener(this);
         this.mTextDia = (TextView) findViewById(R.id.txtvw_cuentas_diarias);
+        this.mTextDia.setVisibility(View.GONE);
         this.mTextMes = (TextView) findViewById(R.id.txtvw_cuentas_mensuales);
         this.mTextMes.setVisibility(View.GONE);
         this.mTextAño = (TextView) findViewById(R.id.txtvw_cuentas_anuales);
@@ -378,9 +400,13 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         this.mCuentaAño = (TextView) findViewById(R.id.txtvw_total_anual);
         this.mCuentaAño.setVisibility(View.GONE);
         this.mRecyclerEntradas = (RecyclerView) findViewById(R.id.recycler_view_total_entradas);
+        this.mRecyclerEntradas.setVisibility(View.GONE);
         this.mRecyclerResueltas = (RecyclerView) findViewById(R.id.recycler_view_total_resueltas);
+        this.mRecyclerResueltas.setVisibility(View.GONE);
         this.mTextNoEntradas = (TextView) findViewById(R.id.txtvw_lista_entradas_vacia);
+        this.mTextNoEntradas.setVisibility(View.GONE);
         this.mTextNoResueltas = (TextView) findViewById(R.id.txtvw_lista_resueltas_vacia);
+        this.mTextNoResueltas.setVisibility(View.GONE);
         this.mListEntradasDiarias = new ArrayList<>();
         this.mListResueltasDiarias = new ArrayList<>();
         this.mListEntradasMensuales = new ArrayList<>();
@@ -396,6 +422,9 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         this.initDia();
     }
 
+    /**
+     * Inicializa la fecha con la actual por defecto.
+     */
     private void initDia() {
         Calendar c = Calendar.getInstance();
         String year = String.valueOf(c.getTime().getYear());
@@ -406,22 +435,6 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         if (day.length() == 1) day = "0" + day;
         this.mFechaActual = day + "." + month + "." + aux_year;
         this.mTextDia.setText(this.mFechaActual);
-        Log.d("VisualizaCuentas", "initDia -> this.mRdBtnDia.isChecked()" + this.mRdBtnDia.isChecked());
-        Log.d("VisualizaCuentas", "initDia -> this.mRdBtnMes.isChecked()" + this.mRdBtnMes.isChecked());
-        Log.d("VisualizaCuentas", "initDia -> this.mRdBtnAño.isChecked()" + this.mRdBtnAño.isChecked());
-        if (this.mRdBtnDia.isChecked()) {
-            Log.d("VisualizaCuentas", "initDia -> el mRdBtnDia está presionado y voy a initLists con la fecha = " +
-                    this.mFechaActual);
-            this.initLists();
-        } else if (this.mRdBtnMes.isChecked()) {
-            Log.d("VisualizaCuentas", "initDia -> el mRdBtnMes está presionado y voy a initListsMensual con la fecha = " +
-                    this.mFechaActual.substring(3, 5));
-            this.initListsMensual(this.mFechaActual.substring(3, 5));
-        } else if (this.mRdBtnAño.isChecked()) {
-            Log.d("VisualizaCuentas", "initDia -> el mRdBtnAño está presionado y voy a initListsAnual con la fecha = " +
-                    this.mFechaActual.substring(6, 10));
-            this.initListsAnuales(this.mFechaActual.substring(6, 10));
-        }
     }
 
     @Override
@@ -439,6 +452,10 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         }
     }
 
+    /**
+     * Popup para indicar que no hay datos seleccionados (Día, Mes, Año) para poder calcular
+     * la facturación.
+     */
     private void dialogNoHayDatos() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.custom_dialog_atencion);
@@ -459,6 +476,9 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         dialog.show();
     }
 
+    /**
+     * Popup para cambiar el año que se pone por defecto. Tenemos un rango de año actual hasta 50.
+     */
     private void cambiaAñoFecha() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.content_dialog_meses);
@@ -479,6 +499,7 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mAñoSeleccionado = listAños.get(position);
                 mTextAño.setText(mAñoSeleccionado);
+                initListsAnuales(mAñoSeleccionado);
                 dialog.dismiss();
             }
         });
@@ -493,6 +514,9 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         dialog.show();
     }
 
+    /**
+     * Popup para cambiar el mes que se indica por defecto.
+     */
     private void cambiaMesFecha() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.content_dialog_meses);
@@ -522,6 +546,7 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mMesSeleccionado = listMeses.get(position);
                 mTextMes.setText(mMesSeleccionado);
+                initListsMensual(getNumberByMes(mMesSeleccionado));
                 dialog.dismiss();
             }
         });
@@ -536,6 +561,9 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         dialog.show();
     }
 
+    /**
+     * Popup para cambiar la fecha que se indica por defecto.
+     */
     private void cambiaDiaFecha() {
         Calendar now = Calendar.getInstance();
         DatePickerDialog dpd = new DatePickerDialog(
@@ -566,15 +594,15 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         if (parseDay.length() == 1) parseDay = "0" + parseDay;
         this.mFechaActual = parseDay + "." + parseMonth + "." + parseYear;
         this.mTextDia.setText(this.mFechaActual);
-        if (this.mRdBtnDia.isChecked()) {
-            this.initLists();
-        } else if (this.mRdBtnMes.isChecked()) {
-            this.initListsMensual(this.mFechaActual.substring(3, 5));
-        } else if (this.mRdBtnAño.isChecked()) {
-            this.initListsAnuales(this.mFechaActual.substring(6, 10));
-        }
+        this.initLists();
     }
 
+    /**
+     * Mediante un número mensual se devuelve su mes.
+     *
+     * @param num indica qué mes queremos cambiar.
+     * @return Devuelve el nombre del mes en cuestión.
+     */
     private String getMesByNumber(String num) {
         String mes = "";
         switch (num) {
@@ -618,6 +646,55 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
         return mes;
     }
 
+    /**
+     * Mediante un nombre perteneciente a un mes en concreto, se devuelve su número.
+     *
+     * @param mes indica qué mes queremos cambiar
+     * @return Devuelve el número correspondiente al mes
+     */
+    private String getNumberByMes(String mes) {
+        String num = "";
+        switch (mes) {
+            case "Enero":
+                num = "01";
+                break;
+            case "Febrero":
+                num = "02";
+                break;
+            case "Marzo":
+                num = "03";
+                break;
+            case "Abril":
+                num = "04";
+                break;
+            case "Mayo":
+                num = "05";
+                break;
+            case "Junio":
+                num = "06";
+                break;
+            case "Julio":
+                num = "07";
+                break;
+            case "Agosto":
+                num = "08";
+                break;
+            case "Septiembre":
+                num = "09";
+                break;
+            case "Octubre":
+                num = "10";
+                break;
+            case "Noviembre":
+                num = "11";
+                break;
+            case "Diciembre":
+                num = "12";
+                break;
+        }
+        return num;
+    }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (buttonView == this.mRdBtnDia) {
@@ -626,7 +703,11 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                 this.mRdBtnAño.setChecked(false);
                 this.mTextDia.setVisibility(View.VISIBLE);
                 this.mCuentaDia.setVisibility(View.VISIBLE);
+                this.initLists();
+                this.mTextDia.setText(this.mFechaActual);
             } else {
+                this.mHayEntradasDiarias = false;
+                this.mHayResueltasDiarias = false;
                 this.mTextDia.setVisibility(View.GONE);
                 this.mCuentaDia.setVisibility(View.GONE);
             }
@@ -635,10 +716,14 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                 this.mRdBtnDia.setChecked(false);
                 this.mRdBtnAño.setChecked(false);
                 this.mTextMes.setVisibility(View.VISIBLE);
-                String mes = this.getMesByNumber(this.mFechaActual.substring(3, 5));
-                this.mTextMes.setText(mes);
                 this.mCuentaMes.setVisibility(View.VISIBLE);
+                String numMes = this.mFechaActual.substring(3, 5);
+                String mes = this.getMesByNumber(this.mFechaActual.substring(3, 5));
+                this.initListsMensual(numMes);
+                this.mTextMes.setText(mes);
             } else {
+                this.mHayEntradasMensuales = false;
+                this.mHayResueltasMensuales = false;
                 this.mTextMes.setVisibility(View.GONE);
                 this.mCuentaMes.setVisibility(View.GONE);
             }
@@ -647,9 +732,13 @@ public class VisualizaCuentasActivity extends AppCompatActivity implements View.
                 this.mRdBtnDia.setChecked(false);
                 this.mRdBtnMes.setChecked(false);
                 this.mTextAño.setVisibility(View.VISIBLE);
-                this.mTextAño.setText(this.mFechaActual.substring(6, this.mFechaActual.length()));
                 this.mCuentaAño.setVisibility(View.VISIBLE);
+                String año = this.mFechaActual.substring(6, this.mFechaActual.length());
+                this.initListsAnuales(año);
+                this.mTextAño.setText(año);
             } else {
+                this.mHayEntradasAnuales = false;
+                this.mHayResueltasAnuales = false;
                 this.mTextAño.setVisibility(View.GONE);
                 this.mCuentaAño.setVisibility(View.GONE);
             }

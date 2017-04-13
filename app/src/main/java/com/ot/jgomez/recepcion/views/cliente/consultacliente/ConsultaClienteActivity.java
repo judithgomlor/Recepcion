@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultacliente;
+package com.ot.jgomez.recepcion.views.cliente.consultacliente;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -150,9 +150,12 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.init();
         this.goneVehiculos();
         this.getInfoClientes();
-        this.escribeTextViews();
+        this.visibleTextViews();
     }
 
+    /**
+     * Oculta los layouts de todos los vehículos (10).
+     */
     private void goneVehiculos() {
         //primer vehículo
         this.mLayoutPrimerVehiculo.setVisibility(View.GONE);
@@ -176,7 +179,10 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mLayoutDecimoVehiculo.setVisibility(View.GONE);
     }
 
-    private void escribeTextViews() {
+    /**
+     * Muestra los TextViews según tantos vehículos registrados tenga el cliente.
+     */
+    private void visibleTextViews() {
         //datos personales
         this.escribeDatosPersonales();
         int count = this.cuantosVehiculosTieneCliente();
@@ -186,8 +192,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         }
     }
 
-    /*
-    Setteamos los campos de "Marca", "Modelo" y "Matrícula" correspondientes con el cliente.
+    /**
+     * Setteamos los campos de "Marca", "Modelo" y "Matrícula" correspondientes con el cliente y
+     * los vehículos que tenga.
      */
     private void ponInfoEnCamposVehiculo(int count) {
         switch (count) {
@@ -426,9 +433,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         }
     }
 
-    /*
-    Hacemos visibles todos los campos de los vehículos que tenga el cliente y cogemos la información
-     de las listas para meterlas en los Strings que luego enseñaremos.
+    /**
+     * Hacemos visibles todos los campos de los vehículos que tenga el cliente y cogemos la información
+     * de las listas para meterlas en los Strings que luego enseñaremos.
      */
     private void visibleVehiculosPonInfo(int count) {
         switch (count) {
@@ -722,10 +729,10 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         }
     }
 
-    /*
-    Vamos a contar cuántos vehículos tienen un cliente según si encuentra
-    datos con el mismo nombre, apellidos y teléfono del cliente en cuestión.
-    La variable va de 0 a 9 (como mucho 10 vehículos por persona)
+    /**
+     * Contamos cuántos vehículos tiene un cliente según si encuentra datos con el mismo nombre,
+     * apellidos y teléfono del cliente en cuestión. La variable va de 0 a 9
+     * (como mucho 10 vehículos por persona).
      */
     private int cuantosVehiculosTieneCliente() {
         int count = 0;
@@ -744,6 +751,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         return count;
     }
 
+    /**
+     * Escribe los datos personales del cliente.
+     */
     private void escribeDatosPersonales() {
         this.mTextNombre.setText(this.mNombre);
         String apellidos = this.mPrimerApellido + " " + this.mSegundoApellido;
@@ -751,6 +761,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextTelefono.setText(this.mTelefono);
     }
 
+    /**
+     * Coge la información del cliente una vez lo hemos seleccionado en la pantalla anterior.
+     */
     private void getInfoClientes() {
         this.mNombre = this.getIntent().getStringExtra(EXTRA_NOMBRE);
         this.mPrimerApellido = this.getIntent().getStringExtra(EXTRA_PRIMER_APELLIDO);
@@ -758,6 +771,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTelefono = this.getIntent().getStringExtra(EXTRA_TELEFONO);
     }
 
+    /**
+     * Inicializa todas las funciones de la pantalla.
+     */
     private void init() {
         this.mListMarcas = new ArrayList<>();
         this.mListMatriculas = new ArrayList<>();
@@ -786,12 +802,18 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.initDecimoVehiculo();
     }
 
+    /**
+     * Inicializa los campos pertenecientes a los datos personales.
+     */
     private void initDatosPersonales() {
         this.mTextNombre = (TextView) findViewById(R.id.txtvw_nombre_muestra_cliente);
         this.mTextApellidos = (TextView) findViewById(R.id.txtvw_apellidos_muestra_cliente);
         this.mTextTelefono = (TextView) findViewById(R.id.txtvw_telefono_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del primer vehículo.
+     */
     private void initPrimerVehiculo() {
         this.mLayoutPrimerVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_primer_vehiculo);
         this.mTextPrimeraMarca = (TextView) findViewById(R.id.txtvw_primera_marca_muestra_cliente);
@@ -799,6 +821,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextPrimeraMatricula = (TextView) findViewById(R.id.txtvw_primera_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del segundo vehículo.
+     */
     private void initSegundoVehiculo() {
         this.mLayoutSegundoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_segundo_vehiculo);
         this.mTextSegundaMarca = (TextView) findViewById(R.id.txtvw_segunda_marca_muestra_cliente);
@@ -806,6 +831,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextSegundaMatricula = (TextView) findViewById(R.id.txtvw_segunda_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del tercer vehículo.
+     */
     private void initTercerVehiculo() {
         this.mLayoutTercerVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_tercer_vehiculo);
         this.mTextTerceraMarca = (TextView) findViewById(R.id.txtvw_tercera_marca_muestra_cliente);
@@ -813,6 +841,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextTerceraMatricula = (TextView) findViewById(R.id.txtvw_tercera_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del cuarto vehículo.
+     */
     private void initCuartoVehiculo() {
         this.mLayoutCuartoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_cuarto_vehiculo);
         this.mTextCuartaMarca = (TextView) findViewById(R.id.txtvw_cuarta_marca_muestra_cliente);
@@ -820,6 +851,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextCuartaMatricula = (TextView) findViewById(R.id.txtvw_cuarta_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del quinto vehículo.
+     */
     private void initQuintoVehiculo() {
         this.mLayoutQuintoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_quinto_vehiculo);
         this.mTextQuintaMarca = (TextView) findViewById(R.id.txtvw_quinta_marca_muestra_cliente);
@@ -827,6 +861,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextQuintaMatricula = (TextView) findViewById(R.id.txtvw_quinta_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del sexto vehículo.
+     */
     private void initSextoVehiculo() {
         this.mLayoutSextoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_sexto_vehiculo);
         this.mTextSextaMarca = (TextView) findViewById(R.id.txtvw_sexta_marca_muestra_cliente);
@@ -834,6 +871,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextSextaMatricula = (TextView) findViewById(R.id.txtvw_sexta_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del séptimo vehículo.
+     */
     private void initSeptimoVehiculo() {
         this.mLayoutSeptimoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_septimo_vehiculo);
         this.mTextSeptimaMarca = (TextView) findViewById(R.id.txtvw_septima_marca_muestra_cliente);
@@ -841,6 +881,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextSeptimaMatricula = (TextView) findViewById(R.id.txtvw_septima_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del octavo vehículo.
+     */
     private void initOctavoVehiculo() {
         this.mLayoutOctavoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_octavo_vehiculo);
         this.mTextOctavaMarca = (TextView) findViewById(R.id.txtvw_octava_marca_muestra_cliente);
@@ -848,6 +891,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextOctavaMatricula = (TextView) findViewById(R.id.txtvw_octava_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del noveno vehículo.
+     */
     private void initNovenoVehiculo() {
         this.mLayoutNovenoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_noveno_vehiculo);
         this.mTextNovenaMarca = (TextView) findViewById(R.id.txtvw_novena_marca_muestra_cliente);
@@ -855,6 +901,9 @@ public class ConsultaClienteActivity extends AppCompatActivity implements Consul
         this.mTextNovenaMatricula = (TextView) findViewById(R.id.txtvw_novena_matricula_muestra_cliente);
     }
 
+    /**
+     * Inicializa los campos del décimo vehículo.
+     */
     private void initDecimoVehiculo() {
         this.mLayoutDecimoVehiculo = (LinearLayout) findViewById(R.id.layout_consulta_decimo_vehiculo);
         this.mTextDecimaMarca = (TextView) findViewById(R.id.txtvw_decima_marca_muestra_cliente);

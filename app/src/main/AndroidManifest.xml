@@ -22,20 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.addcliente.AddClienteActivity" />
-        <activity android:name=".views.addreparacion.AddReparacionActivity" />
-        <activity android:name=".views.solvereparacion.SolveReparacionActivity" />
-        <activity android:name=".views.consultacliente.ConsultaClienteActivity" />
-        <activity android:name=".views.listaclientes.ListaClientesActivity" />
+        <activity android:name=".views.cliente.addcliente.AddClienteActivity" />
+        <activity android:name=".views.reparacion.addreparacion.AddReparacionActivity" />
+        <activity android:name=".views.reparacion.solvereparacion.SolveReparacionActivity" />
+        <activity android:name=".views.cliente.consultacliente.ConsultaClienteActivity" />
+        <activity android:name=".views.cliente.listaclientes.ListaClientesActivity" />
         <activity android:name=".views.visualizacuentas.VisualizaCuentasActivity" />
-        <activity android:name=".views.consultarreparaciones.ConsultarReparacionesActivity" />
+        <activity android:name=".views.reparacion.consultarreparaciones.ConsultarReparacionesActivity" />
         <activity
-            android:name=".views.modificacliente.ModificaClienteActivity"
+            android:name=".views.cliente.modificacliente.ModificaClienteActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".views.modificacliente.buscacliente.BuscaClienteActivity" />
-        <activity android:name=".views.modificareparacion.ModificaReparacionActivity" />
-        <activity android:name=".views.addrepuestos.AddRespuestosActivity" />
-        <activity android:name=".views.visualizacuentasmensuales.CuentasMensualesActivity"></activity>
+        <activity android:name=".views.cliente.modificacliente.buscacliente.BuscaClienteActivity" />
+        <activity android:name=".views.reparacion.modificareparacion.ModificaReparacionActivity" />
     </application>
 
 </manifest>

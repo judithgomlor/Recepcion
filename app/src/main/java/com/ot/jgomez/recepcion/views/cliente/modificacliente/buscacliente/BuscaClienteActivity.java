@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.modificacliente.buscacliente;
+package com.ot.jgomez.recepcion.views.cliente.modificacliente.buscacliente;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ListaBuscaClientesDialogAdapters;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
-import com.ot.jgomez.recepcion.views.modificacliente.ModificaClienteContract;
-import com.ot.jgomez.recepcion.views.modificacliente.ModificaClientePresenterImpl;
+import com.ot.jgomez.recepcion.views.cliente.modificacliente.ModificaClienteContract;
+import com.ot.jgomez.recepcion.views.cliente.modificacliente.ModificaClientePresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,6 @@ public class BuscaClienteActivity extends AppCompatActivity implements TextWatch
     private static final String EXTRA_PRIMER_APELLIDO = "primer_apellido";
     private static final String EXTRA_SEGUNDO_APELLIDO = "segundo_apellido";
     private static final String EXTRA_TELEFONO = "telefono";
-    private static final int REQUEST_CODE_OK = 1;
-    private static final int REQUEST_CODE_KO = 2;
     private EditText mEditBusqueda;
     private Button mBtnReinicia;
     private List<ConsultaClientes> mList;
@@ -63,6 +61,9 @@ public class BuscaClienteActivity extends AppCompatActivity implements TextWatch
         this.init();
     }
 
+    /**
+     * Inicializa todos los parámetros de la pantalla inicial.
+     */
     private void init() {
         this.mEditBusqueda = (EditText) findViewById(R.id.edit_busca_nombre);
         this.mEditBusqueda.addTextChangedListener(this);
@@ -84,22 +85,26 @@ public class BuscaClienteActivity extends AppCompatActivity implements TextWatch
         this.mSegundoApellido = "";
         this.mTelefono = "";
         this.mBoolHayDatos = false;
-        Log.d("BuscaCliente", "this.mBoolHayDatos = " +this.mBoolHayDatos);
+        Log.d("BuscaCliente", "this.mBoolHayDatos = " + this.mBoolHayDatos);
     }
 
-    public void pasaOtraActividad (Bundle bundle) {
+    /**
+     * Envía información a la pantalla que enseña con detalle los datos del cliente.
+     * @param bundle parámetro para poder pasar los datos.
+     */
+    public void pasaOtraActividad(Bundle bundle) {
         this.mNombre = bundle.getString(this.EXTRA_NOMBRE);
         this.mPrimerApellido = bundle.getString(this.EXTRA_PRIMER_APELLIDO);
         this.mSegundoApellido = bundle.getString(this.EXTRA_SEGUNDO_APELLIDO);
         this.mTelefono = bundle.getString(this.EXTRA_TELEFONO);
-        if(!this.mNombre.equals("") && !this.mPrimerApellido.equals("") &&
+        if (!this.mNombre.equals("") && !this.mPrimerApellido.equals("") &&
                 !this.mSegundoApellido.equals("") && !this.mTelefono.equals("")) {
             this.mBoolHayDatos = true;
         } else {
             this.mBoolHayDatos = false;
         }
 
-        if(this.mBoolHayDatos) {
+        if (this.mBoolHayDatos) {
             Intent returnIntent = new Intent();
             returnIntent.putExtra(this.EXTRA_NOMBRE, this.mNombre);
             returnIntent.putExtra(this.EXTRA_PRIMER_APELLIDO, this.mPrimerApellido);
@@ -118,7 +123,7 @@ public class BuscaClienteActivity extends AppCompatActivity implements TextWatch
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if(!this.mBoolHayDatos) {
+            if (!this.mBoolHayDatos) {
                 Intent returnIntent = new Intent();
                 setResult(this.RESULT_CANCELED, returnIntent);
                 finish();
@@ -144,6 +149,10 @@ public class BuscaClienteActivity extends AppCompatActivity implements TextWatch
         }
     }
 
+    /**
+     * Busca el nombre del cliente en la base de datos
+     * @param nombre
+     */
     private void buscaNombre(String nombre) {
         this.mList = this.mPresenter.getClientes(nombre);
         if (this.mList.size() > 0) {

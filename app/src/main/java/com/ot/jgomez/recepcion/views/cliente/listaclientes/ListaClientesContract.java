@@ -1,8 +1,7 @@
-package com.ot.jgomez.recepcion.views.listaclientes;
+package com.ot.jgomez.recepcion.views.cliente.listaclientes;
 
 import android.content.Context;
 
-import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.views.BasePresenter;
 import com.ot.jgomez.recepcion.views.BaseView;

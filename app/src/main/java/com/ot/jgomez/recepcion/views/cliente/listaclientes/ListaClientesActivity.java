@@ -1,26 +1,20 @@
-package com.ot.jgomez.recepcion.views.listaclientes;
+package com.ot.jgomez.recepcion.views.cliente.listaclientes;
 
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.ot.jgomez.recepcion.R;
 import com.ot.jgomez.recepcion.adapters.ConsultaClientesRvAdapter;
-import com.ot.jgomez.recepcion.control.ComparatorStrings;
 import com.ot.jgomez.recepcion.control.MergeSort;
-import com.ot.jgomez.recepcion.database.DBClientes;
 import com.ot.jgomez.recepcion.items.ConsultaClientes;
 import com.ot.jgomez.recepcion.items.NombrePos;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ListaClientesActivity extends AppCompatActivity implements ListaClientesContract.View {
@@ -70,6 +64,9 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         this.mRecyclerView.setAdapter(this.mAdapter);
     }
 
+    /**
+     * Ordena la lista inicial de clientes.
+     */
     private void ordenaListaInicial() {
         this.mListAuxClientes.clear();
         ConsultaClientes cliente;
@@ -91,7 +88,7 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
     }
 
     /**
-    Copiaremos los nombres de la lista de clientes junto con la posición que ocupen
+     * Copiaremos los nombres de la lista de clientes junto con la posición que ocupen
      */
     private void copiaNombres() {
         for (int i = 0; i < this.mListClientes.size(); ++i) {
@@ -102,6 +99,9 @@ public class ListaClientesActivity extends AppCompatActivity implements ListaCli
         }
     }
 
+    /**
+     * Mira que no hayan clientes repetidos en la lista auxiliar.
+     */
     private void preparaListas_v2() {
         List<ConsultaClientes> clientes = new ArrayList<>();
         ConsultaClientes clienteAnterior, clienteActual;

@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultarreparaciones;
+package com.ot.jgomez.recepcion.views.reparacion.consultarreparaciones;
 
 import android.content.Context;
 

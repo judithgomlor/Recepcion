@@ -4,7 +4,7 @@
     android:id="@+id/activity_modifica_cliente"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ot.jgomez.recepcion.views.modificacliente.ModificaClienteActivity">
+    tools:context=".views.cliente.modificacliente.ModificaClienteActivity">
 
     <!-- botones al final de la pantalla -->
 

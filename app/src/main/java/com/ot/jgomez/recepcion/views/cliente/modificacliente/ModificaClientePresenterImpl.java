@@ -1,7 +1,6 @@
-package com.ot.jgomez.recepcion.views.modificacliente;
+package com.ot.jgomez.recepcion.views.cliente.modificacliente;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.ot.jgomez.recepcion.control.MergeSort;
 import com.ot.jgomez.recepcion.database.DBClientes;

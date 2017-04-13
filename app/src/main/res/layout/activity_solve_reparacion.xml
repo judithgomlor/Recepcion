@@ -4,7 +4,7 @@
     android:id="@+id/activity_solve_reparacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ot.jgomez.recepcion.views.solvereparacion.SolveReparacionActivity">
+    tools:context=".views.reparacion.solvereparacion.SolveReparacionActivity">
 
     <include layout="@layout/content_solve_reparacion" />
 

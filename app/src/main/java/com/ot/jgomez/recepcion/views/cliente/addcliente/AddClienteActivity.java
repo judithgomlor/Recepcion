@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.addcliente;
+package com.ot.jgomez.recepcion.views.cliente.addcliente;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -19,7 +19,6 @@ import com.ot.jgomez.recepcion.database.DBClientes;
 
 public class AddClienteActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int REQUEST_NEW_CLIENT = 1;
     private static final String EXTRA_NAME = "nombre";
     private static final String EXTRA_FIRST_SURNAME = "primer_apellido";
     private static final String EXTRA_SECOND_SURNAME = "segundo_apellido";
@@ -127,7 +126,6 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
     private boolean mEliminaDecimo = false;
 
     private boolean mAddReparacion = false;
-    private boolean mHayDatos = false;
 
     private ActionBar mBar;
 
@@ -138,6 +136,11 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
         if (getIntent().getBooleanExtra(this.EXTRA_REPARACION, false)) this.mAddReparacion = true;
 
+        /*
+        Miramos si entramos a esta pantalla desde la de reparación o no.
+        Si no entramos desde reparación, tendremos la flecha de vuelta atrás, en caso contrario,
+        no la tendremos.
+         */
         if (!this.mAddReparacion) {
             this.mBar = getSupportActionBar();
             this.mBar.setDisplayShowHomeEnabled(true);
@@ -158,16 +161,16 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnCancelar = (Button) findViewById(R.id.boton_cancelar_nuevo_cliente);
         this.mBtnCancelar.setOnClickListener(this);
 
-        initPrimero();
-        initSegundo();
-        initTercero();
-        initCuarto();
-        initQuinto();
-        initSexto();
-        initSeptimo();
-        initOctavo();
-        initNoveno();
-        initDecimo();
+        this.initPrimero();
+        this.initSegundo();
+        this.initTercero();
+        this.initCuarto();
+        this.initQuinto();
+        this.initSexto();
+        this.initSeptimo();
+        this.initOctavo();
+        this.initNoveno();
+        this.initDecimo();
     }
 
     @Override
@@ -313,6 +316,10 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+
+    /**
+     * Comprueba que los campos relevantes contengan información
+     */
     private void compruebaCampos() {
         String nombre, primerApellido, segundoApellido, telefono, matricula, modelo, marca;
         if (this.mEditNombre.getText().length() == 0) {
@@ -474,6 +481,17 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Guarda los campos
+     *
+     * @param nombre          nombre del cliente
+     * @param primerApellido  primer apellido del cliente
+     * @param segundoApellido segundo apellido del cliente
+     * @param telefono        teléfono del cliente
+     * @param marca           marca del vehículo del cliente
+     * @param modelo          modelo del vehículo del cliente
+     * @param matricula       matrícula del vehículo del cliente
+     */
     private void saveChanges(String nombre, String primerApellido, String segundoApellido, String telefono,
                              String marca, String modelo, String matricula) {
         String aux_nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1, nombre.length());
@@ -499,6 +517,11 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         finish();
     }
 
+    /**
+     * Comprueba si se han añadido vehículos o, si hay datos del cliente nuevo
+     *
+     * @return devuelve si hay datos o no.
+     */
     private boolean compruebaBools() {
         if (this.mAddSegundo || this.mAddTercero || this.mAddCuarto || this.mAddQuinto ||
                 this.mAddSexto || this.mAddSeptimo || this.mAddOctavo || this.mAddNoveno ||
@@ -513,15 +536,12 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Dialog para asegurarnos que el usuario quiere salir sin guardar los cambios, existiendo estos.
+     */
     private void dialogExit() {
         final Dialog dialog = new Dialog(this);
-        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
-
-        //set the custom dialog components
-        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        //textoTitulo.setText(R.string.confirmacion);
-
         dialog.setTitle(R.string.confirmacion);
 
         TextView textoDialog = (TextView) dialog.findViewById(R.id.txtvw_custom_dialog);
@@ -544,14 +564,16 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         dialog.show();
     }
 
+    /**
+     * Dialog para asegurarnos que el usuario quiere eliminar una entrada de un vehículo, teniendo este
+     * datos.
+     *
+     * @param id del número de entrada
+     */
     private void dialogGone(final int id) {
         final Dialog dialog = new Dialog(this);
-       // dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
 
-        //set the custom dialog components
-        //TextView textoTitulo = (TextView) dialog.findViewById(R.id.txtvw_titulo_dialog);
-        //textoTitulo.setText(R.string.confirmacion);
 
         dialog.setTitle(R.string.confirmacion);
 
@@ -575,6 +597,11 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         dialog.show();
     }
 
+    /**
+     * Resetea todos los campos que hayan sido editados
+     *
+     * @param id de cuántos campos han sido los que se han editado
+     */
     private void reseteaValores(int id) {
         switch (id) {
             case 1:
@@ -632,6 +659,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    /**
+     * Inicializa el primer campo de vehículo.
+     */
     private void initPrimero() {
         this.mLinearLayoutPrimero = (LinearLayout) findViewById(R.id.añade_primer_vehiculo);
         this.mPrimerEditTextMarca = (EditText) findViewById(R.id.editar_primera_marca);
@@ -643,6 +673,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshacePrimero.setOnClickListener(this);
     }
 
+    /**
+     * Inicializa el segundo campo de vehículo.
+     */
     private void initSegundo() {
         this.mLinearLayoutSegundo = (LinearLayout) findViewById(R.id.añade_segundo_vehiculo);
         this.mLinearLayoutSegundo.setVisibility(View.GONE);
@@ -653,6 +686,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceSegundo = (Button) findViewById(R.id.boton_deshacer_segundo_vehiculo);
     }
 
+    /**
+     * Inicializa el tercer campo de vehículo.
+     */
     private void initTercero() {
         this.mLinearLayoutTercero = (LinearLayout) findViewById(R.id.añade_tercer_vehiculo);
         this.mLinearLayoutTercero.setVisibility(View.GONE);
@@ -663,6 +699,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceTercero = (Button) findViewById(R.id.boton_deshacer_tercer_vehiculo);
     }
 
+    /**
+     * Inicializa el cuarto campo de vehículo.
+     */
     private void initCuarto() {
         this.mLinearLayoutCuarto = (LinearLayout) findViewById(R.id.añade_cuarto_vehiculo);
         this.mLinearLayoutCuarto.setVisibility(View.GONE);
@@ -673,6 +712,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceCuarto = (Button) findViewById(R.id.boton_deshacer_cuarto_vehiculo);
     }
 
+    /**
+     * Inicializa el quinto campo de vehículo.
+     */
     private void initQuinto() {
         this.mLinearLayoutQuinto = (LinearLayout) findViewById(R.id.añade_quinto_vehiculo);
         this.mLinearLayoutQuinto.setVisibility(View.GONE);
@@ -684,6 +726,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceQuinto = (Button) findViewById(R.id.boton_deshacer_quinto_vehiculo);
     }
 
+    /**
+     * Inicializa el sexto campo de vehículo.
+     */
     private void initSexto() {
         this.mLinearLayoutSexto = (LinearLayout) findViewById(R.id.añade_sexto_vehiculo);
         this.mLinearLayoutSexto.setVisibility(View.GONE);
@@ -694,6 +739,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceSexto = (Button) findViewById(R.id.boton_deshacer_sexto_vehiculo);
     }
 
+    /**
+     * Inicializa el séptimo campo de vehículo.
+     */
     private void initSeptimo() {
         this.mLinearLayoutSeptimo = (LinearLayout) findViewById(R.id.añade_septimo_vehiculo);
         this.mLinearLayoutSeptimo.setVisibility(View.GONE);
@@ -704,6 +752,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceSeptimo = (Button) findViewById(R.id.boton_deshacer_septimo_vehiculo);
     }
 
+    /**
+     * Inicializa el octavo campo de vehículo.
+     */
     private void initOctavo() {
         this.mLinearLayoutOctavo = (LinearLayout) findViewById(R.id.añade_octavo_vehiculo);
         this.mLinearLayoutOctavo.setVisibility(View.GONE);
@@ -714,6 +765,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceOctavo = (Button) findViewById(R.id.boton_deshacer_octavo_vehiculo);
     }
 
+    /**
+     * Inicializa el noveno campo de vehículo.
+     */
     private void initNoveno() {
         this.mLinearLayoutNoveno = (LinearLayout) findViewById(R.id.añade_noveno_vehiculo);
         this.mLinearLayoutNoveno.setVisibility(View.GONE);
@@ -724,6 +778,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceNoveno = (Button) findViewById(R.id.boton_deshacer_noveno_vehiculo);
     }
 
+    /**
+     * Inicializa el décimo campo de vehículo.
+     */
     private void initDecimo() {
         this.mLinearLayoutDecimo = (LinearLayout) findViewById(R.id.añade_decimo_vehiculo);
         this.mLinearLayoutDecimo.setVisibility(View.GONE);
@@ -733,10 +790,16 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnDeshaceDecimo = (Button) findViewById(R.id.boton_deshacer_decimo_vehiculo);
     }
 
+    /**
+     * Deja de mostrar el primer campo de vehículo.
+     */
     private void gonePrimero() {
         this.mLinearLayoutPrimero.setVisibility(View.GONE);
     }
 
+    /**
+     * Muestra los campos del segundo vehículo.
+     */
     private void viewSegundo() {
         this.mLinearLayoutSegundo.setVisibility(View.VISIBLE);
         this.mBtnAñadeTercer.setOnClickListener(this);
@@ -744,11 +807,17 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeSegundo.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el segundo campo de vehículo.
+     */
     private void goneSegundo() {
         this.mLinearLayoutSegundo.setVisibility(View.GONE);
         this.mBtnAñadeSegundo.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del tercer vehículo.
+     */
     private void viewTercero() {
         this.mLinearLayoutTercero.setVisibility(View.VISIBLE);
         this.mBtnAñadeCuarto.setOnClickListener(this);
@@ -757,12 +826,19 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeTercer.setVisibility(View.GONE);
     }
 
+
+    /**
+     * Deja de mostrar el tercer campo de vehículo.
+     */
     private void goneTercero() {
         this.mLinearLayoutTercero.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir tercero
         this.mBtnAñadeTercer.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del cuarto vehículo.
+     */
     private void viewCuarto() {
         this.mLinearLayoutCuarto.setVisibility(View.VISIBLE);
         this.mBtnAñadeQuinto.setOnClickListener(this);
@@ -771,12 +847,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeCuarto.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el cuarto campo de vehículo.
+     */
     private void goneCuarto() {
         this.mLinearLayoutCuarto.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir cuarto
         this.mBtnAñadeCuarto.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del quinto vehículo.
+     */
     private void viewQuinto() {
         this.mLinearLayoutQuinto.setVisibility(View.VISIBLE);
         this.mBtnAñadeSexto.setOnClickListener(this);
@@ -785,12 +867,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeQuinto.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el quinto campo de vehículo.
+     */
     private void goneQuinto() {
         this.mLinearLayoutQuinto.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir quinto
         this.mBtnAñadeQuinto.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del sexto vehículo.
+     */
     private void viewSexto() {
         this.mLinearLayoutSexto.setVisibility(View.VISIBLE);
         this.mBtnAñadeSeptimo.setOnClickListener(this);
@@ -799,12 +887,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeSexto.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el sexto campo de vehículo.
+     */
     private void goneSexto() {
         this.mLinearLayoutSexto.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir sexto
         this.mBtnAñadeSexto.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del séptimo vehículo.
+     */
     private void viewSeptimo() {
         this.mLinearLayoutSeptimo.setVisibility(View.VISIBLE);
         this.mBtnAñadeOctavo.setOnClickListener(this);
@@ -813,12 +907,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeSeptimo.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el séptimo campo de vehículo.
+     */
     private void goneSeptimo() {
         this.mLinearLayoutSeptimo.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir septimo
         this.mBtnAñadeSeptimo.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del octavo vehículo.
+     */
     private void viewOctavo() {
         this.mLinearLayoutOctavo.setVisibility(View.VISIBLE);
         this.mBtnAñadeNoveno.setOnClickListener(this);
@@ -827,12 +927,18 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeOctavo.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el octavo campo de vehículo.
+     */
     private void goneOctavo() {
         this.mLinearLayoutOctavo.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir octavo
         this.mBtnAñadeOctavo.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Muestra los campos del noveno vehículo.
+     */
     private void viewNoveno() {
         this.mLinearLayoutNoveno.setVisibility(View.VISIBLE);
         this.mBtnAñadeDecimo.setOnClickListener(this);
@@ -841,6 +947,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeNoveno.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el noveno campo de vehículo.
+     */
     private void goneNoveno() {
         this.mLinearLayoutNoveno.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir noveno
@@ -848,6 +957,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
 
     }
 
+    /**
+     * Muestra los campos del décimo vehículo.
+     */
     private void viewDecimo() {
         this.mLinearLayoutDecimo.setVisibility(View.VISIBLE);
         this.mBtnDeshaceDecimo.setOnClickListener(this);
@@ -855,6 +967,9 @@ public class AddClienteActivity extends AppCompatActivity implements View.OnClic
         this.mBtnAñadeDecimo.setVisibility(View.GONE);
     }
 
+    /**
+     * Deja de mostrar el décimo campo de vehículo.
+     */
     private void goneDecimo() {
         this.mLinearLayoutDecimo.setVisibility(View.GONE);
         //hay que volver a dejar ver el botón de añadir décimo

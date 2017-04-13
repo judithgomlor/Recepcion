@@ -10,18 +10,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.ot.jgomez.recepcion.R;
-import com.ot.jgomez.recepcion.views.addcliente.AddClienteActivity;
-import com.ot.jgomez.recepcion.views.addreparacion.AddReparacionActivity;
-import com.ot.jgomez.recepcion.views.consultacliente.ConsultaClienteActivity;
-import com.ot.jgomez.recepcion.views.consultarreparaciones.ConsultarReparacionesActivity;
-import com.ot.jgomez.recepcion.views.listaclientes.ListaClientesActivity;
-import com.ot.jgomez.recepcion.views.modificacliente.ModificaClienteActivity;
-import com.ot.jgomez.recepcion.views.modificareparacion.ModificaReparacionActivity;
-import com.ot.jgomez.recepcion.views.solvereparacion.SolveReparacionActivity;
+import com.ot.jgomez.recepcion.views.cliente.addcliente.AddClienteActivity;
+import com.ot.jgomez.recepcion.views.reparacion.addreparacion.AddReparacionActivity;
+import com.ot.jgomez.recepcion.views.reparacion.consultarreparaciones.ConsultarReparacionesActivity;
+import com.ot.jgomez.recepcion.views.cliente.listaclientes.ListaClientesActivity;
+import com.ot.jgomez.recepcion.views.cliente.modificacliente.ModificaClienteActivity;
+import com.ot.jgomez.recepcion.views.reparacion.modificareparacion.ModificaReparacionActivity;
+import com.ot.jgomez.recepcion.views.reparacion.solvereparacion.SolveReparacionActivity;
 import com.ot.jgomez.recepcion.views.visualizacuentas.VisualizaCuentasActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,9 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton mBtnResolverReparacion;
     private ImageButton mBtnConsultarReparacion;
     private ImageButton mBtnConsultarCuentas;
-    private ImageButton mBtnAñadirRepuestos;
-    private ImageButton mBtnModificarRepuestos;
-    private ImageButton mBtnConsultarRepuestos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.init();
     }
 
+    /**
+     * Inicializa todos los botones y acciones de la pantalla principal.
+     */
     private void init() {
         this.mBtnAñadirCliente = (ImageButton) findViewById(R.id.añade_cliente_button);
         this.mBtnAñadirCliente.setOnClickListener(this);
@@ -73,15 +71,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         this.mBtnConsultarCuentas = (ImageButton) findViewById(R.id.consulta_cuentas_button);
         this.mBtnConsultarCuentas.setOnClickListener(this);
-
-        this.mBtnAñadirRepuestos = (ImageButton) findViewById(R.id.añadir_repuestos_button);
-        this.mBtnAñadirRepuestos.setOnClickListener(this);
-
-        this.mBtnModificarRepuestos = (ImageButton) findViewById(R.id.modifica_respuestos_button);
-        this.mBtnModificarRepuestos.setOnClickListener(this);
-
-        this.mBtnConsultarRepuestos = (ImageButton) findViewById(R.id.consulta_repuestos_button);
-        this.mBtnConsultarRepuestos.setOnClickListener(this);
     }
 
     @Override
@@ -114,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_calendar) {
+
             return true;
         }
 
@@ -147,12 +137,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v == this.mBtnConsultarCuentas) {
             myIntent = new Intent(this, VisualizaCuentasActivity.class);
             startActivity(myIntent);
-        } else if (v == this.mBtnAñadirRepuestos) {
-            //aún no está)
-        } else if (v == this.mBtnModificarRepuestos) {
-            //aún no está
-        } else if (v == this.mBtnConsultarRepuestos) {
-            //aún no está
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultacliente;
+package com.ot.jgomez.recepcion.views.cliente.consultacliente;
 
 import android.content.Context;
 
@@ -17,6 +17,10 @@ public class ConsultaClientePresenterImpl implements ConsultaClienteContract.Pre
     private Context mContext;
     private ConsultaClienteContract.View mView;
 
+    /**
+     * Coge todos los clientes guardados en la base de datos
+     * @return lista de todos los clientes.
+     */
     @Override
     public List<ConsultaClientes> getClientes() {
         List<DBClientes> clientes = DBClientes.getAllClientes();
@@ -40,6 +44,11 @@ public class ConsultaClientePresenterImpl implements ConsultaClienteContract.Pre
         return listClientes;
     }
 
+    /**
+     * Se mantiene en el mismo contexto y vista que la activity ConsultaClienteActivity
+     * @param context contexto de la actividad
+     * @param view vista de la actividad
+     */
     @Override
     public void attach(Context context, ConsultaClienteContract.View view) {
         this.mContext = context;

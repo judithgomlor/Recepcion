@@ -1,4 +1,4 @@
-package com.ot.jgomez.recepcion.views.consultarreparaciones;
+package com.ot.jgomez.recepcion.views.reparacion.consultarreparaciones;
 
 import android.content.Context;
 
@@ -18,6 +18,15 @@ public class ConsultarReparacionesPresenterImpl implements ConsultarReparaciones
     private ConsultarReparacionesContract.View mView;
 
 
+    /**
+     * Coge todas las reparaciones pendientes a partir de una fecha y de si son todas, o a partir de
+     * la fecha seleccionada indicada.
+     *
+     * @param fecha    fecha para buscar todas las consultas.
+     * @param todas    booleano que indica si serán todas las que querramos consultar o no.
+     * @param a_partir booleano que indica si será a partir de una fecha la búsqueda.
+     * @return
+     */
     @Override
     public List<ConsultaReparacionesPendientes> getReparacionesPendientes(String fecha, boolean todas,
                                                                           boolean a_partir) {
@@ -99,7 +108,15 @@ public class ConsultarReparacionesPresenterImpl implements ConsultarReparaciones
         return list;
     }
 
-    //Devolverá una lista con todas las reparaciones resueltas
+    /**
+     * Coge todas las reparaciones resueltas a partir de una fecha y de si son todas, o a partir de
+     * la fecha seleccionada indicada.
+     *
+     * @param fecha    fecha para buscar todas las consultas.
+     * @param todas    booleano que indica si serán todas las que querramos consultar o no.
+     * @param a_partir booleano que indica si será a partir de una fecha la búsqueda.
+     * @return
+     */
     @Override
     public List<ConsultaReparacionesPendientes> getReparacionesResueltas(String fecha, boolean todas,
                                                                          boolean a_partir) {
@@ -180,7 +197,11 @@ public class ConsultarReparacionesPresenterImpl implements ConsultarReparaciones
         }
         return list;
     }
-
+    /**
+     * Se mantiene en el mismo contexto y vista que la activity ConsultarReparacionesActivity
+     * @param context contexto de la actividad
+     * @param view vista de la actividad
+     */
     @Override
     public void attach(Context context, ConsultarReparacionesContract.View view) {
         this.mContext = context;
